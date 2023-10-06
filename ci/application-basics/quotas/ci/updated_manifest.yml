@@ -1,0 +1,9 @@
+---
+applications:
+- name: large-app
+  memory: 64M
+  disk_quota: 64M
+  instances: 1
+  random_route: true
+  buildpacks:
+  - staticfile_buildpack

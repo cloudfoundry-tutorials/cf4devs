@@ -1,0 +1,300 @@
+﻿1
+00:00:01,430 --> 00:00:03,030
+- As you work more with Cloud Foundry,
+
+2
+00:00:03,030 --> 00:00:05,290
+at some point you'll
+probably want to automate
+
+3
+00:00:05,290 --> 00:00:08,340
+some portions of your
+workflow and your tasks.
+
+4
+00:00:08,340 --> 00:00:11,690
+And the Cloud Foundry API
+can be used to do that.
+
+5
+00:00:11,690 --> 00:00:15,210
+Perhaps you're implementing
+a CI/CD pipeline,
+
+6
+00:00:15,210 --> 00:00:18,250
+maybe you're generating
+some kind of a report,
+
+7
+00:00:18,250 --> 00:00:21,770
+or maybe creating some
+kind of batch process
+
+8
+00:00:22,680 --> 00:00:25,820
+for some of the elements within
+your Cloud Foundry instance.
+
+9
+00:00:25,820 --> 00:00:28,500
+Anytime you need to parse the responses
+
+10
+00:00:28,500 --> 00:00:29,770
+coming from Cloud Foundry,
+
+11
+00:00:29,770 --> 00:00:33,100
+the API is the right choice for that
+
+12
+00:00:33,100 --> 00:00:36,670
+because the API returns
+a content type of JSON,
+
+13
+00:00:36,670 --> 00:00:40,030
+which is easily parse-able by computers.
+
+14
+00:00:40,030 --> 00:00:42,238
+So let's take a look at the API here.
+
+15
+00:00:42,238 --> 00:00:44,180
+We will use a very simple example
+
+16
+00:00:44,180 --> 00:00:47,850
+and we'll just look at
+the '/v3/apps' endpoint.
+
+17
+00:00:47,850 --> 00:00:50,590
+Essentially querying the API directly
+
+18
+00:00:50,590 --> 00:00:53,240
+for similar information
+that would be displayed
+
+19
+00:00:53,240 --> 00:00:57,073
+if we did a `cf apps` directly in the CLI.
+
+20
+00:00:58,440 --> 00:01:01,210
+When you look at the
+documentation for the API,
+
+21
+00:01:01,210 --> 00:01:03,540
+you'll notice that all
+of the example requests
+
+22
+00:01:03,540 --> 00:01:05,740
+use `curl` directly.
+
+23
+00:01:05,740 --> 00:01:08,620
+Instead, we're going to
+use the `cf curl` function
+
+24
+00:01:08,620 --> 00:01:13,620
+because that allows us to
+skip setting the authorization
+
+25
+00:01:14,220 --> 00:01:17,130
+headers, the bearer token and
+
+26
+00:01:17,130 --> 00:01:19,480
+managing our authentication token.
+
+27
+00:01:19,480 --> 00:01:23,670
+It also allows us to skip
+adding the API endpoint
+
+28
+00:01:23,670 --> 00:01:25,533
+to every single request.
+
+29
+00:01:26,400 --> 00:01:29,920
+So to invoke the `/v3/apps`
+endpoint, as long
+
+30
+00:01:29,920 --> 00:01:34,220
+as we're authenticated, we
+can do a `cf curl /v3/apps`.
+
+31
+00:01:34,220 --> 00:01:37,960
+And you'll see that we get
+a response in JSON format.
+
+32
+00:01:37,960 --> 00:01:41,340
+Now, I only have one
+application running here.
+
+33
+00:01:41,340 --> 00:01:42,930
+It is my training application.
+
+34
+00:01:42,930 --> 00:01:44,890
+You might have more at
+this point in the course
+
+35
+00:01:44,890 --> 00:01:48,140
+depending on what you were
+doing, but this should show,
+
+36
+00:01:48,140 --> 00:01:52,222
+in a paged fashion, all of
+the apps that you have access
+
+37
+00:01:52,222 --> 00:01:56,040
+to within that Cloud Foundry instance.
+
+38
+00:01:56,040 --> 00:01:58,630
+And so this will show all of the apps
+
+39
+00:01:58,630 --> 00:02:00,400
+not just in your current space,
+
+40
+00:02:00,400 --> 00:02:05,400
+but in any spaces that you have a role in.
+
+41
+00:02:06,930 --> 00:02:11,900
+This is a simple request
+to the `/v3/apps` endpoint
+
+42
+00:02:11,900 --> 00:02:15,610
+but typically we'll want
+to parse those responses.
+
+43
+00:02:15,610 --> 00:02:19,340
+`jq` is a utility that we link
+to in the course materials,
+
+44
+00:02:19,340 --> 00:02:21,180
+not related to Cloud Foundry,
+
+45
+00:02:21,180 --> 00:02:25,060
+but it is a JSON parsing utility
+that is extremely helpful
+
+46
+00:02:25,060 --> 00:02:26,720
+in these cases.
+
+47
+00:02:26,720 --> 00:02:30,310
+So perhaps we want to, again,
+curl the `/v3/apps` endpoint
+
+48
+00:02:30,310 --> 00:02:33,270
+but this time just extract the names
+
+49
+00:02:33,270 --> 00:02:35,150
+of all of our applications.
+
+50
+00:02:35,150 --> 00:02:38,200
+Well, if we're on a UNIX
+system, we can again
+
+51
+00:02:38,200 --> 00:02:40,210
+curl the `/v3/apps` endpoint.
+
+52
+00:02:40,210 --> 00:02:43,888
+We can pipe it into `jq`
+and we can extract the
+
+53
+00:02:43,888 --> 00:02:45,460
+appropriate value.
+
+54
+00:02:45,460 --> 00:02:46,293
+In our case, it is the name
+field, and that will show us
+
+55
+00:02:46,293 --> 00:02:47,126
+the names of all of the apps.
+
+56
+00:02:50,780 --> 00:02:55,100
+This is a very simplistic look at curling
+
+57
+00:02:55,100 --> 00:02:58,530
+and interacting directly
+with the API, but it's quite
+
+58
+00:02:58,530 --> 00:03:02,410
+powerful when you combine
+the API with JSON parsing
+
+59
+00:03:02,410 --> 00:03:06,330
+and you can automate tasks
+that you would normally
+
+60
+00:03:06,330 --> 00:03:08,810
+have to do manually. And you can do it
+
+61
+00:03:08,810 --> 00:03:10,800
+in a repeatable fashion because again
+
+62
+00:03:10,800 --> 00:03:15,020
+we're basically sending
+and receiving JSON.
+
+63
+00:03:15,020 --> 00:03:20,020
+Formatted data, unlike in the
+CLI where the output format
+
+64
+00:03:20,790 --> 00:03:23,360
+of any of those commands could change.
+
+65
+00:03:23,360 --> 00:03:25,730
+It would be a little bit risky to just
+
+66
+00:03:25,730 --> 00:03:30,083
+parse direct CLI output
+commands in most cases.
+

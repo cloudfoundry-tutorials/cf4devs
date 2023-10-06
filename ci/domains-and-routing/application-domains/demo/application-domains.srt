@@ -1,0 +1,209 @@
+﻿1
+00:00:01,000 --> 00:00:01,870
+- So far in this course,
+
+2
+00:00:01,870 --> 00:00:03,740
+we've used a single application domain
+
+3
+00:00:03,740 --> 00:00:06,140
+that's already been made available to us
+
+4
+00:00:06,140 --> 00:00:08,760
+in the Cloud Foundry
+instance that we're using.
+
+5
+00:00:08,760 --> 00:00:10,880
+There may be other
+domains available to you,
+
+6
+00:00:10,880 --> 00:00:13,330
+and you can see that by
+running `cf domains`.
+
+7
+00:00:13,330 --> 00:00:15,680
+You can see that we have
+the `cfapps` domain,
+
+8
+00:00:15,680 --> 00:00:16,560
+which I've been using.
+
+9
+00:00:16,560 --> 00:00:18,987
+There's also a `cert.cfapps` domain,
+
+10
+00:00:18,987 --> 00:00:20,910
+and a domain called `apps.internal`,
+
+11
+00:00:20,910 --> 00:00:23,840
+which we'll talk about in a later section.
+
+12
+00:00:23,840 --> 00:00:26,430
+But you can also bring your
+own domains to Cloud Foundry.
+
+13
+00:00:26,430 --> 00:00:29,200
+So your company may have their own domain
+
+14
+00:00:29,200 --> 00:00:31,450
+that they want all of
+their apps deployed on.
+
+15
+00:00:35,590 --> 00:00:37,220
+You can add your domain to Cloud Foundry
+
+16
+00:00:37,220 --> 00:00:40,090
+by running `cf create-private-domain`,
+
+17
+00:00:40,090 --> 00:00:41,870
+the name of the org
+that you want the domain
+
+18
+00:00:41,870 --> 00:00:44,723
+to be available in, and
+then the domain itself.
+
+19
+00:00:45,650 --> 00:00:49,340
+You'll note that a shared private domain
+
+20
+00:00:49,340 --> 00:00:51,330
+is initially scoped to an org,
+
+21
+00:00:51,330 --> 00:00:52,920
+but you can see by the message here
+
+22
+00:00:52,920 --> 00:00:55,280
+that you can share the domain
+
+23
+00:00:55,280 --> 00:00:58,023
+with other orgs if you need to.
+
+24
+00:01:00,900 --> 00:01:02,580
+Once you have that domain,
+
+25
+00:01:02,580 --> 00:01:04,880
+you can essentially create routes on it
+
+26
+00:01:04,880 --> 00:01:07,580
+and map routes to existing applications.
+
+27
+00:01:07,580 --> 00:01:09,850
+And so, I've used, now, that domain
+
+28
+00:01:10,740 --> 00:01:14,063
+to map to my existing
+training application.
+
+29
+00:01:14,940 --> 00:01:16,560
+Now, it's important to note here
+
+30
+00:01:16,560 --> 00:01:20,260
+that just because I registered this domain
+
+31
+00:01:20,260 --> 00:01:22,410
+with my Cloud Foundry instance
+
+32
+00:01:22,410 --> 00:01:24,240
+doesn't mean it'll actually work.
+
+33
+00:01:24,240 --> 00:01:26,330
+And in fact, in this case, it won't work.
+
+34
+00:01:26,330 --> 00:01:29,480
+I will not be able to access my app
+
+35
+00:01:29,480 --> 00:01:32,610
+in a browser on this existing domain.
+
+36
+00:01:32,610 --> 00:01:37,120
+And the reason is that I
+also need to configure DNS
+
+37
+00:01:37,120 --> 00:01:38,970
+so that the domain is resolvable,
+
+38
+00:01:38,970 --> 00:01:43,610
+and I need that DNS entries
+for `my-domain.example.com`,
+
+39
+00:01:43,610 --> 00:01:47,280
+to map to the Cloud Foundry
+instance that I'm using.
+
+40
+00:01:47,280 --> 00:01:51,080
+I also need to configure SSL certificates
+
+41
+00:01:51,080 --> 00:01:53,230
+somewhere with my Cloud Foundry provider,
+
+42
+00:01:53,230 --> 00:01:55,240
+and that varies by provider depending on
+
+43
+00:01:55,240 --> 00:01:59,500
+how they have their environments set up,
+
+44
+00:01:59,500 --> 00:02:02,210
+but we need to be able to
+have valid certificates
+
+45
+00:02:02,210 --> 00:02:05,060
+for `my-domain.example.com` as well.
+
+46
+00:02:07,400 --> 00:02:09,270
+You can also delete private domains
+
+47
+00:02:09,270 --> 00:02:11,170
+and get rid of them and clean them up.
+
+48
+00:02:12,760 --> 00:02:14,850
+And when you do this, the existing routes
+
+49
+00:02:14,850 --> 00:02:16,933
+on that domain will also be deleted.
+

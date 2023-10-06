@@ -1,0 +1,8 @@
+---
+applications:
+- name: static-app
+  memory: 48M
+  disk-quota: 256M
+  instances: 2
+  buildpacks:
+  - staticfile_buildpack

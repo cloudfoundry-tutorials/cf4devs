@@ -1,0 +1,184 @@
+﻿1
+00:00:00,630 --> 00:00:02,640
+- We've provided another
+sample application
+
+2
+00:00:02,640 --> 00:00:05,150
+to demonstrate the use
+of multiple buildpacks.
+
+3
+00:00:05,150 --> 00:00:09,331
+This application uses two
+languages, both Ruby and Go.
+
+4
+00:00:09,331 --> 00:00:13,282
+This application will
+start a web server using Go
+
+5
+00:00:13,282 --> 00:00:18,230
+but will use Ruby to
+process page requests.
+
+6
+00:00:18,230 --> 00:00:20,400
+So, that will require that
+we have two buildpacks.
+
+7
+00:00:20,400 --> 00:00:21,770
+And just to refresh your memory,
+
+8
+00:00:21,770 --> 00:00:23,620
+you can see what buildpacks are available
+
+9
+00:00:23,620 --> 00:00:25,680
+by running `cf buildpacks`.
+
+10
+00:00:25,680 --> 00:00:28,660
+You can see the name
+of the Ruby build pack
+
+11
+00:00:28,660 --> 00:00:30,840
+as well as the name of the Go build pack.
+
+12
+00:00:30,840 --> 00:00:31,913
+We'll need both.
+
+13
+00:00:32,780 --> 00:00:34,130
+When we push the application
+
+14
+00:00:34,130 --> 00:00:36,420
+it's no different than another application
+
+15
+00:00:36,420 --> 00:00:40,120
+except here we're specifying
+that `-b` flag twice.
+
+16
+00:00:40,120 --> 00:00:42,450
+And here it's important to realize
+
+17
+00:00:42,450 --> 00:00:46,770
+that the order of these
+buildpacks is important.
+
+18
+00:00:46,770 --> 00:00:49,490
+So, we put Ruby first and Go second.
+
+19
+00:00:49,490 --> 00:00:51,990
+And the reason that Go is last
+
+20
+00:00:51,990 --> 00:00:55,300
+is that the last buildpack
+in the chain is responsible
+
+21
+00:00:55,300 --> 00:00:57,850
+for calculating that start command.
+
+22
+00:00:57,850 --> 00:01:00,349
+Now, remember in this application
+
+23
+00:01:00,349 --> 00:01:03,400
+it's going to start a Go web server.
+
+24
+00:01:03,400 --> 00:01:04,600
+And so we want to ensure
+
+25
+00:01:04,600 --> 00:01:08,980
+that the start command is
+calculated by the Go buildpack
+
+26
+00:01:08,980 --> 00:01:11,254
+so that the web server starts.
+
+27
+00:01:11,254 --> 00:01:13,800
+Now, if we look down
+here in the staging logs
+
+28
+00:01:13,800 --> 00:01:15,650
+we can see that at first,
+
+29
+00:01:15,650 --> 00:01:19,900
+the Ruby buildpack is being
+applied and being processed.
+
+30
+00:01:19,900 --> 00:01:23,010
+And then second the Go
+buildpack is being applied
+
+31
+00:01:23,010 --> 00:01:24,593
+and processed as well.
+
+32
+00:01:27,860 --> 00:01:30,330
+Once the push command is complete
+
+33
+00:01:30,330 --> 00:01:32,433
+we can run `cf app` on our app.
+
+34
+00:01:33,870 --> 00:01:37,200
+And you can see that both
+buildpacks have been applied
+
+35
+00:01:37,200 --> 00:01:40,283
+and you can see the order that
+they were applied in as well.
+
+36
+00:01:41,520 --> 00:01:44,620
+If we open our application in
+a browser and all worked well
+
+37
+00:01:44,620 --> 00:01:45,910
+we should see a message
+
+38
+00:01:47,110 --> 00:01:49,830
+denoting essentially the
+Ruby script was executed.
+
+39
+00:01:49,830 --> 00:01:52,293
+And again, this was served
+by the Go build pack.
+
+40
+00:01:55,220 --> 00:01:57,040
+That's all for this exercise.
+
+41
+00:01:57,040 --> 00:01:59,440
+We can go ahead and delete
+that application now.
+

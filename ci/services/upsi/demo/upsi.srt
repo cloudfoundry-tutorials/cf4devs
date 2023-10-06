@@ -1,0 +1,327 @@
+﻿1
+00:00:00,480 --> 00:00:01,670
+- Up until this point
+
+2
+00:00:01,670 --> 00:00:03,290
+we've dealt with service instances
+
+3
+00:00:03,290 --> 00:00:06,270
+that you've provisioned
+on demand, as needed,
+
+4
+00:00:06,270 --> 00:00:08,700
+brand new, from the marketplace.
+
+5
+00:00:08,700 --> 00:00:11,410
+But what if you had an existing
+database that you wanted
+
+6
+00:00:11,410 --> 00:00:15,311
+to connect to or bind
+to your applications?
+
+7
+00:00:15,311 --> 00:00:17,770
+Cloud Foundry has a concept called
+
+8
+00:00:17,770 --> 00:00:21,350
+User-Provided Services
+which allows you to do this.
+
+9
+00:00:21,350 --> 00:00:24,930
+Essentially you are
+providing the credentials for
+
+10
+00:00:24,930 --> 00:00:27,640
+that service instance, and
+all of the information that
+
+11
+00:00:27,640 --> 00:00:30,860
+your application needs, manually using
+
+12
+00:00:30,860 --> 00:00:35,860
+the `cf
+create-user-provided-service-instance`
+command.
+
+13
+00:00:36,090 --> 00:00:38,400
+Now there's two ways to
+create a service instance
+
+14
+00:00:38,400 --> 00:00:41,490
+or a user-provided service
+instance, I should say.
+
+15
+00:00:41,490 --> 00:00:43,040
+One is the non-interactive way
+
+16
+00:00:43,040 --> 00:00:45,910
+where we're passing a
+full on a JSON payload.
+
+17
+00:00:45,910 --> 00:00:47,490
+That's what I'm doing here.
+
+18
+00:00:47,490 --> 00:00:49,810
+The other is the interactive way.
+
+19
+00:00:49,810 --> 00:00:52,930
+Here, we're just passing in the names of
+
+20
+00:00:52,930 --> 00:00:56,440
+the keys that we want Cloud
+Foundry to prompt us for.
+
+21
+00:00:56,440 --> 00:00:59,880
+I'll go ahead and specify some values.
+
+22
+00:01:04,310 --> 00:01:06,460
+The net result is exactly the same.
+
+23
+00:01:06,460 --> 00:01:09,320
+We end up with two service instances.
+
+24
+00:01:09,320 --> 00:01:11,070
+There is no way to distinguish whether
+
+25
+00:01:11,070 --> 00:01:14,360
+you created one interactively
+or non interactively.
+
+26
+00:01:14,360 --> 00:01:16,850
+We want to illustrate the fact that
+
+27
+00:01:16,850 --> 00:01:18,993
+you could use both methodologies.
+
+28
+00:01:21,860 --> 00:01:24,000
+Now note, that the names non-interactive
+
+29
+00:01:24,000 --> 00:01:26,660
+and interactive are
+actually really bad names
+
+30
+00:01:26,660 --> 00:01:27,670
+for a service instance.
+
+31
+00:01:27,670 --> 00:01:29,292
+So don't use something like that.
+
+32
+00:01:29,292 --> 00:01:33,390
+Use something more
+descriptive like `hr-database`
+
+33
+00:01:33,390 --> 00:01:35,130
+or whatever it is that you're actually
+
+34
+00:01:35,130 --> 00:01:37,590
+creating the service instance for.
+
+35
+00:01:37,590 --> 00:01:41,080
+In this case we're just
+using them as an example here
+
+36
+00:01:41,080 --> 00:01:42,580
+to demonstrate the two different ways
+
+37
+00:01:42,580 --> 00:01:43,780
+that we can create them.
+
+38
+00:01:45,130 --> 00:01:47,790
+So once we have them, they
+are services instances.
+
+39
+00:01:47,790 --> 00:01:49,940
+We can just bind them to our application.
+
+40
+00:01:49,940 --> 00:01:51,380
+I can bind the non-interactive
+
+41
+00:01:51,380 --> 00:01:53,210
+to the training app as well as
+
+42
+00:01:53,210 --> 00:01:54,960
+the interactive to the training app.
+
+43
+00:01:58,580 --> 00:02:02,360
+Of course, I can also
+inspect the environment here
+
+44
+00:02:02,360 --> 00:02:03,640
+and now I can see that
+
+45
+00:02:03,640 --> 00:02:05,820
+I actually have a new section called
+
+46
+00:02:05,820 --> 00:02:07,480
+user-provided under VCAP_SERVICES.
+
+47
+00:02:08,520 --> 00:02:12,480
+I have both of my service
+instances represented there.
+
+48
+00:02:15,860 --> 00:02:18,780
+Of course, I need to restart
+my application in order for
+
+49
+00:02:18,780 --> 00:02:22,050
+my application to be
+able to see these changes
+
+50
+00:02:22,050 --> 00:02:24,320
+because it was a change to
+our environment variable.
+
+51
+00:02:24,320 --> 00:02:25,720
+I'll go ahead and do that.
+
+52
+00:02:27,300 --> 00:02:30,120
+Now when I access my
+application in a browser,
+
+53
+00:02:30,120 --> 00:02:33,570
+I can see that I have both
+my user-provided services
+
+54
+00:02:33,570 --> 00:02:37,443
+as well as my training database
+bound to my application.
+
+55
+00:02:38,580 --> 00:02:42,080
+You can also update a
+user-provided service instance.
+
+56
+00:02:42,080 --> 00:02:44,080
+Note that when you're doing an update
+
+57
+00:02:44,080 --> 00:02:48,000
+you need to pass all of
+the values back to the CLI.
+
+58
+00:02:48,000 --> 00:02:50,910
+The CLI is using a declarative
+methodology here where you
+
+59
+00:02:50,910 --> 00:02:54,470
+need to say everything that
+you want the state to be.
+
+60
+00:02:54,470 --> 00:02:57,910
+That means you can't just
+update a single value
+
+61
+00:02:57,910 --> 00:02:59,900
+inside a user-provided instance.
+
+62
+00:02:59,900 --> 00:03:01,780
+You need to update all of those values
+
+63
+00:03:01,780 --> 00:03:04,003
+even if those values have not changed.
+
+64
+00:03:10,000 --> 00:03:13,050
+So I'll go ahead and
+change those here again
+
+65
+00:03:13,050 --> 00:03:15,060
+using the interactive
+way. I could have just
+
+66
+00:03:15,060 --> 00:03:17,180
+as easily done the non-interactive way to
+
+67
+00:03:17,180 --> 00:03:19,030
+update my user-provided service.
+
+68
+00:03:20,740 --> 00:03:22,740
+I can inspect the environment here
+
+69
+00:03:26,610 --> 00:03:30,070
+and the values for my
+interactive service instance
+
+70
+00:03:30,070 --> 00:03:31,223
+have now been changed.
+
+71
+00:03:32,540 --> 00:03:35,720
+Of course, again, I have to
+restart my training application
+
+72
+00:03:35,720 --> 00:03:37,160
+for the application to see it
+
+73
+00:03:37,160 --> 00:03:39,683
+because we've changed our
+environment variables.
+

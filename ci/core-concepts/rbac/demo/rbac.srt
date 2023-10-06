@@ -1,0 +1,100 @@
+﻿1
+00:00:01,320 --> 00:00:02,780
+- You can see what users have roles
+
+2
+00:00:02,780 --> 00:00:05,540
+within an org by doing `cf org-users`.
+
+3
+00:00:05,540 --> 00:00:07,490
+In this case here, I'm the only user
+
+4
+00:00:07,490 --> 00:00:10,080
+and I have the OrgManager role.
+
+5
+00:00:10,080 --> 00:00:12,120
+Because I have the OrgManager role,
+
+6
+00:00:12,120 --> 00:00:15,670
+I could add users to roles
+within my organization
+
+7
+00:00:15,670 --> 00:00:17,550
+with `cf set-org-role`
+
+8
+00:00:17,550 --> 00:00:21,423
+and I could remove users
+with `cf unset-org-role`.
+
+9
+00:00:22,430 --> 00:00:26,350
+Similarly, I can see the
+users assigned to my space
+
+10
+00:00:26,350 --> 00:00:29,100
+with `cf space-users`,
+the name of the org,
+
+11
+00:00:29,100 --> 00:00:30,630
+and the name of the space.
+
+12
+00:00:30,630 --> 00:00:33,100
+In this case, again, I am the only user
+
+13
+00:00:33,100 --> 00:00:36,850
+and I have the SpaceDeveloper
+and SpaceManager roles.
+
+14
+00:00:36,850 --> 00:00:39,150
+Because I have that SpaceManager role,
+
+15
+00:00:39,150 --> 00:00:43,140
+I could add users to my space
+with `cf set-space-role`
+
+16
+00:00:43,140 --> 00:00:46,433
+and remove users with
+`cf unset-space-role`.
+
+17
+00:00:47,520 --> 00:00:49,690
+Lastly, it's sometimes
+useful to just get a list
+
+18
+00:00:49,690 --> 00:00:52,960
+of the unique users that
+are assigned to a role
+
+19
+00:00:52,960 --> 00:00:56,550
+within the org or within
+any spaces within the org.
+
+20
+00:00:56,550 --> 00:01:00,960
+And you can do that with `cf
+org-users` and the `-a` flag,
+
+21
+00:01:00,960 --> 00:01:03,500
+of course, I'm the only
+user within this org
+
+22
+00:01:03,500 --> 00:01:05,683
+and within any spaces within my org.
+

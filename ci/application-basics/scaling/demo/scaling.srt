@@ -1,0 +1,240 @@
+﻿1
+00:00:00,700 --> 00:00:02,740
+- In Cloud Foundry, we
+can scale applications up
+
+2
+00:00:02,740 --> 00:00:04,690
+or down in two different ways.
+
+3
+00:00:04,690 --> 00:00:07,030
+Horizontally scaling
+is changing the number
+
+4
+00:00:07,030 --> 00:00:10,020
+of instances of the application running
+
+5
+00:00:10,020 --> 00:00:12,680
+and vertically scaling
+is changing the resource
+
+6
+00:00:12,680 --> 00:00:16,690
+allocation allocated to
+each container instance
+
+7
+00:00:16,690 --> 00:00:19,690
+running each of our application instances.
+
+8
+00:00:19,690 --> 00:00:22,310
+So let's look at horizontal scaling first.
+
+9
+00:00:22,310 --> 00:00:25,530
+I can do a `cf scale -i
+2` for our training app
+
+10
+00:00:25,530 --> 00:00:28,550
+basically telling Cloud Foundry
+that I want two instances
+
+11
+00:00:28,550 --> 00:00:30,780
+of the training app running.
+
+12
+00:00:30,780 --> 00:00:32,740
+In this case, we only
+had one instance running
+
+13
+00:00:32,740 --> 00:00:35,150
+so Cloud Foundry started a second.
+
+14
+00:00:35,150 --> 00:00:37,020
+If we had too many instances running,
+
+15
+00:00:37,020 --> 00:00:38,880
+let's say we had four or five,
+
+16
+00:00:38,880 --> 00:00:40,500
+then Cloud Foundry would remove some
+
+17
+00:00:40,500 --> 00:00:41,720
+of the existing instances.
+
+18
+00:00:41,720 --> 00:00:44,320
+You can use the same
+command to scale up or down.
+
+19
+00:00:45,760 --> 00:00:48,840
+Now, once this application
+instance here passes a
+
+20
+00:00:48,840 --> 00:00:52,153
+health check Cloud Foundry will
+start routing traffic to it.
+
+21
+00:00:54,020 --> 00:00:56,050
+We can see this by
+going back to a browser,
+
+22
+00:00:56,050 --> 00:00:58,440
+going back to our training app,
+
+23
+00:00:58,440 --> 00:01:01,430
+and watching this app instance index here.
+
+24
+00:01:01,430 --> 00:01:03,550
+And if I keep refreshing, you can see that
+
+25
+00:01:03,550 --> 00:01:07,410
+I'm being load balanced across
+both application instances.
+
+26
+00:01:07,410 --> 00:01:10,140
+So sometimes I'm getting
+app instance index one
+
+27
+00:01:10,140 --> 00:01:12,430
+and sometimes I'm getting zero.
+
+28
+00:01:12,430 --> 00:01:14,040
+You'll note that I didn't
+have to do anything
+
+29
+00:01:14,040 --> 00:01:17,040
+with load balancers or DNS
+rules or anything like that,
+
+30
+00:01:17,040 --> 00:01:19,590
+Cloud Foundry basically
+handled all of that for me.
+
+31
+00:01:20,530 --> 00:01:23,270
+When we go to vertically
+scale an application,
+
+32
+00:01:23,270 --> 00:01:26,210
+we're actually changing the
+resource allocations allocated
+
+33
+00:01:26,210 --> 00:01:30,490
+to each container instance
+running each instance of our app.
+
+34
+00:01:30,490 --> 00:01:32,220
+So in this case we're
+telling cloud Foundry
+
+35
+00:01:32,220 --> 00:01:34,650
+we'll want 48 megs of memory
+
+36
+00:01:34,650 --> 00:01:37,320
+and 256 megs of disk
+
+37
+00:01:37,320 --> 00:01:39,260
+for each instance.
+
+38
+00:01:39,260 --> 00:01:41,800
+You'll notice that the
+CLI actually warns us
+
+39
+00:01:41,800 --> 00:01:44,950
+that this is going to cause
+downtime in our application.
+
+40
+00:01:44,950 --> 00:01:47,410
+This is because Cloud Foundry has to
+
+41
+00:01:47,410 --> 00:01:50,110
+take those existing container instances,
+
+42
+00:01:50,110 --> 00:01:52,363
+destroy them and create new ones.
+
+43
+00:01:53,440 --> 00:01:55,930
+So let's go ahead and say `yes`, here.
+
+44
+00:01:55,930 --> 00:01:59,330
+You'll see that Cloud Foundry
+stops our applications
+
+45
+00:01:59,330 --> 00:02:02,120
+and starts our instances back up.
+
+46
+00:02:02,120 --> 00:02:04,410
+And when those instances start back up
+
+47
+00:02:04,410 --> 00:02:08,320
+they have the correct
+allocations of memory and disk.
+
+48
+00:02:08,320 --> 00:02:11,590
+You'll see here that
+this instance actually
+
+49
+00:02:11,590 --> 00:02:14,450
+didn't report exactly
+correctly just yet because
+
+50
+00:02:14,450 --> 00:02:18,270
+the command returned before
+that instance was updated fully.
+
+51
+00:02:18,270 --> 00:02:20,900
+But if we rerun `cf app` on our app
+
+52
+00:02:20,900 --> 00:02:23,820
+we can see that now both
+instances have 48 megs
+
+53
+00:02:23,820 --> 00:02:26,783
+of memory and 256 megs of disk.
+

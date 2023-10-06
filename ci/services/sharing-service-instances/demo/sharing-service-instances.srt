@@ -1,0 +1,132 @@
+﻿1
+00:00:00,380 --> 00:00:02,100
+- At some point you may need to access the
+
+2
+00:00:02,100 --> 00:00:03,630
+same managed service instance.
+
+3
+00:00:03,630 --> 00:00:04,630
+Maybe it's a database
+
+4
+00:00:04,630 --> 00:00:08,300
+or a message queue in
+two different spaces.
+
+5
+00:00:08,300 --> 00:00:10,530
+Cloud Foundry will allow
+you to share those service
+
+6
+00:00:10,530 --> 00:00:12,320
+instances across those spaces
+
+7
+00:00:12,320 --> 00:00:15,470
+provided that you have the
+SpaceDeveloper role in both
+
+8
+00:00:15,470 --> 00:00:19,750
+of those spaces and provided
+that this feature is enabled.
+
+9
+00:00:19,750 --> 00:00:22,290
+So I've got another
+space called 'services'.
+
+10
+00:00:22,290 --> 00:00:24,550
+I'm going to go ahead and
+use `cf shared-service`
+
+11
+00:00:24,550 --> 00:00:27,493
+and share my training app
+database with that space.
+
+12
+00:00:29,270 --> 00:00:32,300
+If I do a `cf service` in
+my currently targeted space
+
+13
+00:00:32,300 --> 00:00:36,680
+which is my dev space, I
+can see that there's now
+
+14
+00:00:36,680 --> 00:00:39,180
+a section here called shared with spaces.
+
+15
+00:00:39,180 --> 00:00:43,463
+And I can see that it's shared
+in my other services space.
+
+16
+00:00:44,750 --> 00:00:47,690
+I can target that services space.
+
+17
+00:00:47,690 --> 00:00:51,120
+I can run `cf service`
+on the same database here
+
+18
+00:00:51,120 --> 00:00:54,530
+and see that, that
+database instance is shared
+
+19
+00:00:54,530 --> 00:00:56,293
+across into this space.
+
+20
+00:00:57,800 --> 00:01:00,130
+So from here I could go ahead
+
+21
+00:01:00,130 --> 00:01:02,580
+and bind it into an application
+in the services space
+
+22
+00:01:02,580 --> 00:01:04,870
+or do whatever I need to do with it.
+
+23
+00:01:04,870 --> 00:01:06,230
+Instead, I'm going to go back here
+
+24
+00:01:06,230 --> 00:01:09,180
+into my dev space and
+I'm going to unshare it
+
+25
+00:01:09,180 --> 00:01:11,053
+because that's no longer necessary.
+
+26
+00:01:16,200 --> 00:01:18,220
+And in unsharing that database
+
+27
+00:01:18,220 --> 00:01:21,600
+I can do a `cf service`
+again, back in my dev space.
+
+28
+00:01:21,600 --> 00:01:23,010
+And I can see that
+
+29
+00:01:23,010 --> 00:01:27,133
+it is no longer shared
+with any other spaces.
+

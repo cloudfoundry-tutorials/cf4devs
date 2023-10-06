@@ -1,0 +1,487 @@
+﻿1
+00:00:01,010 --> 00:00:02,050
+- Okay, we are going to take a look
+
+2
+00:00:02,050 --> 00:00:04,270
+at the rolling deployment strategy.
+
+3
+00:00:04,270 --> 00:00:06,950
+We will look at it from
+the context of a `cf push`
+
+4
+00:00:06,950 --> 00:00:10,700
+but just be aware that the
+rolling strategy can be used
+
+5
+00:00:10,700 --> 00:00:13,270
+on restarts as well as restages.
+
+6
+00:00:13,270 --> 00:00:14,430
+So it will look pretty similar
+
+7
+00:00:14,430 --> 00:00:16,686
+to what you're going to see here.
+
+8
+00:00:16,686 --> 00:00:20,250
+I've already deployed the
+application for the exercise,
+
+9
+00:00:20,250 --> 00:00:23,670
+the 'updating-app'. Up here in this window
+
+10
+00:00:23,670 --> 00:00:26,130
+in the upper right hand corner,
+
+11
+00:00:26,130 --> 00:00:29,280
+I'm running watch, so every half a second,
+
+12
+00:00:29,280 --> 00:00:32,140
+I'm essentially curling the application.
+
+13
+00:00:32,140 --> 00:00:34,720
+You can see the return
+from the application
+
+14
+00:00:34,720 --> 00:00:35,790
+right now is 'BLUE'.
+
+15
+00:00:35,790 --> 00:00:38,413
+This is the first version
+of the application.
+
+16
+00:00:39,616 --> 00:00:41,350
+In the window here on the bottom right,
+
+17
+00:00:41,350 --> 00:00:42,760
+I'm again, running watch.
+
+18
+00:00:42,760 --> 00:00:47,760
+And so every second I
+am rerunning `cf app`
+
+19
+00:00:48,360 --> 00:00:50,253
+on the 'updating-app'.
+
+20
+00:00:52,320 --> 00:00:55,510
+Let's make a change to
+the application over here.
+
+21
+00:00:55,510 --> 00:00:57,410
+We can change it from 'BLUE' to 'GREEN'
+
+22
+00:01:00,040 --> 00:01:01,500
+and then we can push.
+
+23
+00:01:01,500 --> 00:01:03,830
+This time we're going to do a `cf push`
+
+24
+00:01:03,830 --> 00:01:06,110
+except we're adding the `--strategy` flag
+
+25
+00:01:06,110 --> 00:01:08,010
+and the `rolling` strategy.
+
+26
+00:01:08,010 --> 00:01:11,043
+And so we can observe what happens here.
+
+27
+00:01:11,043 --> 00:01:13,780
+What you'll see in the
+window on the upper right,
+
+28
+00:01:13,780 --> 00:01:17,580
+is that as the 'GREEN'
+instances become available,
+
+29
+00:01:17,580 --> 00:01:21,130
+you'll start seeing 'BLUE'
+and 'GREEN' in the response.
+
+30
+00:01:21,130 --> 00:01:23,100
+And what you'll see
+down here in the window
+
+31
+00:01:23,100 --> 00:01:24,720
+in the bottom right,
+
+32
+00:01:24,720 --> 00:01:28,790
+is the new 'GREEN'
+instances being scheduled.
+
+33
+00:01:28,790 --> 00:01:30,750
+You can see the first one
+
+34
+00:01:30,750 --> 00:01:33,070
+just showed up here and it's starting.
+
+35
+00:01:33,070 --> 00:01:35,700
+And what Cloud Foundry is
+going to do is take one
+
+36
+00:01:35,700 --> 00:01:38,420
+of the 'BLUE' instances from
+the top, it just did that,
+
+37
+00:01:38,420 --> 00:01:41,780
+start another one, and it'll
+roll through that process,
+
+38
+00:01:41,780 --> 00:01:45,530
+grabbing an instance and replacing it
+
+39
+00:01:45,530 --> 00:01:47,900
+by starting a new 'GREEN' instance,
+
+40
+00:01:47,900 --> 00:01:51,040
+making sure that we have
+some 'BLUE' and some 'GREEN'
+
+41
+00:01:51,040 --> 00:01:52,940
+and you can see in the upper right here.
+
+42
+00:01:52,940 --> 00:01:54,240
+Sometimes we're getting 'GREEN'.
+
+43
+00:01:54,240 --> 00:01:55,830
+Sometimes we're getting 'BLUE'.
+
+44
+00:01:55,830 --> 00:02:00,110
+Now we're over to a hundred percent green
+
+45
+00:02:00,110 --> 00:02:02,160
+and we've cut over our application.
+
+46
+00:02:02,160 --> 00:02:05,653
+We've made the change with zero downtime.
+
+47
+00:02:07,440 --> 00:02:11,350
+Great, so that's a lot
+easier than the previous way
+
+48
+00:02:11,350 --> 00:02:12,760
+that we would do that.
+
+49
+00:02:12,760 --> 00:02:14,380
+If you're familiar with that,
+
+50
+00:02:14,380 --> 00:02:16,150
+it was called a blue-green deployment.
+
+51
+00:02:16,150 --> 00:02:19,473
+And essentially we would use
+the `map-route` functionality
+
+52
+00:02:19,473 --> 00:02:23,770
+to add the route to two
+different applications.
+
+53
+00:02:23,770 --> 00:02:26,130
+In this case, it's the same application,
+
+54
+00:02:26,130 --> 00:02:27,970
+it's built into the platform.
+
+55
+00:02:27,970 --> 00:02:29,210
+It's much easier.
+
+56
+00:02:29,210 --> 00:02:30,433
+It's more efficient.
+
+57
+00:02:31,360 --> 00:02:34,183
+Overall just a better solution.
+
+58
+00:02:35,210 --> 00:02:37,260
+So what happens though, now,
+
+59
+00:02:37,260 --> 00:02:40,410
+if we update our application again,
+
+60
+00:02:40,410 --> 00:02:42,330
+we deploy that application,
+
+61
+00:02:42,330 --> 00:02:45,080
+and we realize that something's wrong.
+
+62
+00:02:45,080 --> 00:02:48,350
+Well, we can also cancel
+an active deployment.
+
+63
+00:02:48,350 --> 00:02:50,850
+As the deployment is running,
+
+64
+00:02:50,850 --> 00:02:53,260
+(and you saw that in the
+bottom right corner here,
+
+65
+00:02:53,260 --> 00:02:55,650
+where it was rolling through taking
+
+66
+00:02:55,650 --> 00:02:58,210
+an instance of 'BLUE' out of service
+
+67
+00:02:58,210 --> 00:03:01,300
+as a new instance of
+'GREEN' was put in service).
+
+68
+00:03:01,300 --> 00:03:03,320
+If something happened in that process
+
+69
+00:03:03,320 --> 00:03:04,920
+and maybe we just figured, you know,
+
+70
+00:03:04,920 --> 00:03:08,650
+there was a bug or a typo or
+a test failed or something.
+
+71
+00:03:08,650 --> 00:03:11,600
+As we were updating to this next version,
+
+72
+00:03:11,600 --> 00:03:13,470
+we can cancel the deployment and see
+
+73
+00:03:13,470 --> 00:03:15,370
+what Cloud Foundry does.
+
+74
+00:03:15,370 --> 00:03:17,930
+So in order to denote that,
+
+75
+00:03:17,930 --> 00:03:20,713
+we'll change our application
+now to display 'RED'.
+
+76
+00:03:21,820 --> 00:03:24,420
+And again, we'll do a
+`push` except this time
+
+77
+00:03:24,420 --> 00:03:26,690
+I'm just going to use
+the `--no-wait` flag.
+
+78
+00:03:26,690 --> 00:03:28,430
+And the reason I'm going
+to do that is so that
+
+79
+00:03:28,430 --> 00:03:31,610
+I can cancel the deployment
+in the same terminal window
+
+80
+00:03:31,610 --> 00:03:33,560
+instead of having four windows running.
+
+81
+00:03:34,460 --> 00:03:36,480
+So we'll see the same thing happen.
+
+82
+00:03:36,480 --> 00:03:39,950
+The 'RED' version is getting staged
+
+83
+00:03:39,950 --> 00:03:43,140
+and very shortly we'll start
+seeing new 'RED' instances
+
+84
+00:03:43,140 --> 00:03:46,170
+being scheduled over here.
+
+85
+00:03:46,170 --> 00:03:50,200
+And we'll start seeing
+'RED' being returned
+
+86
+00:03:50,200 --> 00:03:52,700
+in the upper right-hand corner.
+
+87
+00:03:52,700 --> 00:03:54,960
+What we want to do is
+while this is happening,
+
+88
+00:03:54,960 --> 00:03:57,070
+we want to cancel the deployment.
+
+89
+00:03:57,070 --> 00:04:00,338
+So we've realized that 'RED'
+is actually a bad version.
+
+90
+00:04:00,338 --> 00:04:04,410
+Excuse me, the
+`cancel-deployment` command.
+
+91
+00:04:04,410 --> 00:04:08,290
+What you can see down here is very quickly
+
+92
+00:04:08,290 --> 00:04:12,000
+what Cloud Foundry did was
+evacuate all of the instances
+
+93
+00:04:12,000 --> 00:04:16,540
+of 'RED' and immediately start
+replacing them with 'GREEN'.
+
+94
+00:04:16,540 --> 00:04:18,540
+And so you can see that some of
+
+95
+00:04:18,540 --> 00:04:23,020
+those instances are still
+starting. And up here,
+
+96
+00:04:23,020 --> 00:04:27,180
+you may have noticed that it
+was possible to actually see
+
+97
+00:04:27,180 --> 00:04:30,250
+a little bit of downtime
+during this process.
+
+98
+00:04:30,250 --> 00:04:32,300
+In accessing the application,
+
+99
+00:04:32,300 --> 00:04:35,340
+it could be possible to actually
+
+100
+00:04:35,340 --> 00:04:37,750
+not get a good working instance.
+
+101
+00:04:37,750 --> 00:04:41,280
+And that's because the goal
+of canceling a deployment is
+
+102
+00:04:41,280 --> 00:04:45,140
+to as quickly as possible revert back
+
+103
+00:04:45,140 --> 00:04:47,200
+to the last known good state.
+
+104
+00:04:47,200 --> 00:04:48,770
+So in our case, 'GREEN'.
+
+105
+00:04:48,770 --> 00:04:50,520
+And so Cloud Foundry does that
+
+106
+00:04:50,520 --> 00:04:54,030
+by immediately shutting down
+all of the 'RED' instances.
+
+107
+00:04:54,030 --> 00:04:55,660
+Now we still had some 'GREEN' running.
+
+108
+00:04:55,660 --> 00:04:58,480
+So there wasn't really
+a big problem there.
+
+109
+00:04:58,480 --> 00:05:02,180
+But if we primarily had all
+'RED' instances at that point
+
+110
+00:05:02,180 --> 00:05:04,610
+then we could have
+experienced some downtime
+
+111
+00:05:04,610 --> 00:05:05,753
+or our users could've.
+

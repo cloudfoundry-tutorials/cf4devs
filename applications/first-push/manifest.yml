@@ -1,0 +1,9 @@
+---
+applications:
+- name: first-push
+  memory: 32M
+  disk_quota: 64M
+  instances: 1
+  random-route: true
+  buildpacks:
+  - staticfile_buildpack

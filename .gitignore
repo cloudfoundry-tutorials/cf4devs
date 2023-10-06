@@ -1,0 +1,3 @@
+.hugo_build.lock
+site/public
+.DS_Store

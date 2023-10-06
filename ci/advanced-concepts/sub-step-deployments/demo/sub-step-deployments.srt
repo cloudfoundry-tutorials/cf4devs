@@ -1,0 +1,205 @@
+﻿1
+00:00:00,700 --> 00:00:01,533
+- I'm going to execute
+
+2
+00:00:01,533 --> 00:00:03,620
+a sub-step deployment here
+
+3
+00:00:03,620 --> 00:00:05,290
+to demonstrate how it's used.
+
+4
+00:00:05,290 --> 00:00:07,730
+And you'll see that this
+is far more complicated
+
+5
+00:00:07,730 --> 00:00:09,367
+than simply using `cf push`,
+
+6
+00:00:09,367 --> 00:00:12,100
+but there are certain
+reasons that you may want
+
+7
+00:00:12,100 --> 00:00:15,980
+to interject things into
+this sub-step process.
+
+8
+00:00:15,980 --> 00:00:17,800
+I'm gonna do this with my training app.
+
+9
+00:00:17,800 --> 00:00:19,470
+The most important thing
+is to make sure if you
+
+10
+00:00:19,470 --> 00:00:22,030
+already have the training app
+deployed, delete that first.
+
+11
+00:00:22,030 --> 00:00:22,959
+I don't.
+
+12
+00:00:22,959 --> 00:00:23,930
+I'm gonna start
+
+13
+00:00:23,930 --> 00:00:27,690
+by doing a `cf create-app`
+and call it `training-app`.
+
+14
+00:00:27,690 --> 00:00:29,850
+This going to add some entries
+
+15
+00:00:29,850 --> 00:00:31,833
+into the cloud controller database.
+
+16
+00:00:33,370 --> 00:00:36,210
+I can see my app by doing
+a `cf app`, and you can see
+
+17
+00:00:36,210 --> 00:00:40,080
+that I have some defaults
+like the default memory usage
+
+18
+00:00:40,080 --> 00:00:42,180
+and not a lot of other information
+
+19
+00:00:42,180 --> 00:00:44,680
+because all Cloud Foundry
+knows right now is
+
+20
+00:00:44,680 --> 00:00:46,603
+that my app is called 'training-app'.
+
+21
+00:00:48,720 --> 00:00:51,523
+Let's go ahead and apply the app manifest.
+
+22
+00:00:52,870 --> 00:00:56,330
+Once we do that and we
+rerun `cf app`, we can see
+
+23
+00:00:56,330 --> 00:00:58,140
+that the manifest has been applied because
+
+24
+00:00:58,140 --> 00:01:01,203
+our memory usage has been
+changed to match the manifest.
+
+25
+00:01:03,060 --> 00:01:05,440
+The next step is to upload our app bits.
+
+26
+00:01:05,440 --> 00:01:08,270
+For that we'll use `cf create-package`
+
+27
+00:01:08,270 --> 00:01:10,933
+and we'll specify the
+path to our app bits.
+
+28
+00:01:12,790 --> 00:01:14,610
+We can see the packages available
+
+29
+00:01:14,610 --> 00:01:17,600
+for a given app by running `cf packages`.
+
+30
+00:01:17,600 --> 00:01:19,330
+Not surprisingly, I only have one
+
+31
+00:01:19,330 --> 00:01:21,403
+because I've only uploaded it once.
+
+32
+00:01:23,890 --> 00:01:26,460
+Next, we want to stage our application.
+
+33
+00:01:26,460 --> 00:01:30,360
+We can use `cf stage` and we
+can pass in the package GUID
+
+34
+00:01:31,830 --> 00:01:34,623
+that was displayed when
+we ran `cf packages`.
+
+35
+00:01:37,880 --> 00:01:40,500
+The output of the staging
+process is a droplet.
+
+36
+00:01:40,500 --> 00:01:42,180
+I can see all of the droplets
+
+37
+00:01:42,180 --> 00:01:45,000
+for my application by
+running `cf droplets`.
+
+38
+00:01:45,000 --> 00:01:48,563
+Again, I only have one
+because I've only staged once.
+
+39
+00:01:50,560 --> 00:01:53,170
+Next, we want to use `cf set-droplet`
+
+40
+00:01:53,170 --> 00:01:55,330
+to specify the active droplet,
+
+41
+00:01:55,330 --> 00:01:58,010
+the one that we want Cloud Foundry to use
+
+42
+00:01:58,010 --> 00:02:00,900
+when we start our application.
+
+43
+00:02:00,900 --> 00:02:02,973
+Again, we referenced the GUID here.
+
+44
+00:02:04,070 --> 00:02:05,970
+And then we can start our application.
+
+45
+00:02:09,460 --> 00:02:12,280
+At this point, we have the same outcome
+
+46
+00:02:12,280 --> 00:02:14,630
+as if we had just typed `cf push`
+
+47
+00:02:14,630 --> 00:02:16,753
+but we did it with sub-step commands.
+

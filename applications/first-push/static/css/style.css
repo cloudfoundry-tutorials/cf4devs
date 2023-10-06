@@ -1,0 +1,25 @@
+.logo {
+	max-height: 200px;
+	margin-bottom: 50px;
+	margin-top: 10px;
+}
+
+.app-details {
+	border-top: 1px solid rgb(165, 165, 165);
+	margin-top: 10px;
+	padding-top: 25px;
+	border-bottom: 1px solid rgb(165, 165, 165);
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+}
+
+.footer {
+	font-size: 0.8em;
+	color: rgb(49,49,49);
+	margin-top: 25px;
+	float: right;
+}
+
+.footer a {
+	color: rgb(49,49,49);
+}

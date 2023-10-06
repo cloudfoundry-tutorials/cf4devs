@@ -1,0 +1,366 @@
+﻿1
+00:00:00,540 --> 00:00:01,373
+- As a developer, at some
+point, you'll likely want
+
+2
+00:00:01,373 --> 00:00:02,206
+to connect to one of
+your service instances
+
+3
+00:00:05,270 --> 00:00:08,100
+like a database, like our
+training app database.
+
+4
+00:00:08,100 --> 00:00:10,850
+Perhaps to look at the table structure
+
+5
+00:00:10,850 --> 00:00:13,710
+or see what data's in there,
+or verify a few things.
+
+6
+00:00:13,710 --> 00:00:16,900
+And it can be tempting
+to just do a `cf env`
+
+7
+00:00:16,900 --> 00:00:20,600
+on our application and
+use those credentials.
+
+8
+00:00:20,600 --> 00:00:22,920
+The problem with doing
+that is that you end up
+
+9
+00:00:22,920 --> 00:00:26,130
+losing the audit trail and
+it becomes difficult to
+
+10
+00:00:26,130 --> 00:00:29,780
+distinguish between what the
+application did in the database
+
+11
+00:00:29,780 --> 00:00:32,680
+and what you potentially
+did in the database.
+
+12
+00:00:32,680 --> 00:00:36,663
+And so it'd be better if we
+actually had unique credentials,
+
+13
+00:00:36,663 --> 00:00:39,675
+one representing the service
+binding of the application
+
+14
+00:00:39,675 --> 00:00:43,470
+which we already have, and
+then two for us to connect
+
+15
+00:00:43,470 --> 00:00:46,910
+to our database and do the
+things that we need to do.
+
+16
+00:00:46,910 --> 00:00:50,010
+In Cloud Foundry we can
+do this relatively easily.
+
+17
+00:00:50,010 --> 00:00:52,277
+We can do that by creating a service key.
+
+18
+00:00:52,277 --> 00:00:55,285
+So we can do `cf create-service-key`,
+
+19
+00:00:55,285 --> 00:00:56,490
+the name of our service instance,
+
+20
+00:00:56,490 --> 00:00:58,850
+and then the name of
+our service key itself.
+
+21
+00:00:58,850 --> 00:01:00,810
+So here I've given the
+service key the name
+
+22
+00:01:00,810 --> 00:01:04,878
+of `psql-client`, because
+that is a descriptive name
+
+23
+00:01:04,878 --> 00:01:08,520
+that denotes what I'm
+going to use this key for.
+
+24
+00:01:08,520 --> 00:01:10,290
+I can then use `cf service-key` to
+
+25
+00:01:10,290 --> 00:01:12,230
+view the contents of that key.
+
+26
+00:01:12,230 --> 00:01:13,580
+And again, just a disclaimer
+
+27
+00:01:13,580 --> 00:01:15,200
+this service instance won't exist.
+
+28
+00:01:15,200 --> 00:01:18,150
+So the fact that these
+credentials are recorded here,
+
+29
+00:01:18,150 --> 00:01:19,353
+is meaningless.
+
+30
+00:01:21,920 --> 00:01:25,610
+Once we have these
+credentials, we can use them
+
+31
+00:01:25,610 --> 00:01:29,410
+and we can create a tunnel
+through our application instance.
+
+32
+00:01:29,410 --> 00:01:30,930
+And the reason that we need to do this
+
+33
+00:01:30,930 --> 00:01:33,380
+in most Cloud Foundries, but not all,
+
+34
+00:01:33,380 --> 00:01:36,590
+is that most of the applications
+
+35
+00:01:36,590 --> 00:01:39,990
+the operators will have set up
+a separate sub-net or network
+
+36
+00:01:39,990 --> 00:01:43,840
+and security rules around access
+to those service instances.
+
+37
+00:01:43,840 --> 00:01:47,770
+And so we really need
+to be an application or
+
+38
+00:01:47,770 --> 00:01:51,830
+within the application
+network for the ability to
+
+39
+00:01:51,830 --> 00:01:55,870
+connect back to those service instances.
+
+40
+00:01:55,870 --> 00:01:58,680
+So we do that with an SSH tunnel.
+
+41
+00:01:58,680 --> 00:02:01,932
+In this first parameter that
+we provide to `cf ssh` here
+
+42
+00:02:01,932 --> 00:02:06,050
+with the `-l` flag is the
+port on our local machine.
+
+43
+00:02:06,050 --> 00:02:09,290
+This can be anything,
+it's not uncommon to just
+
+44
+00:02:09,290 --> 00:02:11,760
+take the port of the
+actual database, which
+
+45
+00:02:11,760 --> 00:02:16,093
+in our case here is 1433 and
+throw a 6 in front of it.
+
+46
+00:02:17,110 --> 00:02:19,390
+This is our connection string, again
+
+47
+00:02:19,390 --> 00:02:21,620
+from the service key credentials above
+
+48
+00:02:21,620 --> 00:02:23,540
+and we're gonna create a tunnel
+
+49
+00:02:23,540 --> 00:02:26,850
+to our training application
+and instance zero.
+
+50
+00:02:26,850 --> 00:02:30,040
+And so once we actually
+get this prompt here,
+
+51
+00:02:30,040 --> 00:02:32,360
+we know that we actually
+have a tunnel open
+
+52
+00:02:33,390 --> 00:02:35,640
+to that application instance.
+
+53
+00:02:35,640 --> 00:02:36,750
+So to use that tunnel,
+
+54
+00:02:36,750 --> 00:02:38,620
+we can open up another terminal window.
+
+55
+00:02:38,620 --> 00:02:41,380
+And in this terminal window,
+we can use the `psql`
+
+56
+00:02:41,380 --> 00:02:46,380
+or Postgres client to
+connect to our database now.
+
+57
+00:02:48,000 --> 00:02:51,250
+And you'll notice here
+that in the `psql` string
+
+58
+00:02:51,250 --> 00:02:52,440
+the host is `localhost`,
+
+59
+00:02:52,440 --> 00:02:54,270
+and that's because we've opened a tunnel
+
+60
+00:02:54,270 --> 00:02:58,780
+on port 61433, all the way
+
+61
+00:02:58,780 --> 00:03:03,000
+through to our application
+instance to the actual database.
+
+62
+00:03:03,000 --> 00:03:05,530
+And so that SSH tunnel is why
+
+63
+00:03:05,530 --> 00:03:07,363
+we're using localhost here.
+
+64
+00:03:10,320 --> 00:03:11,820
+And we can paste our password in
+
+65
+00:03:11,820 --> 00:03:14,410
+and now we're actually
+connected to the database
+
+66
+00:03:14,410 --> 00:03:16,640
+and I can do whatever I need to.
+
+67
+00:03:16,640 --> 00:03:19,630
+In this case, there are
+no tables in this database
+
+68
+00:03:19,630 --> 00:03:23,020
+but I can do the things that
+I need to in that database.
+
+69
+00:03:23,020 --> 00:03:24,970
+I'm connected
+
+70
+00:03:24,970 --> 00:03:26,570
+through that application tunnel.
+
+71
+00:03:28,930 --> 00:03:31,050
+When I'm done with accessing the database,
+
+72
+00:03:31,050 --> 00:03:33,090
+I can go back to my
+original terminal window.
+
+73
+00:03:33,090 --> 00:03:37,750
+I can exit out of the SSH tunnel,
+
+74
+00:03:37,750 --> 00:03:40,500
+and then I can restart the app instance
+
+75
+00:03:40,500 --> 00:03:41,510
+that I had tunneled to.
+
+76
+00:03:41,510 --> 00:03:43,570
+And this is a best practice
+that we'll discuss more
+
+77
+00:03:43,570 --> 00:03:44,633
+in a future session.
+
+78
+00:03:47,350 --> 00:03:49,200
+And because we're done
+with our service key,
+
+79
+00:03:49,200 --> 00:03:51,270
+we should go ahead and delete
+it and just clean it up,
+
+80
+00:03:51,270 --> 00:03:53,620
+so that those credentials
+aren't laying around.
+

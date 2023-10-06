@@ -1,0 +1,123 @@
+1
+00:00:00,000 --> 00:00:03,000
+You can check that you have the CLI installed correctly
+
+2
+00:00:03,000 --> 00:00:06,000
+and see what version you are running by typing `cf version`.
+
+3
+00:00:06,000 --> 00:00:09,000
+If you get an error when you do this, you should take a look
+
+4
+00:00:09,000 --> 00:00:12,000
+at your PATH variable and see what you have set.
+
+5
+00:00:12,000 --> 00:00:15,000
+Refer to the installation guide if you have any problems
+
+6
+00:00:15,000 --> 00:00:18,000
+and be sure you have the CLI installed correctly before proceeding.
+
+7
+00:00:18,000 --> 00:00:21,000
+It is also good practice to periodically check for updates 
+
+8
+00:00:21,000 --> 00:00:23,000
+and install the latest.
+
+9
+00:00:23,000 --> 00:00:26,000
+The CLI is extensively self-documenting.
+
+10
+00:00:26,000 --> 00:00:31,000
+You can see the most commonly used commands by typing `cf help`.
+
+11
+00:00:31,000 --> 00:00:36,000
+You can see all of the commands the CLI supports by typing `cf help -a`.
+
+12
+00:00:36,000 --> 00:00:41,000
+You can see that this list is significantly longer.
+
+13
+00:00:41,000 --> 00:00:44,000
+You can see the usage details for any of the commands
+
+14
+00:00:44,000 --> 00:00:48,000
+by typing `cf <the name of the command> --help`
+
+15
+00:00:48,000 --> 00:00:53,000
+In this case, I have displayed the help text for the login command.
+
+16
+00:00:53,000 --> 00:00:56,000
+When you run `cf help`, you may notice that some of the 
+
+17
+00:00:56,000 --> 00:00:59,000
+commands have shortcuts after them.
+
+18
+00:00:59,000 --> 00:01:02,000
+I have highlighted `cf marketplace` here, 
+
+19
+00:01:02,000 --> 00:01:05,000
+and you can see you can type `cf marketplace` 
+
+20
+00:01:05,000 --> 00:01:08,000
+or simply use the shortcut of `cf m`.
+
+21
+00:01:08,000 --> 00:01:11,000
+Not all commands have shortcuts,
+
+22
+00:01:11,000 --> 00:01:14,000
+but the ones that do are listed when you view the help text.
+
+23
+00:01:17,000 --> 00:01:20,000
+You can also change the language 
+
+24
+00:01:20,000 --> 00:01:23,000
+that the CLI uses.
+
+25
+00:01:23,000 --> 00:01:26,000
+In this case I am using `cf config` to change the language to German.
+
+26
+00:01:26,000 --> 00:01:29,000
+When you run `cf help` again, you can see the descriptions
+
+27
+00:01:29,000 --> 00:01:32,000
+are now in German.
+
+28
+00:01:32,000 --> 00:01:35,000
+You will also notice the commands do not change
+
+29
+00:01:35,000 --> 00:01:38,000
+just the text around them and the descriptions.
+
+30
+00:01:38,000 --> 00:01:41,000
+You can turn this off by again using `cf config`
+
+31
+00:01:41,000 --> 00:01:42,933
+and clearing the locale.

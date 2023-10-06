@@ -1,0 +1,141 @@
+﻿1
+00:00:00,970 --> 00:00:01,803
+- I am going to demonstrate one
+
+2
+00:00:01,803 --> 00:00:04,450
+of the resiliency features
+built into Cloud Foundry.
+
+3
+00:00:04,450 --> 00:00:08,919
+This is running for every
+application within the platform.
+
+4
+00:00:08,919 --> 00:00:11,890
+In the upper right window here,
+
+5
+00:00:11,890 --> 00:00:16,500
+I am rerunning `cf app`
+every half a second
+
+6
+00:00:16,500 --> 00:00:17,930
+on my training app and you can see
+
+7
+00:00:17,930 --> 00:00:20,309
+that I have five instances running here.
+
+8
+00:00:20,309 --> 00:00:23,180
+On the left window over
+here, I'm tailing the logs
+
+9
+00:00:23,180 --> 00:00:26,380
+for my training app. And
+in the bottom window here,
+
+10
+00:00:26,380 --> 00:00:28,140
+I'm going to invoke an endpoint
+
+11
+00:00:29,013 --> 00:00:30,210
+built into the training application
+
+12
+00:00:30,210 --> 00:00:33,600
+that programmatically
+crashes an app instance.
+
+13
+00:00:33,600 --> 00:00:35,050
+What Cloud Foundry is doing
+
+14
+00:00:35,050 --> 00:00:37,330
+is monitoring the health of all
+
+15
+00:00:37,330 --> 00:00:38,970
+of my applications instances.
+
+16
+00:00:38,970 --> 00:00:41,180
+It knows that I want five running
+
+17
+00:00:41,180 --> 00:00:44,110
+and it will ensure that
+five will continue to run
+
+18
+00:00:44,110 --> 00:00:47,540
+even when I programmatically
+crash those instances.
+
+19
+00:00:47,540 --> 00:00:49,820
+We're going to `curl` the `/kill` endpoint
+
+20
+00:00:49,820 --> 00:00:51,730
+of my training application.
+
+21
+00:00:51,730 --> 00:00:55,160
+You can see that I get a
+'502 Bad Gateway' error.
+
+22
+00:00:55,160 --> 00:00:59,520
+This is because the application fails to
+
+23
+00:00:59,520 --> 00:01:01,160
+return a response before crashing.
+
+24
+00:01:01,160 --> 00:01:03,819
+In the logs window here you
+can see that very quickly
+
+25
+00:01:03,819 --> 00:01:08,038
+we've determined that the
+application has crashed
+
+26
+00:01:08,038 --> 00:01:11,570
+and that the process has crashed.
+
+27
+00:01:11,570 --> 00:01:14,510
+You can see that it ended
+up being app instance two
+
+28
+00:01:14,510 --> 00:01:16,221
+over here in this window.
+
+29
+00:01:16,221 --> 00:01:19,780
+You can see that that app
+instance was very quickly
+
+30
+00:01:19,780 --> 00:01:23,290
+determined to be nonfunctioning,
+
+31
+00:01:23,290 --> 00:01:25,250
+essentially failing it's health check
+
+32
+00:01:25,250 --> 00:01:27,353
+and it was replaced by a new instance.
+

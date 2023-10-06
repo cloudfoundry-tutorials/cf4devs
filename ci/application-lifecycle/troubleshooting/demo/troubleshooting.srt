@@ -1,0 +1,168 @@
+﻿1
+00:00:00,940 --> 00:00:03,870
+- The application SSH
+feature can be disabled
+
+2
+00:00:03,870 --> 00:00:06,590
+for the entire Cloud Foundry instance,
+
+3
+00:00:06,590 --> 00:00:10,240
+at the space level, and
+at the application level.
+
+4
+00:00:10,240 --> 00:00:13,840
+We can check if SSH is
+enabled at our app level
+
+5
+00:00:13,840 --> 00:00:16,550
+by doing a `cf ssh-enabled`.
+
+6
+00:00:16,550 --> 00:00:19,710
+You can see that it is not
+enabled for my 'training-app',
+
+7
+00:00:19,710 --> 00:00:23,153
+so I can go ahead and enable
+it with `cf enable-ssh`.
+
+8
+00:00:24,300 --> 00:00:27,030
+I also need to check at the space level
+
+9
+00:00:27,030 --> 00:00:30,870
+and I can do a `cf space-ssh-allowed`.
+
+10
+00:00:30,870 --> 00:00:34,083
+You can see that SSH is not
+allowed in my dev space.
+
+11
+00:00:34,960 --> 00:00:36,620
+So I need to go ahead and enable that
+
+12
+00:00:36,620 --> 00:00:38,933
+with `cf allow-space-ssh`.
+
+13
+00:00:40,040 --> 00:00:42,370
+Because I've made a
+change to those settings,
+
+14
+00:00:42,370 --> 00:00:45,010
+I need to restart my application.
+
+15
+00:00:45,010 --> 00:00:47,300
+I'm gonna do it with the rolling strategy
+
+16
+00:00:47,300 --> 00:00:49,193
+to ensure that I have no downtime.
+
+17
+00:00:54,330 --> 00:00:56,440
+Once my application has restarted,
+
+18
+00:00:56,440 --> 00:00:59,130
+I can SSH to a particular app instance.
+
+19
+00:00:59,130 --> 00:01:01,513
+In this case, I'm going to instance zero.
+
+20
+00:01:03,130 --> 00:01:04,760
+And once I'm inside the container,
+
+21
+00:01:04,760 --> 00:01:06,400
+I can do a lot of things.
+
+22
+00:01:06,400 --> 00:01:08,240
+I can look around.
+
+23
+00:01:08,240 --> 00:01:11,430
+It may be helpful to take a
+look at the 'app' directory.
+
+24
+00:01:11,430 --> 00:01:15,270
+That's where our application code exists.
+
+25
+00:01:15,270 --> 00:01:17,150
+The structure of that directory will vary
+
+26
+00:01:17,150 --> 00:01:20,200
+depending on the buildpack
+that you're using.
+
+27
+00:01:20,200 --> 00:01:22,700
+More commonly you'll use `cf ssh`
+
+28
+00:01:22,700 --> 00:01:26,380
+to tunnel to a service
+instance like a database.
+
+29
+00:01:26,380 --> 00:01:29,110
+We'll show you that in a future exercise.
+
+30
+00:01:29,110 --> 00:01:32,290
+I'm gonna go ahead and exit
+out of the SSH session.
+
+31
+00:01:32,290 --> 00:01:34,050
+Then it's always best practice
+
+32
+00:01:34,050 --> 00:01:38,290
+to restart the application
+instance that we SSH to.
+
+33
+00:01:38,290 --> 00:01:41,595
+And that's just in case we
+accidentally made a change
+
+34
+00:01:41,595 --> 00:01:45,800
+or did something to corrupt
+that particular instance.
+
+35
+00:01:45,800 --> 00:01:48,920
+I can do that with a `cf
+restart-app-instance`.
+
+36
+00:01:48,920 --> 00:01:51,730
+This is why I SSH specifically
+
+37
+00:01:51,730 --> 00:01:54,920
+to the index of zero so
+that I could only restart
+
+38
+00:01:54,920 --> 00:01:56,223
+the index of zero.
+

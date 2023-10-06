@@ -1,0 +1,14 @@
+---
+
+applications:
+- name: nginx-proxy
+  memory: 32M
+  disk_quota: 64M
+  instances: 1
+  buildpacks:
+  -  https://github.com/cloudfoundry/nginx-buildpack
+  routes:
+  - route: ((route))
+  env:
+    PROXIED_ROUTE: ((proxied_route))
+    PROXIED_PORT: ((proxied_port))

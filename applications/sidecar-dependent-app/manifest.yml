@@ -1,0 +1,15 @@
+applications:
+- name: sidecar-dependent-app
+  command: bundle exec rackup config.ru -p $PORT
+  disk_quota: 256M
+  instances: 1
+  memory: 128M
+  buildpacks:
+  - ruby_buildpack
+  env:
+    CONFIG_SERVER_PORT: 8082
+  sidecars:
+  - name: config-server
+    process_types:
+    - web
+    command: './config-server'

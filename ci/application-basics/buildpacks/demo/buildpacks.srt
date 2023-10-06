@@ -1,0 +1,91 @@
+﻿1
+00:00:00,790 --> 00:00:03,290
+- You can see the system
+buildpacks configured
+
+2
+00:00:03,290 --> 00:00:04,810
+for your instance of Cloud Foundry
+
+3
+00:00:04,810 --> 00:00:06,910
+by running `cf buildpacks`.
+
+4
+00:00:06,910 --> 00:00:08,690
+These buildpacks are
+maintained by operators
+
+5
+00:00:08,690 --> 00:00:11,510
+of your Cloud Foundry Instance,
+and they'll be updated
+
+6
+00:00:11,510 --> 00:00:15,020
+by the operators of your Cloud
+Foundry instance as well.
+
+7
+00:00:15,020 --> 00:00:16,730
+In the event though that,
+let's say you needed
+
+8
+00:00:16,730 --> 00:00:20,310
+to use a specific version
+of the staticfile buildpack,
+
+9
+00:00:20,310 --> 00:00:21,780
+one that is not built in
+
+10
+00:00:21,780 --> 00:00:24,490
+with the system buildpack
+that you have here,
+
+11
+00:00:24,490 --> 00:00:29,380
+you can do that by specifying
+the `-b` flag and the path
+
+12
+00:00:29,380 --> 00:00:32,370
+to the buildpack and the
+tag of that buildpack,
+
+13
+00:00:32,370 --> 00:00:36,947
+in this case it's the
+1.5.21 in a Git repository,
+
+14
+00:00:38,970 --> 00:00:42,210
+and if enabled on your
+Cloud Foundry instance,
+
+15
+00:00:42,210 --> 00:00:45,310
+your Cloud Foundry instance
+will go out to GitHub.
+
+16
+00:00:45,310 --> 00:00:49,380
+It will fetch this tag,
+specifically this version
+
+17
+00:00:49,380 --> 00:00:52,340
+of that buildpack, and
+it will use that version
+
+18
+00:00:52,340 --> 00:00:56,480
+of the buildpack to
+create the container image
+
+19
+00:00:56,480 --> 00:00:57,553
+for your application.
+

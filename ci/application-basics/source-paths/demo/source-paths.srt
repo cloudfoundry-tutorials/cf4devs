@@ -1,0 +1,240 @@
+﻿1
+00:00:00,000 --> 00:00:00,833
+- All right,
+
+2
+00:00:00,833 --> 00:00:02,410
+so here, we're gonna
+look at some differences
+
+3
+00:00:02,410 --> 00:00:06,570
+between specifying a path
+explicitly on a push and not,
+
+4
+00:00:06,570 --> 00:00:08,070
+and particularly we're gonna look
+
+5
+00:00:08,070 --> 00:00:10,030
+in the context of zip files.
+
+6
+00:00:10,030 --> 00:00:11,020
+So before you start this
+
+7
+00:00:11,020 --> 00:00:13,230
+make sure you're in the right directory.
+
+8
+00:00:13,230 --> 00:00:16,290
+Make sure you have the app.zip file
+
+9
+00:00:16,290 --> 00:00:18,890
+in the current directory
+that you're working within.
+
+10
+00:00:19,790 --> 00:00:22,370
+Let's start by pushing this application
+
+11
+00:00:22,370 --> 00:00:24,100
+with the `-p` flag
+
+12
+00:00:25,190 --> 00:00:27,340
+and specifying our zip file.
+
+13
+00:00:27,340 --> 00:00:29,240
+And we'll take a look at what happens.
+
+14
+00:00:34,560 --> 00:00:35,960
+When we do this,
+
+15
+00:00:35,960 --> 00:00:38,410
+our app gets uploaded
+and our app gets started.
+
+16
+00:00:38,410 --> 00:00:39,680
+We've got a URL here.
+
+17
+00:00:39,680 --> 00:00:43,750
+We can grab that URL and
+open it in a browser.
+
+18
+00:00:43,750 --> 00:00:46,630
+And as expected Cloud Foundry
+will take that zip file,
+
+19
+00:00:46,630 --> 00:00:49,763
+unzip it and run it as if it
+was any other application.
+
+20
+00:00:50,810 --> 00:00:52,590
+So now let's take a look at what happens
+
+21
+00:00:52,590 --> 00:00:55,340
+when we push without the `-p` flag.
+
+22
+00:00:55,340 --> 00:01:00,010
+Remember that, we are in a
+current directory with app.zip
+
+23
+00:01:00,010 --> 00:01:02,813
+so the same app.zip is
+going to be uploaded.
+
+24
+00:01:04,580 --> 00:01:07,040
+Okay, so now when this application starts
+
+25
+00:01:07,960 --> 00:01:09,320
+and we open in a browser,
+
+26
+00:01:09,320 --> 00:01:12,093
+we get a 403 forbidden error from nginx.
+
+27
+00:01:13,070 --> 00:01:17,213
+But if we go back here and we actually
+
+28
+00:01:18,078 --> 00:01:20,131
+add `app.zip` to the path,
+
+29
+00:01:20,131 --> 00:01:23,203
+you'll see that we actually
+download the zip file.
+
+30
+00:01:24,350 --> 00:01:26,840
+So there's two things
+to keep in mind here.
+
+31
+00:01:26,840 --> 00:01:28,500
+One, when working with zip files
+
+32
+00:01:28,500 --> 00:01:31,930
+if you want Cloud Foundry
+to unzip the artifact file
+
+33
+00:01:31,930 --> 00:01:34,750
+that you're pushing, you
+have to specify the path.
+
+34
+00:01:34,750 --> 00:01:37,610
+Otherwise Cloud Foundry doesn't
+know what to do with it.
+
+35
+00:01:37,610 --> 00:01:41,210
+We have this very valid use
+case `zip-no-src-path` here
+
+36
+00:01:41,210 --> 00:01:45,627
+where we actually just want
+that file to be served up
+
+37
+00:01:47,030 --> 00:01:49,860
+so that's what we're seeing
+in their behavior here.
+
+38
+00:01:49,860 --> 00:01:52,010
+The second thing is it's always better
+
+39
+00:01:52,010 --> 00:01:55,530
+to get into the habit of
+trying to specify the path
+
+40
+00:01:55,530 --> 00:01:58,230
+for all of the applications
+that you're pushing.
+
+41
+00:01:58,230 --> 00:02:01,930
+We want repeatable deterministic behavior
+
+42
+00:02:01,930 --> 00:02:03,460
+and strange things can happen
+
+43
+00:02:03,460 --> 00:02:06,153
+if you inadvertently push
+from the wrong directory.
+
+44
+00:02:07,700 --> 00:02:08,750
+So before we continue,
+
+45
+00:02:08,750 --> 00:02:10,300
+let's do a little bit of cleanup here.
+
+46
+00:02:10,300 --> 00:02:13,520
+We don't need the `zip-no-src-path`
+application anymore
+
+47
+00:02:13,520 --> 00:02:15,740
+so let's just go ahead and delete it.
+
+48
+00:02:15,740 --> 00:02:17,840
+Remember the `-r` flag is
+going to delete the routes
+
+49
+00:02:17,840 --> 00:02:20,120
+that are associated with it as well.
+
+50
+00:02:20,120 --> 00:02:22,880
+We will continue to use
+the other application
+
+51
+00:02:22,880 --> 00:02:24,870
+the working application.
+
+52
+00:02:24,870 --> 00:02:25,960
+And so rather than delete it,
+
+53
+00:02:25,960 --> 00:02:27,850
+let's just go ahead and rename it.
+
+54
+00:02:27,850 --> 00:02:32,663
+So we rename it from
+`zip-with-src-path` to `static app`.
+

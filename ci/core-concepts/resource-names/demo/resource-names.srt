@@ -1,0 +1,188 @@
+﻿1
+00:00:01,970 --> 00:00:03,540
+- So remember previously we had deployed
+
+2
+00:00:03,540 --> 00:00:05,890
+an application called `first-push`.
+
+3
+00:00:05,890 --> 00:00:08,020
+That application, that name, `first-push`,
+
+4
+00:00:08,020 --> 00:00:10,970
+is simply a human readable label.
+
+5
+00:00:10,970 --> 00:00:12,260
+Each of the resources
+
+6
+00:00:12,260 --> 00:00:14,240
+within a Cloud Foundry
+installation will have
+
+7
+00:00:14,240 --> 00:00:18,710
+a globally unique identifier
+or GUID assigned to it.
+
+8
+00:00:18,710 --> 00:00:21,380
+And so we can see that
+GUID by doing `cf app`,
+
+9
+00:00:21,380 --> 00:00:22,270
+the name of the app,
+
+10
+00:00:22,270 --> 00:00:23,540
+and then `--guid`.
+
+11
+00:00:23,540 --> 00:00:25,810
+And this will be useful
+when we start interacting
+
+12
+00:00:25,810 --> 00:00:27,480
+with the API a little bit,
+
+13
+00:00:27,480 --> 00:00:28,770
+but for now we just want to show you
+
+14
+00:00:28,770 --> 00:00:30,500
+that you can rename these resources
+
+15
+00:00:30,500 --> 00:00:32,740
+and that GUID won't change.
+
+16
+00:00:32,740 --> 00:00:35,460
+So there's a command called `cf rename`
+
+17
+00:00:35,460 --> 00:00:36,980
+and we give it the original name,
+
+18
+00:00:36,980 --> 00:00:38,570
+in our case `first-push`.
+
+19
+00:00:38,570 --> 00:00:40,670
+And then we give it a new name,
+
+20
+00:00:40,670 --> 00:00:42,780
+in our case `renamed-app`.
+
+21
+00:00:42,780 --> 00:00:45,070
+When we do this, the name changes,
+
+22
+00:00:45,070 --> 00:00:46,110
+but the GUID doesn't.
+
+23
+00:00:46,110 --> 00:00:49,790
+So if we actually rerun `cf app --guid`
+
+24
+00:00:49,790 --> 00:00:53,083
+we can see that it's exactly
+the same GUID as it was before.
+
+25
+00:00:54,150 --> 00:00:54,983
+So again,
+
+26
+00:00:54,983 --> 00:00:56,570
+labels in Cloud Foundry
+
+27
+00:00:56,570 --> 00:00:58,470
+are there for human beings.
+
+28
+00:00:58,470 --> 00:01:00,590
+You can change those labels.
+
+29
+00:01:00,590 --> 00:01:03,430
+Labels are typically scoped to a space.
+
+30
+00:01:03,430 --> 00:01:06,180
+So you could have the exact same app
+
+31
+00:01:06,180 --> 00:01:07,370
+in a space for dev
+
+32
+00:01:07,370 --> 00:01:08,510
+and a space for test
+
+33
+00:01:08,510 --> 00:01:10,190
+and in a space for prod
+
+34
+00:01:10,190 --> 00:01:12,000
+with the exact same name.
+
+35
+00:01:12,000 --> 00:01:15,490
+So it's entirely up to
+you how you use those.
+
+36
+00:01:15,490 --> 00:01:16,323
+From here on out,
+
+37
+00:01:16,323 --> 00:01:18,050
+we actually don't need this app anymore,
+
+38
+00:01:18,050 --> 00:01:19,860
+so we can go ahead and delete it.
+
+39
+00:01:19,860 --> 00:01:21,980
+We can do that with `cf delete`.
+
+40
+00:01:21,980 --> 00:01:24,040
+The `-r` flag will actually delete
+
+41
+00:01:24,040 --> 00:01:26,920
+the routes that are
+associated with this app.
+
+42
+00:01:26,920 --> 00:01:28,490
+And so we can go ahead and do that
+
+43
+00:01:28,490 --> 00:01:30,120
+and say `yes`
+
+44
+00:01:30,120 --> 00:01:31,560
+and our application will be deleted
+
+45
+00:01:31,560 --> 00:01:33,653
+and we'll be ready to
+continue with the course.
+

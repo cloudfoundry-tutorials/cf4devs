@@ -1,0 +1,15 @@
+---
+applications:
+- name: static-app
+  buildpacks:
+  - staticfile_buildpack
+  random_route: true
+  metadata:
+    annotations:
+      contact: bob@example.com
+  processes:
+  - type: web
+    instances: 1
+    memory: 32M
+    disk_quota: 64M
+    health-check-type: port

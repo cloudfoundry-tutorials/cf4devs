@@ -1,0 +1,163 @@
+﻿1
+00:00:00,580 --> 00:00:01,580
+- So far in this course,
+
+2
+00:00:01,580 --> 00:00:04,430
+we've deployed applications
+that had a single process.
+
+3
+00:00:04,430 --> 00:00:06,620
+But Cloud Foundry also
+supports the ability
+
+4
+00:00:06,620 --> 00:00:09,970
+to push an application that
+contains multiple processes
+
+5
+00:00:09,970 --> 00:00:12,290
+each running in their own container.
+
+6
+00:00:12,290 --> 00:00:14,500
+As an example, you might
+have an application
+
+7
+00:00:14,500 --> 00:00:17,820
+that has a UI component,
+which runs in its own process,
+
+8
+00:00:17,820 --> 00:00:19,623
+and a backend data component.
+
+9
+00:00:22,160 --> 00:00:25,160
+We've provided a sample
+application called 'multi-process'.
+
+10
+00:00:25,160 --> 00:00:27,520
+You will see here that in the manifest
+
+11
+00:00:27,520 --> 00:00:32,080
+we've now defined two different
+processes, web and worker.
+
+12
+00:00:32,080 --> 00:00:34,050
+We've defined the number of instances
+
+13
+00:00:34,050 --> 00:00:37,090
+and in this case, we've
+provided the start commands.
+
+14
+00:00:37,090 --> 00:00:39,350
+Given that this is all the same codebase,
+
+15
+00:00:39,350 --> 00:00:40,540
+Cloud Foundry needs to know
+
+16
+00:00:40,540 --> 00:00:42,783
+how to start the different components.
+
+17
+00:00:44,740 --> 00:00:47,220
+Provided that we have that,
+we can push our application
+
+18
+00:00:47,220 --> 00:00:48,923
+just like any other application.
+
+19
+00:00:53,190 --> 00:00:54,900
+And once the application starts,
+
+20
+00:00:54,900 --> 00:00:57,580
+you can see in the output
+that we now have a web process
+
+21
+00:00:57,580 --> 00:00:59,060
+and a worker process.
+
+22
+00:00:59,060 --> 00:01:02,443
+You can see the same thing when
+you run `cf app` on the app.
+
+23
+00:01:06,200 --> 00:01:07,430
+With multi-process apps,
+
+24
+00:01:07,430 --> 00:01:10,380
+we can scale each process individually.
+
+25
+00:01:10,380 --> 00:01:13,640
+In this case, we still use
+the same `cf scale` command,
+
+26
+00:01:13,640 --> 00:01:15,580
+but this time we use the `--process` flag.
+
+27
+00:01:15,580 --> 00:01:19,573
+Now we've scaled our web
+process to two instances.
+
+28
+00:01:22,210 --> 00:01:24,703
+We can then scale our
+worker process to three.
+
+29
+00:01:25,830 --> 00:01:28,250
+If we want to SSH to an application now,
+
+30
+00:01:28,250 --> 00:01:31,090
+we again specify the `--process` flag
+
+31
+00:01:31,090 --> 00:01:33,740
+because there's multiple
+processes for our application.
+
+32
+00:01:33,740 --> 00:01:37,130
+We can SSH to the multi-process app,
+
+33
+00:01:37,130 --> 00:01:40,033
+but to specifically the web process.
+
+34
+00:01:41,490 --> 00:01:42,900
+We don't actually need to do anything here
+
+35
+00:01:42,900 --> 00:01:44,250
+so I'm just going to exit out.
+
+36
+00:01:47,530 --> 00:01:49,590
+That's all we need this application for
+
+37
+00:01:49,590 --> 00:01:51,240
+so we can go ahead and delete it.
+

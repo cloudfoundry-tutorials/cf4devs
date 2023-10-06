@@ -16,6 +16,10 @@ Welcome to Cloud Foundry for Developers! This course is aimed at developers and 
 6. **Domains and Routing**: In this module, we discuss the use of domains and routes, covering both internal and external facing domains.
 7. **Advanced Concepts**: In this module, we cover some of the more advanced features of Cloud Foundry.
 
+## Applications
+
+The course use applications contained in this [zip file](../../applications.zip). Be sure to download the [applications.zip](../../applications.zip), unzip it, and have the applications available before continuing.
+
 ## Conventions
 
 **Code Blocks**: We will use code blocks and `inline code` to denote commands run in the terminal window as well as examples of output from the commands. The following example expects you to run the pwd command.

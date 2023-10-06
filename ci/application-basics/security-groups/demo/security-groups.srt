@@ -1,0 +1,135 @@
+﻿1
+00:00:00,900 --> 00:00:03,250
+- So as a developer, you
+will not have the ability
+
+2
+00:00:03,250 --> 00:00:06,890
+to maintain or change or
+update security groups
+
+3
+00:00:06,890 --> 00:00:08,220
+within Cloud Foundry,
+
+4
+00:00:08,220 --> 00:00:10,730
+but it's important to
+understand how to check them
+
+5
+00:00:10,730 --> 00:00:12,990
+and have awareness of what they are.
+
+6
+00:00:12,990 --> 00:00:15,761
+So security groups control
+egress are essentially
+
+7
+00:00:15,761 --> 00:00:19,180
+where your applications can reach out to.
+
+8
+00:00:19,180 --> 00:00:22,160
+And operators can apply a default set
+
+9
+00:00:22,160 --> 00:00:24,130
+of staging security groups,
+
+10
+00:00:24,130 --> 00:00:26,940
+as well as running security groups.
+
+11
+00:00:26,940 --> 00:00:29,700
+After that, they can also
+apply security groups
+
+12
+00:00:29,700 --> 00:00:32,000
+at the space level.
+
+13
+00:00:32,000 --> 00:00:34,280
+So let's take a look at
+the staging security groups
+
+14
+00:00:34,280 --> 00:00:36,980
+that I have configured in
+this Cloud Foundry instance
+
+15
+00:00:36,980 --> 00:00:38,203
+by the operators.
+
+16
+00:00:39,376 --> 00:00:40,240
+You can see that I have two:
+
+17
+00:00:40,240 --> 00:00:43,073
+one is called public
+networks, one is called DNS.
+
+18
+00:00:44,040 --> 00:00:45,550
+For the running security groups,
+
+19
+00:00:45,550 --> 00:00:47,790
+I have the same public networks in DNS.
+
+20
+00:00:47,790 --> 00:00:49,860
+I also have a security
+group called Containers
+
+21
+00:00:49,860 --> 00:00:53,053
+and another one called Hannah Trial.
+
+22
+00:00:54,030 --> 00:00:57,410
+We can look at any of these
+individual security groups
+
+23
+00:00:57,410 --> 00:01:00,710
+by running CF Security
+Group and the name of that.
+
+24
+00:01:00,710 --> 00:01:01,590
+And so I'm doing it
+
+25
+00:01:01,590 --> 00:01:04,710
+on the default DNS
+security group that's here.
+
+26
+00:01:04,710 --> 00:01:07,804
+And what you'll see is
+that my applications
+
+27
+00:01:07,804 --> 00:01:11,210
+with the DNS Security Group
+are allowed to reach out
+
+28
+00:01:11,210 --> 00:01:14,970
+over the TCP protocol to any IP address
+
+29
+00:01:14,970 --> 00:01:19,970
+in this site or range and over port 53.
+
+30
+00:01:20,000 --> 00:01:23,023
+And so essentially going
+out to make DNS queries.
+

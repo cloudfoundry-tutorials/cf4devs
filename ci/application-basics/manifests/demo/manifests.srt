@@ -1,0 +1,242 @@
+﻿1
+00:00:00,840 --> 00:00:02,210
+- Let's take a look at the easy way
+
+2
+00:00:02,210 --> 00:00:03,260
+to create a manifest in
+
+3
+00:00:03,260 --> 00:00:06,320
+Cloud Foundry and that's to
+allow Cloud Foundry to do it.
+
+4
+00:00:06,320 --> 00:00:08,550
+All we really need is
+our running application
+
+5
+00:00:08,550 --> 00:00:11,490
+which we've already configured
+in previous exercises.
+
+6
+00:00:11,490 --> 00:00:15,350
+And then we can run the `cf
+create-app-manifest` command.
+
+7
+00:00:15,350 --> 00:00:18,620
+Cloud Foundry will look at the
+config that we've already set
+
+8
+00:00:18,620 --> 00:00:20,800
+by the command line in
+the previous exercise to
+
+9
+00:00:20,800 --> 00:00:22,470
+deploy this application.
+
+10
+00:00:22,470 --> 00:00:24,460
+And you'll see that we
+now have a manifest file
+
+11
+00:00:24,460 --> 00:00:27,400
+in the directory that we
+ran this command from.
+
+12
+00:00:27,400 --> 00:00:29,700
+We can take a look at
+the manifest file and you
+
+13
+00:00:29,700 --> 00:00:32,210
+can see that Cloud Foundry
+put in all of the information
+
+14
+00:00:32,210 --> 00:00:35,608
+that it knows based on
+parameters that we passed
+
+15
+00:00:35,608 --> 00:00:37,660
+in previously.
+
+16
+00:00:37,660 --> 00:00:39,450
+It also added things that were default.
+
+17
+00:00:39,450 --> 00:00:41,940
+So in this case, the stack
+and the health check type.
+
+18
+00:00:41,940 --> 00:00:44,790
+We'll talk more about what
+these are later in the course.
+
+19
+00:00:46,250 --> 00:00:49,670
+We can test this and make
+sure that our manifest works
+
+20
+00:00:49,670 --> 00:00:53,410
+by making sure that we're
+in the right directory
+
+21
+00:00:53,410 --> 00:00:56,960
+deleting our existing
+application, and then pushing
+
+22
+00:00:56,960 --> 00:00:58,913
+by using this manifest.
+
+23
+00:01:03,490 --> 00:01:05,720
+It's important that we
+always test the manifest
+
+24
+00:01:05,720 --> 00:01:07,610
+that Cloud Foundry
+generates, because now we
+
+25
+00:01:07,610 --> 00:01:09,920
+can open this application
+in a browser and see
+
+26
+00:01:09,920 --> 00:01:12,450
+that things aren't working.
+They are not working
+
+27
+00:01:12,450 --> 00:01:13,283
+for the same reason
+
+28
+00:01:13,283 --> 00:01:17,131
+they didn't work in the
+source path exercise.
+
+29
+00:01:17,131 --> 00:01:18,550
+So if we go back
+
+30
+00:01:18,550 --> 00:01:20,280
+and look at the manifest again
+
+31
+00:01:20,280 --> 00:01:23,240
+you'll see that there's no path in here.
+
+32
+00:01:23,240 --> 00:01:25,170
+And the reason that there's no path is
+
+33
+00:01:25,170 --> 00:01:27,900
+that Cloud Foundry doesn't know where
+
+34
+00:01:27,900 --> 00:01:29,320
+on your local file system
+
+35
+00:01:29,320 --> 00:01:31,700
+you actually pushed from last time.
+
+36
+00:01:31,700 --> 00:01:34,000
+That's something it can't figure out.
+
+37
+00:01:34,000 --> 00:01:36,300
+And so what we can do
+is one of two things.
+
+38
+00:01:36,300 --> 00:01:38,920
+You can add that to your manifest here
+
+39
+00:01:38,920 --> 00:01:42,530
+or you can simply push and
+specify the path when you push.
+
+40
+00:01:42,530 --> 00:01:45,750
+And so in this case, I'm in
+the appropriate directory.
+
+41
+00:01:45,750 --> 00:01:50,200
+I have app.zip, and I can
+re-push. When I do this
+
+42
+00:01:50,200 --> 00:01:51,770
+and reopen the application
+
+43
+00:01:51,770 --> 00:01:54,133
+in a browser, everything will work.
+
+44
+00:01:57,490 --> 00:02:00,610
+The last thing to keep in
+mind is that the precedents
+
+45
+00:02:00,610 --> 00:02:03,390
+between the command line and the manifest.
+
+46
+00:02:03,390 --> 00:02:04,700
+Anything you specify
+
+47
+00:02:04,700 --> 00:02:07,970
+on the command line will
+override what's in the manifest.
+
+48
+00:02:07,970 --> 00:02:12,230
+And you can see that here
+because we can do a push
+
+49
+00:02:12,230 --> 00:02:14,870
+and we can specify a larger disk size
+
+50
+00:02:14,870 --> 00:02:16,910
+in this case, 128 megs.
+
+51
+00:02:16,910 --> 00:02:17,743
+And you see
+
+52
+00:02:17,743 --> 00:02:20,930
+that when it actually
+pushes the command line
+
+53
+00:02:20,930 --> 00:02:24,263
+value overwrites the value
+that we have in the manifest.
+

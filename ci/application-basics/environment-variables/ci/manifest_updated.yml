@@ -1,0 +1,12 @@
+---
+applications:
+- name: training-app
+  instances: 1
+  memory: 64M
+  buildpacks:
+  - go_buildpack
+  env:
+    GOPACKAGENAME: github.com/rscale-training/training-app
+    TRAINING_KEY_1: training-value-1
+    TRAINING_KEY_2: training-value-2
+    TRAINING_KEY_3: training-value-3

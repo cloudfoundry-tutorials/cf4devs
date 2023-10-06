@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>/korifi/overview/</loc>
+  </url><url>
+    <loc>/korifi/local-install/</loc>
+  </url><url>
+    <loc>/korifi/k8s/</loc>
+    <lastmod>2018-12-28T11:02:05+06:00</lastmod>
+  </url><url>
+    <loc>/korifi/cf/</loc>
+    <lastmod>2018-12-28T11:02:05+06:00</lastmod>
+  </url><url>
+    <loc>/korifi/</loc>
+    <lastmod>2018-12-28T11:02:05+06:00</lastmod>
+  </url><url>
+    <loc>/korifi/categories/</loc>
+  </url><url>
+    <loc>/korifi/tags/</loc>
+  </url>
+</urlset>

@@ -1,0 +1,176 @@
+﻿1
+00:00:00,970 --> 00:00:02,630
+- Our training application is currently
+
+2
+00:00:02,630 --> 00:00:04,740
+using the `port` health check type.
+
+3
+00:00:04,740 --> 00:00:06,140
+And we can see that by running
+
+4
+00:00:06,140 --> 00:00:10,030
+`cf get-health-check` against
+our training application
+
+5
+00:00:10,030 --> 00:00:12,370
+and we can see that
+there's a single process,
+
+6
+00:00:12,370 --> 00:00:14,623
+and the health check type is `port`.
+
+7
+00:00:15,470 --> 00:00:18,750
+This is the default health
+check for applications
+
+8
+00:00:18,750 --> 00:00:21,750
+and Cloud Foundry will connect
+
+9
+00:00:21,750 --> 00:00:24,200
+to the port of that application instance.
+
+10
+00:00:24,200 --> 00:00:27,410
+And if that connection
+succeeds, it will assume
+
+11
+00:00:27,410 --> 00:00:31,830
+that the application
+instance is alive and well.
+
+12
+00:00:31,830 --> 00:00:33,960
+That's fine for a lot of use cases,
+
+13
+00:00:33,960 --> 00:00:37,570
+but there are some cases
+where perhaps your application
+
+14
+00:00:37,570 --> 00:00:39,900
+knows a little bit more about itself,
+
+15
+00:00:39,900 --> 00:00:43,140
+and whether or not it is
+functional and working.
+
+16
+00:00:43,140 --> 00:00:46,750
+And in those cases, you can
+define a health check endpoint.
+
+17
+00:00:46,750 --> 00:00:50,010
+An endpoint for Cloud Foundry to invoke,
+
+18
+00:00:50,010 --> 00:00:53,710
+which has the logic to
+understand whether or not
+
+19
+00:00:53,710 --> 00:00:56,923
+that application instance,
+is in fact, healthy.
+
+20
+00:00:57,970 --> 00:01:01,670
+We can do that with an HTTP health check.
+
+21
+00:01:01,670 --> 00:01:03,710
+We can change the health check type
+
+22
+00:01:03,710 --> 00:01:05,850
+for any of our applications.
+
+23
+00:01:05,850 --> 00:01:09,610
+In this case, Cloud Foundry
+will make an HTTP call
+
+24
+00:01:09,610 --> 00:01:13,750
+to that endpoint and allow
+the endpoint to determine
+
+25
+00:01:13,750 --> 00:01:15,000
+whether or not it's healthy.
+
+26
+00:01:15,000 --> 00:01:19,550
+If it returns a `200`
+status then Cloud Foundry
+
+27
+00:01:19,550 --> 00:01:20,730
+will assume that it's healthy.
+
+28
+00:01:20,730 --> 00:01:24,010
+Anything else, it will
+assume that it's not.
+
+29
+00:01:24,010 --> 00:01:25,430
+So we don't have an end point,
+
+30
+00:01:25,430 --> 00:01:28,010
+but we'll go ahead and do
+a `cf set-health-check`
+
+31
+00:01:28,010 --> 00:01:31,330
+and change our health
+check type to `http`.
+
+32
+00:01:31,330 --> 00:01:33,680
+Anytime you do this, you need to restart
+
+33
+00:01:33,680 --> 00:01:37,610
+your application for those
+changes to take effect.
+
+34
+00:01:37,610 --> 00:01:40,070
+So we can go ahead and do that.
+
+35
+00:01:40,070 --> 00:01:42,289
+And then again, we can
+fetch the health check type
+
+36
+00:01:42,289 --> 00:01:44,530
+for our training application
+and you'll see that
+
+37
+00:01:44,530 --> 00:01:47,320
+we've changed it to an HTTP health check.
+
+38
+00:01:47,320 --> 00:01:49,998
+In this case, it's just
+invoking the `/` endpoint
+
+39
+00:01:49,998 --> 00:01:52,153
+because we didn't specify one.
+

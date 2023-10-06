@@ -1,0 +1,893 @@
+﻿1
+00:00:00,690 --> 00:00:02,530
+- Let's take a look at the marketplace.
+
+2
+00:00:02,530 --> 00:00:05,140
+This is where you can go as a developer
+
+3
+00:00:05,140 --> 00:00:08,853
+to provision services that your
+applications need on demand.
+
+4
+00:00:10,120 --> 00:00:11,950
+We can look at what's available
+
+5
+00:00:11,950 --> 00:00:15,440
+in the marketplace by doing a
+`cf m` or a `cf marketplace`.
+
+6
+00:00:15,440 --> 00:00:17,170
+This is going to vary depending
+
+7
+00:00:17,170 --> 00:00:19,360
+on the Cloud Foundry
+instance that you're using.
+
+8
+00:00:19,360 --> 00:00:22,670
+All of the services
+that you see listed here
+
+9
+00:00:22,670 --> 00:00:25,420
+have been configured in
+this Cloud Foundry instance,
+
+10
+00:00:25,420 --> 00:00:30,420
+in this case it's SAP by the
+SAP operators of this instance.
+
+11
+00:00:31,290 --> 00:00:34,390
+Your marketplace will likely vary
+
+12
+00:00:34,390 --> 00:00:36,450
+and differ depending on what services
+
+13
+00:00:36,450 --> 00:00:39,550
+the operators have made available to you.
+
+14
+00:00:39,550 --> 00:00:40,910
+Now, when we look through this list
+
+15
+00:00:40,910 --> 00:00:45,130
+it can be pretty significant
+and you should certainly peruse
+
+16
+00:00:45,130 --> 00:00:48,170
+and see what's available to
+you to provision on demand.
+
+17
+00:00:48,170 --> 00:00:50,760
+But let's just say for the
+purposes of this exercise
+
+18
+00:00:50,760 --> 00:00:54,390
+I'm looking for a
+Postgres or just some kind
+
+19
+00:00:54,390 --> 00:00:57,210
+of database service, because
+there's so much in here.
+
+20
+00:00:57,210 --> 00:00:59,710
+Because I'm running on a Unix machine
+
+21
+00:00:59,710 --> 00:01:03,520
+I can use `grep` built
+in utility from Unix
+
+22
+00:01:03,520 --> 00:01:05,280
+to look for a 'postgres' service
+
+23
+00:01:05,280 --> 00:01:06,880
+and basically just narrow it down
+
+24
+00:01:06,880 --> 00:01:09,280
+and find the thing that I want.
+
+25
+00:01:09,280 --> 00:01:14,270
+So in my case now there's a
+service called `postgresql-db`.
+
+26
+00:01:14,270 --> 00:01:16,300
+That seems like that should work
+
+27
+00:01:16,300 --> 00:01:18,050
+for what we're trying to do here.
+
+28
+00:01:18,050 --> 00:01:21,640
+And so I can look at the details
+of this particular service
+
+29
+00:01:21,640 --> 00:01:25,770
+by doing a `cf m` or a `cf
+marketplace` with the `-e` flag
+
+30
+00:01:25,770 --> 00:01:27,460
+and the name of the service.
+
+31
+00:01:27,460 --> 00:01:29,850
+That shows me the description
+
+32
+00:01:29,850 --> 00:01:32,680
+of everything that's
+available for me to provision
+
+33
+00:01:32,680 --> 00:01:35,343
+from this Postgres service.
+
+34
+00:01:36,860 --> 00:01:40,810
+In my case here in SAP there's
+a single plan called 'trial'
+
+35
+00:01:42,000 --> 00:01:45,510
+it's free and I can see
+some descriptions about it.
+
+36
+00:01:46,740 --> 00:01:49,120
+Let's go ahead and create
+one of those services.
+
+37
+00:01:49,120 --> 00:01:51,950
+We can do that with `cf create-service`.
+
+38
+00:01:51,950 --> 00:01:53,910
+We give it the name of the service
+
+39
+00:01:53,910 --> 00:01:56,630
+in this case, it's called 'postgresql-db',
+
+40
+00:01:56,630 --> 00:01:59,920
+the name of the plan in this
+case it's called 'trial',
+
+41
+00:01:59,920 --> 00:02:03,300
+and then the name of the service instance.
+
+42
+00:02:03,300 --> 00:02:06,780
+And so in my case, I'm going
+to bind to this database
+
+43
+00:02:06,780 --> 00:02:10,080
+or make this database
+available to the training app.
+
+44
+00:02:10,080 --> 00:02:12,380
+I want to give it a descriptive name
+
+45
+00:02:12,380 --> 00:02:15,363
+for me 'training-app-db'
+seems to make a lot of sense.
+
+46
+00:02:16,900 --> 00:02:19,960
+As this is being
+provisioned, you'll see that
+
+47
+00:02:21,360 --> 00:02:24,880
+the CLI has told us that
+the create is in process.
+
+48
+00:02:24,880 --> 00:02:26,750
+The provisioning of these services
+
+49
+00:02:26,750 --> 00:02:29,440
+can either be synchronous or asynchronous.
+
+50
+00:02:29,440 --> 00:02:31,230
+In this case, it's asynchronous.
+
+51
+00:02:31,230 --> 00:02:34,500
+What that means is that I
+need to periodically check
+
+52
+00:02:34,500 --> 00:02:36,887
+the status of the service
+using either `cf service`
+
+53
+00:02:36,887 --> 00:02:39,560
+and the name of the
+service or `cf services`
+
+54
+00:02:39,560 --> 00:02:42,470
+to see what the operation status is.
+
+55
+00:02:42,470 --> 00:02:45,080
+In my case here I can run `cf services`
+
+56
+00:02:45,080 --> 00:02:47,900
+and I can see that this service instance
+
+57
+00:02:47,900 --> 00:02:49,800
+is still being created.
+
+58
+00:02:49,800 --> 00:02:51,910
+While this is being created
+
+59
+00:02:52,790 --> 00:02:55,620
+it's important to realize
+what's happening here.
+
+60
+00:02:55,620 --> 00:02:58,610
+So the marketplace is
+an area where operators
+
+61
+00:02:58,610 --> 00:03:01,680
+have already said, "these
+are things as a developer
+
+62
+00:03:01,680 --> 00:03:04,600
+you're allowed to provision and use"
+
+63
+00:03:04,600 --> 00:03:07,960
+(by the way provided that your
+quota supports that, right,
+
+64
+00:03:07,960 --> 00:03:09,840
+because we've looked at quotas and limits)
+
+65
+00:03:09,840 --> 00:03:11,900
+"that we can provide there".
+
+66
+00:03:11,900 --> 00:03:14,420
+But assuming that we can, I as a developer
+
+67
+00:03:14,420 --> 00:03:17,200
+can get access to a brand
+new postgres database
+
+68
+00:03:17,200 --> 00:03:19,240
+without opening a ticket,
+
+69
+00:03:19,240 --> 00:03:21,950
+without understanding
+how to install postgres,
+
+70
+00:03:21,950 --> 00:03:24,430
+how to configure postgres.
+
+71
+00:03:24,430 --> 00:03:27,500
+All of these services that
+are in this marketplace
+
+72
+00:03:27,500 --> 00:03:32,430
+are provided by a component
+called a service broker.
+
+73
+00:03:32,430 --> 00:03:34,060
+A service broker is based
+
+74
+00:03:34,060 --> 00:03:36,850
+on the Open Service Broker API (OSBAPI).
+
+75
+00:03:36,850 --> 00:03:40,420
+This is a standard API
+that allows any implementer
+
+76
+00:03:40,420 --> 00:03:44,740
+of a service broker to plug
+in on-demand provisioning.
+
+77
+00:03:44,740 --> 00:03:47,330
+And all of the complexity
+
+78
+00:03:47,330 --> 00:03:50,520
+of that provisioning is hidden from me
+
+79
+00:03:50,520 --> 00:03:53,990
+because all I need to know
+is a few simple commands:
+
+80
+00:03:53,990 --> 00:03:56,240
+how to look up the
+services that are available
+
+81
+00:03:56,240 --> 00:03:59,380
+through the marketplace, how
+to create service instances
+
+82
+00:03:59,380 --> 00:04:00,700
+and then what we're going to do next
+
+83
+00:04:00,700 --> 00:04:03,770
+how to bind and unbind
+those service instances.
+
+84
+00:04:03,770 --> 00:04:04,910
+Some of these services
+
+85
+00:04:04,910 --> 00:04:07,370
+can take a little while to provision.
+
+86
+00:04:07,370 --> 00:04:09,230
+Some of the things might
+be very, very quick -
+
+87
+00:04:09,230 --> 00:04:10,900
+it really depends.
+
+88
+00:04:10,900 --> 00:04:14,980
+Additionally, we only have a
+single plan for postgres here
+
+89
+00:04:14,980 --> 00:04:17,530
+but there could be multiple plans.
+
+90
+00:04:17,530 --> 00:04:20,090
+You can think of plans as
+kind of tiers of service.
+
+91
+00:04:20,090 --> 00:04:22,610
+Typically when you look at the plans
+
+92
+00:04:22,610 --> 00:04:24,810
+that are available you'll pick the one
+
+93
+00:04:24,810 --> 00:04:27,340
+based on the tier of service available.
+
+94
+00:04:27,340 --> 00:04:31,390
+It might be something
+like a clustered postgres,
+
+95
+00:04:31,390 --> 00:04:32,940
+versus a single instance,
+
+96
+00:04:32,940 --> 00:04:36,500
+versus just a database
+in a shared instance.
+
+97
+00:04:36,500 --> 00:04:39,740
+I only have access to this one trial plan
+
+98
+00:04:39,740 --> 00:04:42,170
+and that's because the
+operators can control
+
+99
+00:04:42,170 --> 00:04:45,200
+what plans are available
+in individual orgs
+
+100
+00:04:45,200 --> 00:04:47,123
+throughout the Cloud Foundry instance.
+
+101
+00:04:48,080 --> 00:04:50,740
+I can keep checking `cf services`
+
+102
+00:04:50,740 --> 00:04:52,170
+to check the last operation
+
+103
+00:04:52,170 --> 00:04:54,270
+for any asynchronous provisioning.
+
+104
+00:04:54,270 --> 00:04:57,510
+And when I can see that
+create was successful
+
+105
+00:04:57,510 --> 00:05:01,340
+then I can proceed to
+continue with the exercise.
+
+106
+00:05:01,340 --> 00:05:04,530
+Now we have this database
+that's been created
+
+107
+00:05:04,530 --> 00:05:06,240
+all we needed to know again was
+
+108
+00:05:06,240 --> 00:05:07,700
+how to look it up in the marketplace
+
+109
+00:05:07,700 --> 00:05:09,850
+and how to run `cf create-service`.
+
+110
+00:05:09,850 --> 00:05:12,520
+Now, I want to tell my
+application about it.
+
+111
+00:05:12,520 --> 00:05:14,450
+Doing that in Cloud Foundry
+
+112
+00:05:14,450 --> 00:05:17,100
+is called 'binding a service instance'.
+
+113
+00:05:17,100 --> 00:05:19,500
+We do a `cf bind-service`,
+
+114
+00:05:19,500 --> 00:05:22,740
+we provide the name of the app
+that we want to bind it to,
+
+115
+00:05:22,740 --> 00:05:24,440
+and then the name of the service instance.
+
+116
+00:05:24,440 --> 00:05:28,160
+In this case, it's 'training-app'
+and 'training-app-db'.
+
+117
+00:05:28,160 --> 00:05:32,590
+The process of binding essentially
+
+118
+00:05:32,590 --> 00:05:35,710
+has Cloud Foundry reach out
+again to that service broker,
+
+119
+00:05:35,710 --> 00:05:38,890
+but this time to generate
+unique credentials
+
+120
+00:05:38,890 --> 00:05:42,270
+in that service for our application.
+
+121
+00:05:42,270 --> 00:05:44,580
+So I do not need to know
+how to go into postgres
+
+122
+00:05:44,580 --> 00:05:45,970
+and create and manage users.
+
+123
+00:05:45,970 --> 00:05:48,973
+All I need to know is
+about `cf bind-service`.
+
+124
+00:05:50,250 --> 00:05:54,170
+And the configuration of how
+my app needs to go connect
+
+125
+00:05:54,170 --> 00:05:56,640
+to that database is, not surprisingly,
+
+126
+00:05:56,640 --> 00:05:59,430
+injected through the environment.
+
+127
+00:05:59,430 --> 00:06:01,957
+We talked earlier in the environment
+
+128
+00:06:01,957 --> 00:06:03,540
+variables section about
+
+129
+00:06:03,540 --> 00:06:05,760
+this special system provided environment
+
+130
+00:06:05,760 --> 00:06:08,340
+variable called 'VCAP_SERVICES'.
+
+131
+00:06:08,340 --> 00:06:11,660
+'VCAP_SERVICES' is the
+environment variable
+
+132
+00:06:11,660 --> 00:06:14,020
+where we will pass all of the information
+
+133
+00:06:14,020 --> 00:06:15,950
+that our application needs
+
+134
+00:06:15,950 --> 00:06:19,120
+to connect to this particular database.
+
+135
+00:06:19,120 --> 00:06:21,373
+Now, don't worry about
+this actually being,
+
+136
+00:06:22,220 --> 00:06:25,240
+sharing passwords and names
+and all of these things
+
+137
+00:06:25,240 --> 00:06:26,130
+on the screen here,
+
+138
+00:06:26,130 --> 00:06:28,060
+because the service
+instance will be deleted
+
+139
+00:06:28,060 --> 00:06:30,480
+by the time you actually see this.
+
+140
+00:06:30,480 --> 00:06:33,880
+None of this sensitive
+information will be relevant.
+
+141
+00:06:33,880 --> 00:06:36,350
+But what you can see
+here is all of the same
+
+142
+00:06:36,350 --> 00:06:38,590
+standard information that we would need
+
+143
+00:06:38,590 --> 00:06:41,030
+to connect to a postgres database.
+
+144
+00:06:41,030 --> 00:06:43,910
+So things like the URL,
+the name of the database
+
+145
+00:06:43,910 --> 00:06:46,290
+that was created, as
+well as my credentials.
+
+146
+00:06:46,290 --> 00:06:48,363
+So my username, my password, etcetera.
+
+147
+00:06:49,500 --> 00:06:53,630
+All of that information is
+injected through the environment.
+
+148
+00:06:53,630 --> 00:06:56,320
+Now, if I go back to my
+application at this point
+
+149
+00:06:56,320 --> 00:06:59,860
+and I refresh I don't
+actually see the database
+
+150
+00:06:59,860 --> 00:07:01,790
+connected here. That's because
+
+151
+00:07:01,790 --> 00:07:04,000
+we need to restart our application
+
+152
+00:07:04,000 --> 00:07:06,600
+just like we did in the
+environment variable section.
+
+153
+00:07:06,600 --> 00:07:09,600
+Anytime we're changing the
+configuration of our app
+
+154
+00:07:09,600 --> 00:07:10,700
+we need to do a `restart`.
+
+155
+00:07:12,990 --> 00:07:15,603
+So we can do a `cf restart`
+on the training app.
+
+156
+00:07:18,620 --> 00:07:21,170
+Now when we access our
+application in the browser
+
+157
+00:07:21,170 --> 00:07:23,620
+we can see that our database is bound
+
+158
+00:07:23,620 --> 00:07:25,750
+and our app knows about it.
+
+159
+00:07:25,750 --> 00:07:27,450
+Again this is a training app and
+
+160
+00:07:27,450 --> 00:07:31,510
+so it is coded to display
+the bindings that it has.
+
+161
+00:07:31,510 --> 00:07:32,343
+But your application using this database
+
+162
+00:07:32,343 --> 00:07:33,176
+would use it just like any other database,
+
+163
+00:07:36,140 --> 00:07:38,320
+using the regular connection strings,
+
+164
+00:07:38,320 --> 00:07:39,153
+the database name, and the credentials.
+
+165
+00:07:39,153 --> 00:07:39,986
+Similar to binding, you can unbind
+
+166
+00:07:44,550 --> 00:07:46,807
+a service instance from an application.
+
+167
+00:07:46,807 --> 00:07:48,990
+The process of unbinding is essentially
+
+168
+00:07:48,990 --> 00:07:52,770
+removing those credentials
+from the environment
+
+169
+00:07:52,770 --> 00:07:55,680
+and removing their
+credentials from the database.
+
+170
+00:07:55,680 --> 00:07:58,780
+Now, if we look at the
+`env` for our application
+
+171
+00:07:58,780 --> 00:08:02,730
+we can see that 'VCAP_SERVICES'
+is in fact empty.
+
+172
+00:08:02,730 --> 00:08:04,850
+But if we go back to our application,
+
+173
+00:08:04,850 --> 00:08:07,330
+it still thinks it
+knows about the bindings
+
+174
+00:08:07,330 --> 00:08:11,720
+simply because we have to
+restart our application again
+
+175
+00:08:11,720 --> 00:08:13,970
+because the environment
+variables have changed.
+
+176
+00:08:13,970 --> 00:08:15,673
+So let's go ahead and do that.
+
+177
+00:08:20,040 --> 00:08:22,660
+And we can go back to our
+application now in a browser
+
+178
+00:08:22,660 --> 00:08:26,410
+and we see that service
+instance is now gone.
+
+179
+00:08:26,410 --> 00:08:29,670
+Now it's important to
+understand that in unbinding
+
+180
+00:08:29,670 --> 00:08:32,590
+it's ultimately up to the
+authors of the service broker
+
+181
+00:08:32,590 --> 00:08:34,760
+in terms of what happens there.
+
+182
+00:08:34,760 --> 00:08:37,420
+In most cases, the
+broker is going to delete
+
+183
+00:08:37,420 --> 00:08:38,890
+the credentials that it created
+
+184
+00:08:38,890 --> 00:08:40,710
+when we ran `cf bind-service`.
+
+185
+00:08:40,710 --> 00:08:43,460
+So those credentials
+would be no longer valid
+
+186
+00:08:43,460 --> 00:08:46,780
+to access that particular
+database instance.
+
+187
+00:08:46,780 --> 00:08:49,190
+That allows us to remove the binding
+
+188
+00:08:49,190 --> 00:08:50,570
+from our application, essentially
+
+189
+00:08:50,570 --> 00:08:52,550
+removing that service instance.
+
+190
+00:08:52,550 --> 00:08:55,230
+We can clean up that service
+
+191
+00:08:55,230 --> 00:08:57,300
+or get rid of that service instance
+
+192
+00:08:57,300 --> 00:08:59,330
+running `cf delete-service`,
+
+193
+00:08:59,330 --> 00:09:02,620
+and this will delete the database.
+
+194
+00:09:02,620 --> 00:09:05,140
+It will delete the service instance
+
+195
+00:09:05,140 --> 00:09:07,970
+by making a call to the broker.
+
+196
+00:09:07,970 --> 00:09:12,260
+Again, this can happen
+synchronously or asynchronously.
+
+197
+00:09:12,260 --> 00:09:14,480
+In this case, it's
+happening asynchronously.
+
+198
+00:09:14,480 --> 00:09:16,830
+You can see that delete is in progress,
+
+199
+00:09:16,830 --> 00:09:19,550
+but this will
+
+200
+00:09:19,550 --> 00:09:22,953
+delete the database and
+remove it completely.
+

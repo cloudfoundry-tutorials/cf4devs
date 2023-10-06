@@ -1,0 +1,119 @@
+﻿1
+00:00:00,000 --> 00:00:02,100
+- The training application contains
+
+2
+00:00:02,100 --> 00:00:06,250
+a sample task that we can
+run by running `cf run-task`.
+
+3
+00:00:06,250 --> 00:00:07,840
+And we provide it the
+name of the application,
+
+4
+00:00:07,840 --> 00:00:09,290
+in our case, 'training-app'.
+
+5
+00:00:09,290 --> 00:00:11,850
+And then the allocations
+of memory and disk applied
+
+6
+00:00:11,850 --> 00:00:15,640
+to the container running the
+task, not to the application.
+
+7
+00:00:15,640 --> 00:00:19,010
+Remember, tasks run inside
+their own containers.
+
+8
+00:00:19,010 --> 00:00:21,620
+We can name our task,
+and then we can specify
+
+9
+00:00:21,620 --> 00:00:23,970
+what command we want to run;
+
+10
+00:00:23,970 --> 00:00:26,840
+what command the task actually represents.
+
+11
+00:00:26,840 --> 00:00:31,440
+In our case, we have simple
+`sample-task.sh` script
+
+12
+00:00:31,440 --> 00:00:36,243
+in the 'tasks' directory
+of the training app code.
+
+13
+00:00:37,720 --> 00:00:41,570
+We can check the status of our
+tasks by running `cf tasks`.
+
+14
+00:00:41,570 --> 00:00:44,290
+And you can see that I've
+run this multiple times.
+
+15
+00:00:44,290 --> 00:00:46,463
+You can see that the last run succeeded,
+
+16
+00:00:47,780 --> 00:00:50,940
+and all of our tasks, whether
+they're simple or not,
+
+17
+00:00:50,940 --> 00:00:53,930
+will log to the same log stream.
+
+18
+00:00:53,930 --> 00:00:57,260
+So I can run `cf logs`
+on my application again.
+
+19
+00:00:57,260 --> 00:01:00,670
+And I can see that my task logs
+
+20
+00:01:00,670 --> 00:01:03,055
+will be annotated with 'APP/TASK/`,
+
+21
+00:01:03,055 --> 00:01:05,122
+the name of the task,
+
+22
+00:01:05,122 --> 00:01:07,580
+and then the logs that are there.
+
+23
+00:01:07,580 --> 00:01:09,620
+So this is just a really simple example.
+
+24
+00:01:09,620 --> 00:01:13,780
+All it does is print a
+statement in the log files.
+
+25
+00:01:13,780 --> 00:01:16,920
+Your tasks obviously would do
+things that are more complex,
+
+26
+00:01:16,920 --> 00:01:20,063
+but they're very easy to work
+with within Cloud Foundry.
+

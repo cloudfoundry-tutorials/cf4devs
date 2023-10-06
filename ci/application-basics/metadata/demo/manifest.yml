@@ -1,0 +1,18 @@
+---
+applications:
+- name: training-app
+  instances: 1
+  memory: 64M
+  buildpacks:
+  - go_buildpack
+  env:
+    TRAINING_KEY_1: training-value-1
+    TRAINING_KEY_2: training-value-2
+    TRAINING_KEY_3: training-value-3_1
+  metadata:
+    annotations:
+      contact: "jane@example.com"
+      version: ((app_version))
+    labels:
+      env: dev
+      sensitive: true

@@ -1,0 +1,137 @@
+﻿1
+00:00:00,490 --> 00:00:03,410
+- As a developer, it's
+important to understand
+
+2
+00:00:03,410 --> 00:00:06,290
+what quotas have been applied
+to your orgs and spaces.
+
+3
+00:00:06,290 --> 00:00:10,260
+We won't do anything in this
+course with setting quotas.
+
+4
+00:00:10,260 --> 00:00:12,200
+But we should be able
+to observe them because
+
+5
+00:00:12,200 --> 00:00:14,300
+at some point if you use
+Cloud Foundry long enough
+
+6
+00:00:14,300 --> 00:00:17,433
+you'll probably run up
+against exhausting your quota.
+
+7
+00:00:18,270 --> 00:00:20,250
+So if we want to look
+at our org, we can do
+
+8
+00:00:20,250 --> 00:00:23,410
+a `cf org` and the name of
+the org, and then we can
+
+9
+00:00:23,410 --> 00:00:25,940
+look for the name of the quota.
+
+10
+00:00:25,940 --> 00:00:29,543
+So in this case, it's a
+pretty long GUID here.
+
+11
+00:00:30,460 --> 00:00:33,560
+We can then do `cf
+org-quota`, and the name
+
+12
+00:00:33,560 --> 00:00:36,930
+of that GUID to see the values
+
+13
+00:00:36,930 --> 00:00:41,350
+and what I'm allocated
+across the entire org.
+
+14
+00:00:41,350 --> 00:00:44,320
+So every space within my org
+
+15
+00:00:44,320 --> 00:00:46,990
+will share four gigs of memory.
+
+16
+00:00:46,990 --> 00:00:50,140
+I'll have an eight gig instance limit
+
+17
+00:00:50,140 --> 00:00:52,310
+per instance, per app instance.
+
+18
+00:00:52,310 --> 00:00:54,740
+Obviously I can't use all
+of that because I don't
+
+19
+00:00:54,740 --> 00:00:58,010
+even have eight gigs of
+memory across my org.
+
+20
+00:00:58,010 --> 00:01:01,630
+I am limited to 10 routes,
+400 service instances,
+
+21
+00:01:01,630 --> 00:01:04,580
+I'm allowed to generate paid services.
+
+22
+00:01:04,580 --> 00:01:07,280
+We'll talk more about that
+coming up here in the class,
+
+23
+00:01:07,280 --> 00:01:09,853
+and I'm allowed 20 application instances.
+
+24
+00:01:11,870 --> 00:01:13,480
+I can do similar thing with the space.
+
+25
+00:01:13,480 --> 00:01:14,690
+I can do `cf space`.
+
+26
+00:01:14,690 --> 00:01:17,930
+I'm currently in my dev
+space, and I can see
+
+27
+00:01:17,930 --> 00:01:21,530
+if there is a quota applied to my space.
+
+28
+00:01:21,530 --> 00:01:23,100
+You'll notice that there's always
+
+29
+00:01:23,100 --> 00:01:25,340
+a quota applied at the org level.
+
+30
+00:01:25,340 --> 00:01:28,553
+You may or may not have quotas
+applied at the space level.
+

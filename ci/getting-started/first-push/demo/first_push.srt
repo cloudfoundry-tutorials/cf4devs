@@ -1,0 +1,241 @@
+﻿1
+00:00:00,320 --> 00:00:01,720
+Before we get too far into the course,
+
+2
+00:00:01,720 --> 00:00:03,293
+let's deploy our first app.
+
+3
+00:00:04,220 --> 00:00:06,140
+If you logged out in the last exercise,
+
+4
+00:00:06,140 --> 00:00:07,470
+be sure that you're logged in again.
+
+5
+00:00:07,470 --> 00:00:09,530
+Remember that you can check
+that with `cf target` and
+
+6
+00:00:09,530 --> 00:00:10,500
+make sure that you're logged in.
+
+7
+00:00:10,500 --> 00:00:12,953
+If not, log in however you choose.
+
+8
+00:00:15,120 --> 00:00:16,930
+We wanna make sure that
+we're in the directory
+
+9
+00:00:16,930 --> 00:00:18,630
+where our application is.
+
+10
+00:00:18,630 --> 00:00:20,230
+So our first push application,
+
+11
+00:00:20,230 --> 00:00:22,040
+wherever you've downloaded
+that on your machine,
+
+12
+00:00:22,040 --> 00:00:24,040
+make sure that you're in that directory.
+
+13
+00:00:25,000 --> 00:00:26,290
+If you look inside that directory,
+
+14
+00:00:26,290 --> 00:00:28,030
+you'll see our application along with
+
+15
+00:00:28,030 --> 00:00:30,260
+a file called manifest.yml.
+
+16
+00:00:30,260 --> 00:00:33,420
+This file contains some
+directives for Cloud Foundry
+
+17
+00:00:33,420 --> 00:00:35,310
+on what to do with your application.
+
+18
+00:00:35,310 --> 00:00:36,923
+Let's take a quick look at that.
+
+19
+00:00:38,820 --> 00:00:40,560
+There's a few things that we specify here.
+
+20
+00:00:40,560 --> 00:00:43,250
+We name our application,
+this is just the name
+
+21
+00:00:43,250 --> 00:00:45,890
+that we'll refer to it
+in Cloud Foundry as.
+
+22
+00:00:45,890 --> 00:00:49,480
+We tell Cloud Foundry to
+allocate 32 megs of memory,
+
+23
+00:00:49,480 --> 00:00:52,960
+64 megs of disk, and
+create a single instance.
+
+24
+00:00:52,960 --> 00:00:54,740
+We're using this flag, random-route,
+
+25
+00:00:54,740 --> 00:00:55,990
+we'll talk more about that later,
+
+26
+00:00:55,990 --> 00:00:58,430
+but that's just to ensure we
+don't have route collisions.
+
+27
+00:00:58,430 --> 00:01:00,310
+Our application is a regular
+
+28
+00:01:00,310 --> 00:01:02,600
+static file application and so we're using
+
+29
+00:01:02,600 --> 00:01:04,850
+a thing called the staticfile_buildpack.
+
+30
+00:01:04,850 --> 00:01:07,010
+Again, we'll cover all
+of this in more detail
+
+31
+00:01:07,010 --> 00:01:09,090
+as the course progresses, but
+we just wanted to give you
+
+32
+00:01:09,090 --> 00:01:11,530
+an experience of what
+it's like to deploy an app
+
+33
+00:01:11,530 --> 00:01:13,330
+to Cloud Foundry.
+
+34
+00:01:13,330 --> 00:01:15,620
+So, provided we're in that directory where
+
+35
+00:01:15,620 --> 00:01:19,750
+the manifest exists, we
+can simply type `cf push`.
+
+36
+00:01:19,750 --> 00:01:23,000
+The `push` command is what
+you use to actually push
+
+37
+00:01:23,000 --> 00:01:26,290
+your application up to a
+Cloud Foundry instance.
+
+38
+00:01:26,290 --> 00:01:27,900
+There's quite a few different flags,
+
+39
+00:01:27,900 --> 00:01:30,920
+and we'll use this command
+again throughout the course,
+
+40
+00:01:30,920 --> 00:01:34,350
+but because we have our manifest file here
+
+41
+00:01:34,350 --> 00:01:37,100
+with the directives and the
+minimum directives that we need
+
+42
+00:01:37,100 --> 00:01:40,320
+and we have our application
+source in the same directory,
+
+43
+00:01:40,320 --> 00:01:43,060
+we can simply type `cf push`.
+
+44
+00:01:43,060 --> 00:01:45,760
+And when we do that, our
+application gets uploaded
+
+45
+00:01:45,760 --> 00:01:46,680
+to Cloud Foundry.
+
+46
+00:01:46,680 --> 00:01:49,520
+We'll talk more about
+what's happening here.
+
+47
+00:01:49,520 --> 00:01:51,910
+We get assigned to a particular route
+
+48
+00:01:51,910 --> 00:01:54,820
+where our application's running
+and then it actually starts
+
+49
+00:01:54,820 --> 00:01:56,593
+our application and runs it.
+
+50
+00:01:57,570 --> 00:01:59,840
+You can open that URL in
+a browser and you can see
+
+51
+00:01:59,840 --> 00:02:02,600
+that you now have an application running.
+
+52
+00:02:02,600 --> 00:02:07,013
+All you had to do, for all
+intents and purposes, was assemble
+
+53
+00:02:07,013 --> 00:02:09,800
+a manifest file with a few
+simple directives in it
+
+54
+00:02:09,800 --> 00:02:12,693
+and type `cf push`. Cloud
+Foundry did the rest.
+

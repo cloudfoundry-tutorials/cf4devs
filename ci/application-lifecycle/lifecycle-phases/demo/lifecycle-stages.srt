@@ -1,0 +1,339 @@
+﻿1
+00:00:00,510 --> 00:00:01,890
+- Let's take a look at the difference
+
+2
+00:00:01,890 --> 00:00:06,400
+between restarting, restaging,
+and repushing an application.
+
+3
+00:00:06,400 --> 00:00:08,050
+You've already restarted applications
+
+4
+00:00:08,050 --> 00:00:10,130
+quite a few times throughout the course.
+
+5
+00:00:10,130 --> 00:00:10,963
+When I do a cf restart
+
+6
+00:00:10,963 --> 00:00:11,796
+my existing application
+instances, or container instances,
+
+7
+00:00:17,530 --> 00:00:21,330
+are destroyed and new
+instances are rescheduled.
+
+8
+00:00:21,330 --> 00:00:24,450
+So we're not actually
+restarting the same process,
+
+9
+00:00:24,450 --> 00:00:27,090
+the same container instance.
+
+10
+00:00:27,090 --> 00:00:30,820
+We are actually rescheduling
+based on that container image
+
+11
+00:00:30,820 --> 00:00:32,880
+that we already have cached.
+
+12
+00:00:32,880 --> 00:00:35,110
+So this is the least destructive way
+
+13
+00:00:35,110 --> 00:00:38,050
+because we use the exact
+same container image
+
+14
+00:00:38,050 --> 00:00:40,430
+or droplet that's already been created
+
+15
+00:00:40,430 --> 00:00:43,683
+and we just simply replace
+the existing instances.
+
+16
+00:00:45,240 --> 00:00:47,410
+So when you're doing a restart,
+
+17
+00:00:47,410 --> 00:00:49,440
+you can restart all your app instances
+
+18
+00:00:49,440 --> 00:00:53,090
+and we'll look at rolling
+restarts in the next section,
+
+19
+00:00:53,090 --> 00:00:57,170
+but you can also restart just
+a single application instance.
+
+20
+00:00:57,170 --> 00:01:01,030
+This is actually
+important to be able to do
+
+21
+00:01:01,030 --> 00:01:02,490
+for a variety of reasons.
+
+22
+00:01:02,490 --> 00:01:05,120
+But one of the most
+common ones is if I SSH
+
+23
+00:01:05,120 --> 00:01:07,860
+to a specific app instance here,
+
+24
+00:01:07,860 --> 00:01:10,390
+I could potentially make changes,
+
+25
+00:01:10,390 --> 00:01:13,600
+whether I do that intentionally
+or unintentionally,
+
+26
+00:01:13,600 --> 00:01:15,150
+to that running instance.
+
+27
+00:01:15,150 --> 00:01:19,000
+Now that running instance
+is potentially different
+
+28
+00:01:19,000 --> 00:01:24,000
+than any of the other existing
+instances that are running.
+
+29
+00:01:24,050 --> 00:01:28,860
+I can demonstrate that with
+a pretty extreme example
+
+30
+00:01:28,860 --> 00:01:31,390
+by essentially deleting the app directory,
+
+31
+00:01:31,390 --> 00:01:35,310
+which is essentially where
+our application code lives.
+
+32
+00:01:35,310 --> 00:01:39,010
+This running instance is
+now quite corrupt, right?
+
+33
+00:01:39,010 --> 00:01:42,280
+I actually don't want that to be there.
+
+34
+00:01:42,280 --> 00:01:45,810
+The best practice is anytime I SSH
+
+35
+00:01:45,810 --> 00:01:48,690
+is to SSH to a specific instance.
+
+36
+00:01:48,690 --> 00:01:52,270
+And as soon as I'm done,
+restart that specific instance,
+
+37
+00:01:52,270 --> 00:01:55,520
+I can do that with `cf
+restart-app-instance`.
+
+38
+00:01:55,520 --> 00:01:57,720
+And as long as I pass
+the same instance index,
+
+39
+00:01:57,720 --> 00:02:02,610
+in this case, zero, it will recreate
+
+40
+00:02:02,610 --> 00:02:04,953
+that instance which I had tainted.
+
+41
+00:02:08,170 --> 00:02:10,520
+So that brings us to restage.
+
+42
+00:02:10,520 --> 00:02:13,650
+So when we do a restage, this
+is going to look an awful lot
+
+43
+00:02:13,650 --> 00:02:17,770
+like one of the first big
+log blocks that come out
+
+44
+00:02:17,770 --> 00:02:20,720
+when we push an
+application, because it is.
+
+45
+00:02:20,720 --> 00:02:24,460
+Essentially we're going through
+that staging process again.
+
+46
+00:02:24,460 --> 00:02:28,920
+And so we're recreating that
+droplet essentially using
+
+47
+00:02:28,920 --> 00:02:32,650
+the exact same app code
+that's already cached.
+
+48
+00:02:32,650 --> 00:02:36,050
+In this case, the app code hasn't changed
+
+49
+00:02:36,050 --> 00:02:38,940
+but we're recreating the droplet.
+
+50
+00:02:38,940 --> 00:02:42,400
+You may need to restage anytime you think
+
+51
+00:02:42,400 --> 00:02:44,620
+the droplet could potentially change,
+
+52
+00:02:44,620 --> 00:02:47,830
+even if your application
+code hasn't changed.
+
+53
+00:02:47,830 --> 00:02:51,330
+There are some agents that
+work with different buildpacks
+
+54
+00:02:51,330 --> 00:02:54,090
+for things like application
+performance monitoring
+
+55
+00:02:54,090 --> 00:02:57,400
+that can actually inject new things
+
+56
+00:02:57,400 --> 00:02:59,650
+into that runtime, changing the droplet,
+
+57
+00:02:59,650 --> 00:03:01,840
+in which case you need to do a restage.
+
+58
+00:03:01,840 --> 00:03:04,260
+More commonly, perhaps the buildpack
+
+59
+00:03:04,260 --> 00:03:06,960
+will be updated or the root file system,
+
+60
+00:03:06,960 --> 00:03:09,050
+called a stack, will be updated.
+
+61
+00:03:09,050 --> 00:03:12,490
+And so what we want to do is
+do a restage in those cases
+
+62
+00:03:12,490 --> 00:03:14,780
+to pick up those changes.
+
+63
+00:03:14,780 --> 00:03:16,990
+Notice here, though, that
+when you're restaging,
+
+64
+00:03:16,990 --> 00:03:19,920
+it's using the same application code.
+
+65
+00:03:19,920 --> 00:03:22,280
+So the application code hasn't changed.
+
+66
+00:03:22,280 --> 00:03:24,610
+We're recreating the container image
+
+67
+00:03:24,610 --> 00:03:28,180
+and then we're rescheduling
+all of our app instances.
+
+68
+00:03:28,180 --> 00:03:32,020
+The last is re-push and in re-push here,
+
+69
+00:03:32,020 --> 00:03:34,000
+we'll do this in the next section,
+
+70
+00:03:34,000 --> 00:03:35,720
+but you're changing everything.
+
+71
+00:03:35,720 --> 00:03:38,570
+You're changing the application
+instances or the, sorry,
+
+72
+00:03:38,570 --> 00:03:41,850
+the application code, you're changing.
+
+73
+00:03:41,850 --> 00:03:44,310
+Because the application
+code changed, of course,
+
+74
+00:03:44,310 --> 00:03:45,910
+we're going through the staging process,
+
+75
+00:03:45,910 --> 00:03:47,940
+which is creating a new container image
+
+76
+00:03:47,940 --> 00:03:51,553
+and all of our existing
+instances are also rescheduled.
+

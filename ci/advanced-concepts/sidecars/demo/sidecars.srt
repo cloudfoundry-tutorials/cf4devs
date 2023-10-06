@@ -1,0 +1,128 @@
+﻿1
+00:00:00,076 --> 00:00:02,700
+- We have provided a sample application
+
+2
+00:00:02,700 --> 00:00:05,620
+written in Ruby that contains a sidecar
+
+3
+00:00:05,620 --> 00:00:07,130
+that's written in Go.
+
+4
+00:00:07,130 --> 00:00:09,653
+Let's start by taking
+a look at the manifest.
+
+5
+00:00:10,870 --> 00:00:13,570
+Our sidecars are defined in
+the 'sidecars' block here.
+
+6
+00:00:13,570 --> 00:00:14,611
+You can see that we have a single sidecard
+
+7
+00:00:14,611 --> 00:00:15,444
+named 'config-server'
+
+8
+00:00:15,444 --> 00:00:20,444
+and we've included
+information on that sidecar.
+
+9
+00:00:20,796 --> 00:00:24,468
+For simplicity, we've included
+the sidecar as a compiled
+
+10
+00:00:24,468 --> 00:00:27,740
+Go binary, but you could
+use multiple buildpacks
+
+11
+00:00:27,740 --> 00:00:28,653
+if you wanted to.
+
+12
+00:00:29,620 --> 00:00:31,580
+Deploying this application is no different
+
+13
+00:00:31,580 --> 00:00:33,670
+than any other application.
+
+14
+00:00:33,670 --> 00:00:35,113
+It's just a `cf push`.
+
+15
+00:00:38,800 --> 00:00:40,720
+When the application's
+done starting, you can see
+
+16
+00:00:40,720 --> 00:00:43,200
+that we now have our sidecar
+`config-server` deployed
+
+17
+00:00:43,200 --> 00:00:44,963
+as part of the application.
+
+18
+00:00:46,940 --> 00:00:49,690
+Let's SSH into the application container
+
+19
+00:00:49,690 --> 00:00:52,190
+and take a look at the
+processes that are running.
+
+20
+00:00:58,010 --> 00:00:59,400
+When we do a `ps aux`, you can see
+
+21
+00:00:59,400 --> 00:01:02,200
+that we have the
+`config-server` process running.
+
+22
+00:01:02,200 --> 00:01:04,840
+We also have the `rackup` process running
+
+23
+00:01:04,840 --> 00:01:07,923
+which is the start command
+specified for our application.
+
+24
+00:01:11,780 --> 00:01:13,610
+If we open the app in the browser and go
+
+25
+00:01:13,610 --> 00:01:15,330
+to the `/config` endpoint,
+
+26
+00:01:15,330 --> 00:01:16,993
+we'll see a response.
+
+27
+00:01:18,181 --> 00:01:19,210
+What happened here is the Ruby app
+
+28
+00:01:19,210 --> 00:01:22,410
+reached out to the sidecar
+process and got some information
+
+29
+00:01:22,410 --> 00:01:25,623
+on some fake environment
+variables and displayed that here.
+

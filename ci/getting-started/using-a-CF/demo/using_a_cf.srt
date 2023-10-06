@@ -1,0 +1,240 @@
+﻿1
+00:00:00,276 --> 00:00:02,260
+- When you go to work with
+a Cloud Foundry instance
+
+2
+00:00:02,260 --> 00:00:05,010
+the first thing you need to
+do is set the API endpoint
+
+3
+00:00:05,010 --> 00:00:07,280
+of the Cloud Foundry that you're using.
+
+4
+00:00:07,280 --> 00:00:09,140
+There's a couple
+different ways to do this.
+
+5
+00:00:09,140 --> 00:00:12,760
+In this case, I'm just
+using the `cf api` command
+
+6
+00:00:12,760 --> 00:00:16,160
+and using the URL of the API
+endpoint of the Cloud Foundry
+
+7
+00:00:16,160 --> 00:00:17,250
+that I'm using.
+
+8
+00:00:17,250 --> 00:00:20,350
+Your API endpoint is probably
+going to be different
+
+9
+00:00:20,350 --> 00:00:22,330
+than the one that I'm using.
+
+10
+00:00:22,330 --> 00:00:25,920
+I can also use the `cf api`
+command to see which API
+
+11
+00:00:25,920 --> 00:00:27,670
+endpoint I'm currently targeted to.
+
+12
+00:00:27,670 --> 00:00:29,910
+This is useful if you frequently
+
+13
+00:00:29,910 --> 00:00:33,500
+interact with a lot of different
+Cloud Foundry instances.
+
+14
+00:00:33,500 --> 00:00:35,220
+So once you've set that API endpoint,
+
+15
+00:00:35,220 --> 00:00:37,380
+the next thing you need to do is login.
+
+16
+00:00:37,380 --> 00:00:40,020
+I'll type `cf login --help`.
+
+17
+00:00:40,020 --> 00:00:41,700
+You'll note that one of
+the things you can do
+
+18
+00:00:41,700 --> 00:00:44,690
+with the login command
+is set the API endpoint.
+
+19
+00:00:44,690 --> 00:00:47,534
+And so you could use the `-a` flag
+
+20
+00:00:47,534 --> 00:00:49,484
+and skip the `cf api` command altogether.
+
+21
+00:00:50,430 --> 00:00:52,480
+You will also notice that
+there's a few different ways
+
+22
+00:00:52,480 --> 00:00:55,100
+that you can log in to a
+Cloud Foundry instance.
+
+23
+00:00:55,100 --> 00:00:57,843
+We'll cover a few of those
+here, but not all of them.
+
+24
+00:00:59,710 --> 00:01:01,390
+The first way that I'm going to log in
+
+25
+00:01:01,390 --> 00:01:02,810
+is just interactively.
+
+26
+00:01:02,810 --> 00:01:05,210
+I'll just type `cf login`.
+
+27
+00:01:05,210 --> 00:01:06,870
+The nice part about this is
+
+28
+00:01:06,870 --> 00:01:09,730
+that your username and
+your password don't show up
+
+29
+00:01:09,730 --> 00:01:13,598
+in your terminal history. And
+you can see I'm now logged
+
+30
+00:01:13,598 --> 00:01:16,323
+in and I'm targeted to an org and space.
+
+31
+00:01:19,430 --> 00:01:22,060
+Another way to log in is
+a browser-based login.
+
+32
+00:01:22,060 --> 00:01:25,370
+I can do that with a `cf login --sso`.
+
+33
+00:01:25,370 --> 00:01:28,480
+And this is typically the
+one I use most frequently
+
+34
+00:01:28,480 --> 00:01:31,370
+because what this allows you
+to do is use password managers
+
+35
+00:01:31,370 --> 00:01:34,410
+like 1Password or LastPass
+that are integrated
+
+36
+00:01:34,410 --> 00:01:37,810
+with your browser and
+authenticate that way.
+
+37
+00:01:37,810 --> 00:01:40,503
+So let me grab this URL
+and open it in a browser.
+
+38
+00:01:42,930 --> 00:01:44,760
+When you do an SSO based login,
+
+39
+00:01:44,760 --> 00:01:47,000
+you get a temporary authentication code.
+
+40
+00:01:47,000 --> 00:01:49,440
+You then copy that authentication code
+
+41
+00:01:49,440 --> 00:01:52,790
+and paste that back in
+your terminal window.
+
+42
+00:01:52,790 --> 00:01:55,053
+And you've authenticated
+just the same way.
+
+43
+00:01:57,570 --> 00:01:59,600
+You can also use the
+`cf target` command to
+
+44
+00:01:59,600 --> 00:02:03,050
+see which Cloud Foundry instance
+you are currently targeted
+
+45
+00:02:03,050 --> 00:02:04,560
+and logged into.
+
+46
+00:02:04,560 --> 00:02:06,110
+The difference between
+this `cf target` command
+
+47
+00:02:06,110 --> 00:02:10,484
+and the `cf api` command is this
+also shows your org and space.
+
+48
+00:02:10,484 --> 00:02:13,234
+We'll talk about those a
+little bit later in the course.
+
+49
+00:02:14,360 --> 00:02:15,500
+Logging in is important.
+
+50
+00:02:15,500 --> 00:02:17,280
+Logging out is also important.
+
+51
+00:02:17,280 --> 00:02:19,880
+So `cf logout` is the command to do that.
+
+52
+00:02:19,880 --> 00:02:22,130
+And if you rerun that `cf target` command,
+
+53
+00:02:22,130 --> 00:02:24,130
+you'll see that I'm no longer logged in.
+

@@ -1,0 +1,281 @@
+﻿1
+00:00:00,890 --> 00:00:01,820
+- As a developer,
+
+2
+00:00:01,820 --> 00:00:04,130
+you'll probably want to check
+logs for your applications
+
+3
+00:00:04,130 --> 00:00:07,229
+as you're doing development,
+or troubleshooting issues.
+
+4
+00:00:07,229 --> 00:00:11,220
+There are two different
+functions for logs built into the
+
+5
+00:00:11,220 --> 00:00:12,820
+CLI. The first is tailing logs.
+
+6
+00:00:12,820 --> 00:00:16,180
+We can do a `cf logs` and
+the name of our application.
+
+7
+00:00:16,180 --> 00:00:18,970
+And this will tail logs in near real-time,
+
+8
+00:00:18,970 --> 00:00:22,460
+for the application, as
+logs are being emitted.
+
+9
+00:00:22,460 --> 00:00:24,700
+So this command will
+continuously run in the terminal
+
+10
+00:00:24,700 --> 00:00:27,070
+because it's basically
+opening a websocket.
+
+11
+00:00:27,070 --> 00:00:28,520
+But we won't see anything here
+
+12
+00:00:28,520 --> 00:00:31,370
+because it's only streaming
+logs in near real-time.
+
+13
+00:00:31,370 --> 00:00:34,300
+And so if nothing's happening
+with our application
+
+14
+00:00:34,300 --> 00:00:36,400
+we actually have to go
+generate some traffic
+
+15
+00:00:36,400 --> 00:00:37,663
+before we'll see logs.
+
+16
+00:00:39,050 --> 00:00:41,000
+So we can switch over to our app here.
+
+17
+00:00:41,000 --> 00:00:42,461
+I can refresh a few times,
+
+18
+00:00:42,461 --> 00:00:46,540
+generating some traffic
+to our application.
+
+19
+00:00:46,540 --> 00:00:47,740
+And then when I switch back
+
+20
+00:00:47,740 --> 00:00:50,900
+I can see that the log messages
+are actually showing up.
+
+21
+00:00:50,900 --> 00:00:53,160
+Now what you're actually seeing here are
+
+22
+00:00:53,160 --> 00:00:55,560
+log messages, not from
+the application, but
+
+23
+00:00:55,560 --> 00:00:57,050
+from the Cloud Foundry routers
+
+24
+00:00:57,050 --> 00:00:59,880
+and that's coded with this `RTR` here.
+
+25
+00:00:59,880 --> 00:01:02,500
+If our application was logging
+
+26
+00:01:02,500 --> 00:01:05,560
+and writing its own log
+messages to standard out or
+
+27
+00:01:05,560 --> 00:01:08,270
+standard error you would see those also.
+
+28
+00:01:08,270 --> 00:01:10,270
+But you see any log message
+
+29
+00:01:10,270 --> 00:01:13,179
+pertaining to traffic
+getting to your application
+
+30
+00:01:13,179 --> 00:01:16,110
+or any log message pertaining
+to the Cloud Foundry
+
+31
+00:01:16,110 --> 00:01:18,790
+components that are involved
+in that process as well.
+
+32
+00:01:18,790 --> 00:01:21,890
+So in this case, we're actually
+seeing the router logs.
+
+33
+00:01:21,890 --> 00:01:24,223
+Now to get out of this,
+you can hit `control-c`.
+
+34
+00:01:25,340 --> 00:01:28,030
+If I just want to see logs
+that have happened recently,
+
+35
+00:01:28,030 --> 00:01:30,110
+I can do `cf logs`, the name of my app
+
+36
+00:01:30,110 --> 00:01:31,620
+and then `--recent`.
+
+37
+00:01:31,620 --> 00:01:33,910
+And I'm seeing the same logs in this case.
+
+38
+00:01:33,910 --> 00:01:37,070
+But this is useful for
+troubleshooting something that just
+
+39
+00:01:37,070 --> 00:01:39,850
+happened as an example,
+or seeing what happened
+
+40
+00:01:39,850 --> 00:01:41,161
+in the past -
+
+41
+00:01:41,161 --> 00:01:43,945
+small amount of time.
+
+42
+00:01:43,945 --> 00:01:47,070
+Now be aware that this buffer is finite
+
+43
+00:01:47,070 --> 00:01:48,500
+both in space and time.
+
+44
+00:01:48,500 --> 00:01:52,497
+And so, your operators will
+configure how many messages
+
+45
+00:01:52,497 --> 00:01:56,930
+each buffer for each
+application can actually store.
+
+46
+00:01:56,930 --> 00:02:00,110
+Your operators can also
+configure the amount
+
+47
+00:02:00,110 --> 00:02:03,090
+of time that those messages will be there.
+
+48
+00:02:03,090 --> 00:02:05,830
+And so they are not there permanently.
+
+49
+00:02:05,830 --> 00:02:08,270
+If you need a permanent log solution,
+
+50
+00:02:08,270 --> 00:02:11,663
+we referenced that in the
+materials for the course.
+
+51
+00:02:13,000 --> 00:02:14,780
+The other thing that can
+be useful is looking at
+
+52
+00:02:14,780 --> 00:02:18,830
+events for our application
+so I can run `cf events`.
+
+53
+00:02:18,830 --> 00:02:22,170
+and you can see that I've
+recently, not surprisingly,
+
+54
+00:02:22,170 --> 00:02:24,043
+because I just did the last exercise,
+
+55
+00:02:24,043 --> 00:02:26,085
+scaled the application,
+
+56
+00:02:26,085 --> 00:02:29,270
+and you can see that the
+application was actually stopped
+
+57
+00:02:29,270 --> 00:02:32,590
+and started as part of that
+secondary scale process.
+
+58
+00:02:32,590 --> 00:02:34,349
+But you see other events in here
+
+59
+00:02:34,349 --> 00:02:37,010
+like every time you
+actually created an app
+
+60
+00:02:37,010 --> 00:02:39,166
+or did a push or updated an app.
+
+61
+00:02:39,166 --> 00:02:41,760
+Things like that show
+up in the event queue.
+
+62
+00:02:41,760 --> 00:02:43,260
+So that can be useful as well.
+

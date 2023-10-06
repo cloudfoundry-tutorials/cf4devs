@@ -1,0 +1,7 @@
+---
+applications:
+- name: training-app
+  instances: 1
+  memory: 64M
+  buildpacks:
+  - go_buildpack

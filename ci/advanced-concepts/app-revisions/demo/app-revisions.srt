@@ -1,0 +1,199 @@
+﻿1
+00:00:00,540 --> 00:00:01,890
+- In a previous part of the course,
+
+2
+00:00:01,890 --> 00:00:04,050
+we showed you how to cancel
+an active deployment,
+
+3
+00:00:04,050 --> 00:00:07,510
+rolling back to the previous
+version of the application
+
+4
+00:00:07,510 --> 00:00:08,980
+that you had pushed.
+
+5
+00:00:08,980 --> 00:00:10,990
+In this section, we'll
+look at rolling back
+
+6
+00:00:10,990 --> 00:00:13,100
+to a previous revision of your application
+
+7
+00:00:13,100 --> 00:00:16,470
+when there's no active
+deployment actually running.
+
+8
+00:00:16,470 --> 00:00:18,730
+You can see the revisions available
+
+9
+00:00:18,730 --> 00:00:22,040
+for your application by
+running `cf revisions`.
+
+10
+00:00:22,040 --> 00:00:23,090
+For my training app here,
+
+11
+00:00:23,090 --> 00:00:25,173
+you can see that I have three revisions.
+
+12
+00:00:26,140 --> 00:00:28,860
+There's one revision, number two,
+
+13
+00:00:28,860 --> 00:00:32,210
+where I've added a new
+environment variable.
+
+14
+00:00:32,210 --> 00:00:34,630
+I can see that environment variable now
+
+15
+00:00:34,630 --> 00:00:36,690
+by running a `cf env`
+
+16
+00:00:36,690 --> 00:00:40,863
+and it's called `TRAINING_ENV_1`.
+
+17
+00:00:41,960 --> 00:00:43,810
+So if I wanted to roll back
+
+18
+00:00:43,810 --> 00:00:47,650
+to the revision before that, revision one,
+
+19
+00:00:47,650 --> 00:00:49,800
+I can do that with `cf rollback`
+
+20
+00:00:49,800 --> 00:00:54,174
+and specify version one of that revision.
+
+21
+00:00:54,174 --> 00:00:56,010
+You can go ahead and say 'yes'
+
+22
+00:00:56,010 --> 00:01:00,603
+and wait for Cloud Foundry to
+roll back to that revision.
+
+23
+00:01:08,810 --> 00:01:10,400
+Once that roll back is complete,
+
+24
+00:01:10,400 --> 00:01:12,920
+I can look at the environment again
+
+25
+00:01:12,920 --> 00:01:15,730
+and see that that environment
+variable is no longer there.
+
+26
+00:01:15,730 --> 00:01:18,440
+So rolling back to the previous revision,
+
+27
+00:01:18,440 --> 00:01:20,330
+the app code could have changed,
+
+28
+00:01:20,330 --> 00:01:21,730
+the droplet could have changed,
+
+29
+00:01:21,730 --> 00:01:23,290
+the environment could have changed,
+
+30
+00:01:23,290 --> 00:01:25,150
+just depends on what had happened
+
+31
+00:01:25,150 --> 00:01:26,763
+in those different revisions.
+
+32
+00:01:28,170 --> 00:01:31,000
+I can disable the ability
+to roll back an application
+
+33
+00:01:31,000 --> 00:01:34,720
+by disabling the revisions
+functionality for an application.
+
+34
+00:01:34,720 --> 00:01:36,560
+To do this, I'm going to need the app GUID
+
+35
+00:01:36,560 --> 00:01:38,930
+because I'm going to have to use `cf curl`
+
+36
+00:01:38,930 --> 00:01:42,403
+as there is no command in
+the CLI currently to do so.
+
+37
+00:01:45,080 --> 00:01:46,120
+Once I have that GUID,
+
+38
+00:01:46,120 --> 00:01:50,780
+I can use `cf curl` to disable
+the revisions functionality.
+
+39
+00:01:50,780 --> 00:01:51,810
+If I do that now,
+
+40
+00:01:51,810 --> 00:01:54,920
+I can still see revisions
+for my application.
+
+41
+00:01:54,920 --> 00:01:57,210
+But when I go to attempt to rollback
+
+42
+00:01:57,210 --> 00:01:59,573
+to a different version of my application,
+
+43
+00:02:02,610 --> 00:02:03,593
+that will fail.
+
+44
+00:02:05,398 --> 00:02:07,700
+And of course, if I can disable it,
+
+45
+00:02:07,700 --> 00:02:11,130
+I can re-enable it
+again by using `cf curl`
+
+46
+00:02:11,130 --> 00:02:13,943
+and now changing revisions
+would be supported.
+

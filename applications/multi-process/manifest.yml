@@ -1,0 +1,14 @@
+---
+applications:
+- name: multi-process
+  buildpacks:
+  - nodejs_buildpack
+  processes:
+  - type: web
+    instances: 1
+    memory: 64M
+    command: node main.js web
+  - type: worker
+    instances: 2
+    memory: 32M
+    command: node main.js worker

@@ -1,0 +1,190 @@
+﻿1
+00:00:00,730 --> 00:00:03,520
+- In Cloud Foundry, you can
+have an app with no routes
+
+2
+00:00:03,520 --> 00:00:06,720
+or you can have an app with
+a lot of different routes.
+
+3
+00:00:06,720 --> 00:00:08,660
+You can also have the same route
+
+4
+00:00:08,660 --> 00:00:11,143
+associated with multiple applications.
+
+5
+00:00:11,980 --> 00:00:13,490
+You can see what routes you already have
+
+6
+00:00:13,490 --> 00:00:15,933
+in your space by running `cf routes`.
+
+7
+00:00:17,240 --> 00:00:19,760
+You can see here that
+I only have one route,
+
+8
+00:00:19,760 --> 00:00:21,540
+it's for my training app
+
+9
+00:00:21,540 --> 00:00:24,000
+and it's kind of messy, kind of ugly,
+
+10
+00:00:24,000 --> 00:00:25,190
+and that's primarily because
+
+11
+00:00:25,190 --> 00:00:26,830
+we use that `random-route` feature
+
+12
+00:00:26,830 --> 00:00:29,160
+when we first pushed the application.
+
+13
+00:00:29,160 --> 00:00:30,240
+So let's change it
+
+14
+00:00:30,240 --> 00:00:32,340
+to something a little bit more meaningful.
+
+15
+00:00:33,720 --> 00:00:38,720
+We can create a route in a space
+by using `cf create-route`.
+
+16
+00:00:38,920 --> 00:00:42,210
+The first argument here is
+
+17
+00:00:42,210 --> 00:00:45,260
+the domain that we're going
+to create the route on.
+
+18
+00:00:45,260 --> 00:00:48,470
+And then we can also optionally
+specify the hostname.
+
+19
+00:00:48,470 --> 00:00:51,260
+In this case, I want
+to use the same domain,
+
+20
+00:00:51,260 --> 00:00:53,540
+but change the hostname to
+something more meaningful
+
+21
+00:00:53,540 --> 00:00:56,150
+in this case, `cff-training-app`.
+
+22
+00:00:56,150 --> 00:00:59,250
+You'll note that I can create
+this route in this space
+
+23
+00:00:59,250 --> 00:01:02,453
+without actually having it
+bound to the application.
+
+24
+00:01:04,180 --> 00:01:06,690
+I can associate a route
+with the application
+
+25
+00:01:06,690 --> 00:01:09,240
+by running `cf map-route`.
+
+26
+00:01:09,240 --> 00:01:11,110
+And the command looks very similar
+
+27
+00:01:11,110 --> 00:01:13,340
+except we've added
+
+28
+00:01:13,340 --> 00:01:16,113
+the application that
+we're referring to here.
+
+29
+00:01:18,930 --> 00:01:23,180
+So now when I look at my
+training app, by doing `cf app`,
+
+30
+00:01:23,180 --> 00:01:26,290
+I can see that I have two
+routes associated with it,
+
+31
+00:01:26,290 --> 00:01:28,870
+the old route and the new route.
+
+32
+00:01:28,870 --> 00:01:30,200
+Let's get rid of the old route,
+
+33
+00:01:30,200 --> 00:01:32,150
+because like I said, it's kind of ugly.
+
+34
+00:01:33,410 --> 00:01:35,410
+We can do that by un-mapping the route
+
+35
+00:01:35,410 --> 00:01:38,093
+from our application
+with `cf unmap-route`.
+
+36
+00:01:39,200 --> 00:01:41,280
+Now, if I look at my training app again,
+
+37
+00:01:41,280 --> 00:01:43,160
+I can see that I have a single route,
+
+38
+00:01:43,160 --> 00:01:44,710
+just the one route that I want.
+
+39
+00:01:46,160 --> 00:01:48,423
+However, if I rerun `cf routes`,
+
+40
+00:01:49,580 --> 00:01:52,550
+I still have that old
+route left in my space.
+
+41
+00:01:52,550 --> 00:01:54,550
+And I want to clean that
+up because it's not in use
+
+42
+00:01:54,550 --> 00:01:56,700
+and I'm not going to use
+it for anything else.
+
+43
+00:01:58,000 --> 00:02:00,013
+I can use `cf delete-route` to do that.
+

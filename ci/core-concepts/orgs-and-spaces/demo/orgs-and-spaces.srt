@@ -1,0 +1,237 @@
+﻿1
+00:00:01,030 --> 00:00:02,210
+You may have noticed previously
+
+2
+00:00:02,210 --> 00:00:03,580
+when we were running the `cf target`
+
+3
+00:00:03,580 --> 00:00:06,580
+or `cf t` command, that you
+could see the org and space
+
+4
+00:00:06,580 --> 00:00:08,220
+that we were currently targeted to.
+
+5
+00:00:08,220 --> 00:00:11,090
+Orgs and spaces are logical separations
+
+6
+00:00:11,090 --> 00:00:13,040
+within a Cloud Foundry instance.
+
+7
+00:00:13,040 --> 00:00:15,430
+Orgs divide up a Cloud Foundry instance,
+
+8
+00:00:15,430 --> 00:00:17,840
+and spaces divide up each org.
+
+9
+00:00:17,840 --> 00:00:21,083
+Again, how you use these
+is entirely up to you.
+
+10
+00:00:23,220 --> 00:00:27,850
+I can see the orgs that I have
+access to by running `cf orgs`.
+
+11
+00:00:27,850 --> 00:00:29,950
+You'll notice that I
+only have access to one.
+
+12
+00:00:29,950 --> 00:00:31,410
+This is not listing all
+
+13
+00:00:31,410 --> 00:00:33,460
+of the orgs that exist
+in this Cloud Foundry,
+
+14
+00:00:33,460 --> 00:00:36,890
+it's just the orgs that I have access to.
+
+15
+00:00:36,890 --> 00:00:40,130
+And then I can see the
+spaces within the org
+
+16
+00:00:40,130 --> 00:00:41,980
+that I'm currently targeted to,
+
+17
+00:00:41,980 --> 00:00:44,220
+which is my trial org here,
+
+18
+00:00:44,220 --> 00:00:47,110
+that I have access to, again
+by running `cf spaces`.
+
+19
+00:00:47,110 --> 00:00:49,280
+And you can see that I
+have two different spaces
+
+20
+00:00:49,280 --> 00:00:50,513
+that I have access to.
+
+21
+00:00:51,870 --> 00:00:56,180
+If I needed to change,
+or set, my org and space,
+
+22
+00:00:56,180 --> 00:00:58,370
+the one that I'm currently working with,
+
+23
+00:00:58,370 --> 00:01:01,890
+that's just the `cf t`, or
+`cf target` command, again.
+
+24
+00:01:01,890 --> 00:01:04,820
+You can pass the `-o`
+flag for the organization,
+
+25
+00:01:04,820 --> 00:01:07,740
+and the `-s` flag for the space.
+
+26
+00:01:07,740 --> 00:01:09,570
+If you were just changing spaces,
+
+27
+00:01:09,570 --> 00:01:12,470
+so if I was just changing
+to this test space,
+
+28
+00:01:12,470 --> 00:01:16,110
+I could just simply type `cf t -s test`,
+
+29
+00:01:16,110 --> 00:01:17,913
+and it would keep the same org.
+
+30
+00:01:19,710 --> 00:01:21,710
+You'll notice when we talk about labels
+
+31
+00:01:21,710 --> 00:01:23,910
+within Cloud Foundry and names,
+
+32
+00:01:23,910 --> 00:01:25,620
+that these orgs, these spaces,
+
+33
+00:01:25,620 --> 00:01:28,210
+they all have human readable names.
+
+34
+00:01:28,210 --> 00:01:30,900
+These are names that can
+typically be changed depending on
+
+35
+00:01:30,900 --> 00:01:32,920
+if you have the right access control.
+
+36
+00:01:32,920 --> 00:01:35,960
+But these are just names
+for humans to refer to.
+
+37
+00:01:35,960 --> 00:01:38,760
+And so if we go back to our
+application that we pushed
+
+38
+00:01:38,760 --> 00:01:40,740
+in the first push exercise,
+
+39
+00:01:40,740 --> 00:01:44,730
+we gave that a name and
+the name was, first-push.
+
+40
+00:01:44,730 --> 00:01:47,650
+This again is just the
+human readable name.
+
+41
+00:01:47,650 --> 00:01:50,580
+There is actually a unique
+identifier associated
+
+42
+00:01:50,580 --> 00:01:53,710
+with that application that exists
+
+43
+00:01:53,710 --> 00:01:55,190
+behind the scenes.
+
+44
+00:01:55,190 --> 00:01:57,300
+But this allows us to just do things like,
+
+45
+00:01:57,300 --> 00:02:00,580
+show the app details by
+typing `cf app` and the name,
+
+46
+00:02:00,580 --> 00:02:03,150
+and not needing to know that unique,
+
+47
+00:02:03,150 --> 00:02:04,840
+very long string of characters
+
+48
+00:02:04,840 --> 00:02:07,193
+that make up the unique identification.
+
+49
+00:02:09,380 --> 00:02:12,540
+As we also said earlier, apps are always
+
+50
+00:02:12,540 --> 00:02:16,100
+scoped to a space or pushed to a space.
+
+51
+00:02:16,100 --> 00:02:18,610
+So you'll notice that this app exists
+
+52
+00:02:18,610 --> 00:02:21,750
+in a particular org in the dev space.
+
+53
+00:02:21,750 --> 00:02:24,930
+You cannot deploy an
+application to an organization.
+
+54
+00:02:24,930 --> 00:02:27,683
+You're always deploying
+applications to a space.
+
