@@ -1,5 +1,5 @@
 ######################## default configuration ####################
-baseURL = ""
+baseURL = "/cf4devs"
 title = "Cloud Foundry for Developers"
 theme = "godocs-1"
 # google analytics

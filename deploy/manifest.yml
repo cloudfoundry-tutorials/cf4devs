@@ -1,10 +1,10 @@
 ---
 applications:
-  - name: korifi
+  - name: cf4devs
     instances: 2
     memory: 32M
     disk_quota: 64M
     buildpacks:
       - staticfile_buildpack
     routes:
-      - route: tutorials.cloudfoundry.org/korifi
+      - route: tutorials.cloudfoundry.org/cf4devs

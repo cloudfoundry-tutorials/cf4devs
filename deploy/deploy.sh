@@ -9,8 +9,8 @@ popd
 
 pushd $this_directory 
   rm -fr work
-  mkdir -p work/korifi
-  cp -R ../site/public/* work/korifi
+  mkdir -p work/cf4devs
+  cp -R ../site/public/* work/cf4devs
   cp Staticfile work
 popd
 
