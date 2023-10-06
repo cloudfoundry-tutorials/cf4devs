@@ -1,0 +1,70 @@
+<meta charset="utf-8">
+<title>{{ .Title }}</title>
+
+<meta name="author" content="{{ site.Params.author }}">
+<meta name="description"
+  content="{{ with .Params.description }}{{.}}{{else}}{{ with site.Params.description }}{{.}}{{end}}{{end}}">
+
+<meta name="theme-name" content="godocs-hugo" />
+
+<!-- mobile responsive meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+
+<!-- DNS preconnect -->
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="preconnect" href="//ajax.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link rel="preconnect" href="https://use.fontawesome.com" crossorigin>
+<link rel="preconnect" href="//cdnjs.cloudflare.com">
+<link rel="preconnect" href="//www.googletagmanager.com">
+<link rel="preconnect" href="//www.google-analytics.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="dns-prefetch" href="https://use.fontawesome.com">
+<link rel="dns-prefetch" href="//ajax.googleapis.com">
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+<link rel="dns-prefetch" href="//www.googletagmanager.com">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//connect.facebook.net">
+<link rel="dns-prefetch" href="//platform.linkedin.com">
+<link rel="dns-prefetch" href="//platform.twitter.com">
+
+<!-- Favicon -->
+<link rel="icon" href="{{ site.Params.favicon | absURL }}" type="image/x-icon">
+
+<!-- google analytics -->
+{{ template "_internal/google_analytics.html" . }}
+
+<script src="https://code.iconify.design/3/3.0.1/iconify.min.js"></script>
+
+<style type="text/css">
+  p {
+    /* font-size: 20px !important; */
+    /* line-height: 1.5em; */
+    padding-bottom: .5em;
+    font-weight: 300;
+  }
+
+  strong {
+    color: #2d74ba;
+    font-weight: 800;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    /* color: #2d74ba; */
+    font-weight: 700 !important;
+  }
+
+  h5 {
+    padding-top: .5em;
+  }
+
+  code {
+    background-color: #fbfbfb;
+  }
+</style>

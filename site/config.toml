@@ -1,0 +1,120 @@
+######################## default configuration ####################
+baseURL = ""
+title = "Cloud Foundry for Developers"
+theme = "godocs-1"
+# google analytics
+googleAnalytics = "" # example : UA-123-45
+# disable language
+disableLanguages = []
+
+# hugo outputs
+[outputs]
+home = ["HTML", "JSON"]
+
+# render unsafe html
+[markup.goldmark.renderer]
+unsafe = true
+
+############################# Plugins ##############################
+
+# CSS Plugins
+[[params.plugins.css]]
+link = "plugins/bootstrap/bootstrap.min.css"
+[[params.plugins.css]]
+link = "plugins/search/auto-complete.css"
+[[params.plugins.css]]
+link = "plugins/featherlight/featherlight.min.css"
+
+
+# JS Plugins
+[[params.plugins.js]]
+link = "plugins/jQuery/jquery.min.js"
+[[params.plugins.js]]
+link = "plugins/bootstrap/bootstrap.min.js"
+[[params.plugins.js]]
+link = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"
+attributes = "crossorigin='anonymous' defer='defer' data-search-pseudo-elements"
+[[params.plugins.js]]
+link = "plugins/masonry/masonry.min.js"
+[[params.plugins.js]]
+link = "plugins/featherlight/featherlight.min.js"
+[[params.plugins.js]]
+link = "plugins/clipboard/clipboard.min.js"
+[[params.plugins.js]]
+link = "plugins/search/auto-complete.js"
+[[params.plugins.js]]
+link = "plugins/search/search.js"
+[[params.plugins.js]]
+link = "plugins/search/lunr.min.js"
+[[params.plugins.js]]
+link = "plugins/search/fuse.min.js"
+[[params.plugins.js]]
+link = "plugins/search/mark.js"
+[[params.plugins.js]]
+link = "plugins/search/search-page.js"
+
+# site variables
+[params.variables]
+# Color Variables
+primary_color = "#2D74BA"
+text_color = "#454645"
+text_color_dark = "#454645"
+text_color_light = "#999"
+body_color = "#fff"
+border_color = "#E2E2E2"
+black = "#000"
+white = "#fff"
+light = "#FBFBFB"
+
+# Font Variables
+primary_font = "Open Sans"
+primary_font_type = "sans-serif"  # [serif/sans-serif]
+secondary_font = ""
+secondary_font_type = ""          # [serif/sans-serif]
+icon_font = "Font Awesome 5 Free"
+
+#################### default parameters ################################
+[params]
+logo = "images/cf-logo.png"
+favicon = "images/cf-favicon.png"
+# Meta data
+description = "This course is designed for developers and DevSecOps engineers looking to quickly and efficiently deploy and manage cloud-based applications. It is aimed at students who are comfortable using command-line tools and familiar with basic cloud computing concepts. While designed specifically for developers and DevOps engineers, it is applicable for anyone looking to learn how to use Cloud Foundry to deploy and manage applications."
+author = "Cloud Foundry"
+# contact form action
+# contact_form_action = "#" # contact form works with https://formspree.io
+
+# Preloader
+[params.preloader]
+enable = false
+preloader = "" # use jpg, png, svg or gif format.
+
+# Navigation button
+[[params.nav_button]]
+style = "outline"
+label = "Source"
+link = "https://github.com/cloudfoundry-tutorials/cf4devs"
+
+[[params.social]]
+title = "github"
+icon = "fab fa-github"
+link = "https://github.com/cloudfoundry-tutorials/cf4devs"
+
+[[params.social]]
+title = "slack"
+icon = "fab fa-slack"
+link = "https://slack.cloudfoundry.org/"
+
+
+################################### English language #####################################
+[Languages.en]
+languageName = "En"
+languageCode = "en-us"
+weight = 1
+# copyright
+copyright = "Copyright (c) 2017 - 2023 [Cloud Foundry Foundation](https://cloudfoundry.org)"
+
+# banner
+[Languages.en.banner]
+title = "Cloud Foundry for Developers"
+subtitle = "This course is designed for developers and DevSecOps engineers looking to quickly and efficiently deploy and manage cloud-based applications. It is aimed at students who are comfortable using command-line tools and familiar with basic cloud computing concepts. While designed specifically for developers and DevOps engineers, it is applicable for anyone looking to learn how to use Cloud Foundry to deploy and manage applications."
+image = "images/proven-developer-isometric.png"
