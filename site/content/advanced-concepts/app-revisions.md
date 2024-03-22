@@ -20,16 +20,18 @@ Revisions are triggered automatically whenever the following events occur:
 * A custom start command for an app is added or changed
 * An app rolls back to a prior revision
 
-> By default the Cloud Foundry API retains a maximum of 100 revisions per app.
+> By default, the Cloud Foundry API retains a maximum of 100 revisions per app.
 
 ## List the Revisions on an App
-To list the revisions for an app, we need to retrieve that app's guid and then perform a `cf curl` against the API.
+To list the revisions for an app, we need to retrieve that app's GUID and then perform a `cf curl` against the API.
 
-Let's take a look at the revisions for the `training-app`. 
+Let's take a look at the revisions for `training-app`. 
 
 ```
 cf revisions training-app 
 ```
+> Note: Depending on the order in which you have been working on these labs, your currently running version of `training-app` might have only a single revision. You can easily create a second revision by setting an arbitrary environment variable for the app using `cf set-env` then restarting the app.
+
 
 Whenever a new revision is created, the details of the event that triggered that revision are included in its description field. For example, say you update an environment variable with `cf set-env` and then restart the app in question. The revision would then include a description similar to:
 ```

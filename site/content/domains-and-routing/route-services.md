@@ -4,7 +4,7 @@ layout: "docs"
 weight: 4
 ---
 
-In some instances, Cloud Foundry developers might want to transform or process requests before they reach an app. Common use cases include authentication, rate limiting, and caching services. Route services, which bind an app’s route to a service instance, are a type of service that developers can use to apply such transformations to app requests.
+In some situations, Cloud Foundry developers might want to transform or process requests before they reach an app. Common use cases include authentication, rate limiting, and caching services. Route services, which bind an app’s route to a service instance, are a type of service that developers can use to apply such transformations to app requests.
 
 Through integrations with service brokers and, optionally, with the CF routing tier, providers can offer these services to developers with a familiar, automated, self-service, and on-demand user experience.
 
@@ -21,8 +21,8 @@ When the request arrives at the CF router for a second time, the router recogniz
 A route service can run inside or outside Cloud Foundry, so long as it either accepts the request by making a fresh request to the requested URL (or some other location), or rejects it. Route services offered through a service broker advertise themselves through the CF marketplace. Developers can then create instances of the service and bind it to their apps with the following commands:
 
 ```
-cf create-service BROKER-SERVICE-PLAN SERVICE-INSTANCE 
-cf bind-route-service YOUR-APP-DOMAIN SERVICE-INSTANCE [--hostname HOSTNAME] [--path PATH]
+cf create-service <BROKER-SERVICE-PLAN> <SERVICE-INSTANCE>
+cf bind-route-service <YOUR-APP-DOMAIN> <SERVICE-INSTANCE> [--hostname <HOSTNAME>] [--path <PATH>]
 ```
 
 Developers can configure the service either through the service provider’s web UI, if it has one, or by passing arbitrary parameters to the `cf create-service` call via a JSON object provided to the `-c` flag.
@@ -30,7 +30,7 @@ Developers can configure the service either through the service provider’s web
 Advantages:
 * Developers can use a service broker to dynamically configure how the route service processes traffic to specific apps.
 * Adding route services requires no manual infrastructure configuration.
-* Traffic to apps that do not use the service does not pass through the route service, and so doesn't need to make so many network hops.
+* Traffic to apps that do not use the service does not pass through the route service, and so doesn't need to make as many network hops.
 
 Disadvantages:
 * Traffic to apps that use the route service make more network hops than it would under the static model (below).
@@ -56,8 +56,8 @@ If a route service is not listed in the CF marketplace by a broker, a developer 
 This model works like the fully-brokered service model, but without the broker. Developers configure the service manually, outside of CF. They can then create a user-provided service instance and bind it to their app with the following commands, supplying the URL of their route service:
 
 ```
-cf create-user-provided-service SERVICE-INSTANCE -r ROUTE-SERVICE-URL
-cf bind-route-service DOMAIN SERVICE-INSTANCE [--hostname HOSTNAME]
+cf create-user-provided-service <SERVICE-INSTANCE> -r <ROUTE-SERVICE-URL>
+cf bind-route-service <DOMAIN> <SERVICE-INSTANCE> [--hostname <HOSTNAME>]
 ```
 
 Advantages:

@@ -8,6 +8,8 @@ A single app in Cloud Foundry can consist of multiple processes running in separ
 
 One of the most common use cases for multiple processes is a web app that has both a UI process and a worker process.
 
+> Note: Running apps with multiple processes uses more system resources. If you are running in an environment with limited resources, you may need to delete the apps you have running from earlier sections to allow you to deploy the app in this section.
+
 ## Push an App with Multiple Processes
 
 An app with multiple processes can be pushed by either passing a Procfile to `cf push`, or by declaring the multiple processes in the app manifest. We'll start by trying the Procfile approach.

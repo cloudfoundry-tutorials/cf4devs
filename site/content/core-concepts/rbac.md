@@ -4,7 +4,7 @@ layout: "docs"
 weight: 2
 ---
 
-Cloud Foundry leverages Role-Based Access Control (RBAC) to restrict user actions that affect resources within the platform. Users can be assigned to roles globally (Cloud Foundry wide) or can be assigned to roles in specific orgs and spaces. Roles control what you can do and where you can do it.
+Cloud Foundry leverages Role-Based Access Control (RBAC) to restrict user actions that affect resources within the platform. Users can be assigned to roles globally (deployment-wide) or can be assigned to roles in specific orgs and spaces. Roles control what you can do and where you can do it.
 
 ## Global Roles
 
@@ -16,7 +16,7 @@ Users can be assigned global roles and capabilities that span an entire Cloud Fo
 
 ## Org Roles
 
-Org roles grant user access at the Org level.
+Org roles grant user access at the org level.
 
 * **OrgManager**: Can administer the org. OrgManagers can create/modify/delete spaces, org-level roles, domains, etc., in that org. 
 * **OrgAuditor**: Have read-only access to the org.

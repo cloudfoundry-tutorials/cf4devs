@@ -46,9 +46,9 @@ In such cases, you'll often use `restart`, `restage`, or (re)-`push` to make you
 
 ### `--strategy rolling`
 
-The --strategy flag was introduced with v3 of the Cloud Foundry API to enable rolling (zero downtime) deployments, and it is currently the only strategy available, meaning that the strategy flag can either be set to `rolling` or null.
+The `--strategy` flag was introduced with v3 of the Cloud Foundry API to enable rolling (zero downtime) deployments, and it is currently the only strategy available, meaning that the strategy flag can either be set to `rolling` or null.
 
-We'll speak a bit about the context of rolling deployments and compare them to the earlier mechanism of Blue-Green deployments over the next couple of sections. For now, it's just worth noting that the --strategy flag enables zero-downtime app updates, and can be used when `restarting`, `restaging`, or re-`pushing`.
+We'll discuss a bit about the context of rolling deployments and compare them to the earlier mechanism of Blue-Green deployments over the next couple of sections. For now, it's just worth noting that the `--strategy` flag enables zero-downtime app updates, and can be used when `restarting`, `restaging`, or re-`pushing`.
 
 ### Restarting
 
@@ -74,14 +74,14 @@ A better use case for an instance restart is after a user has accessed it via ss
 cf ssh training-app -i 0
 ```
 
-Then inside the container session run:
+In the container, try simulating a corruption of the application by manually deleting the app's static content by running :
 
 ```
-rm -fr app
+rm -fr app/static
 exit
 ```
 
-`rm -fr app` will recursively delete the app directory. It's unlikely that you would normally do this, but changes made by a user on an app instance can have ramifications for end users. If you were to try and open the `training-app` in your browser now, responses served by instance `0` would fail.
+`rm -fr app/static` will recursively delete the `static` directory which contains images and style sheets. It's unlikely that you would normally do this, but changes made by a user on an app instance can have ramifications for end users. If you were to open the `training-app` in your browser now, responses served by instance `0` would be incorrect due to missing app images.
 
 If you change something unintentionally when accessing a container via ssh, you can use restart to destroy the container instance you accessed and get a fresh one.
 
@@ -93,13 +93,13 @@ When you restage an app, you are asking Cloud Foundry to create a new droplet (c
 cf restage training-app 
 ```
 
-Applications should be restaged when runtime dependencies *might* change but your app code has not changed. For example when you change an environment variable directly or by binding a service. If the config change or binding could result in different runtime behavior, you should restage.
+Applications should be restaged when runtime dependencies *might* change but your app code has not changed, such as when you change an environment variable directly or by binding a service. If the config change or binding could result in different runtime behavior, you should restage.
 
 A real life scenario might be binding a monitoring service to your app that includes an agent in the runtime (AppDynamics, NewRelic, etc). The agent needs to be added to the droplet during staging so that it will run in the same container process as the app code. In this case, running a `cf restart` would not be sufficient because the buildpack wouldn't add the necessary agent.
 
 > When changing environment variables, the CLI recommends restaging because it does not know if the change will affect the droplet. This recommendation is based on the possibility that the environment change will result in a changed droplet. If you know for sure that the changes to the environment are only used by your application and not the staging process, a restart will suffice.
 
-Restaging is necessary when the buildpack changes. This happens when the operators update the buildpack, effectively updating the runtime dependencies your apps could use. In this way, the runtime dependencies for your application are managed by the platform. This is in stark contrast to docker based systems where you are responsible for patching container images.
+Restaging is necessary when the buildpack changes. This happens when the operators update the buildpack, effectively updating the runtime dependencies your apps could use. In this way, the runtime dependencies for your application are managed by the platform. This is in stark contrast to Docker-based systems where you are responsible for patching container images.
 
 Another common restage scenario is when the stack (root file system) is changed. It's difficult to know for sure whether changed stack elements are in use by a runtime, so restaging after changing the stack is a common practice.
 
@@ -113,4 +113,4 @@ When you re-push an application to Cloud Foundry, you overwrite almost everythin
 
 The deployment config might change when re-pushing, depending on whether you update it. Existing values will only be overwritten if new values are provided. If you omit values, the existing ones will be used.
 
-We'll be re-pushing an app in the update-strategies section next.
+We'll be re-pushing an app in the Update Strategies section next.

@@ -8,7 +8,7 @@ weight: 6
 
 When you scale an application horizontally, you manipulate the number of instances of that application up or down, usually in response to an increased or reduced user load.
 
-In Cloud Foundry, horizontal scaling doesn't result in downtime as traffic is only routed to available instances. When new instances are created, traffic isn't routed to those instances until they pass a healthcheck (we'll cover healthchecks later in this course).
+In Cloud Foundry, horizontal scaling doesn't result in downtime as traffic is only routed to available instances. When new instances are created, traffic isn't routed to those instances until they pass a health check (we'll cover health checks later in this course).
 
 Let's start by scaling the `training-app` up to two instances:
 

@@ -6,7 +6,7 @@ weight: 3
 
 The ability to share service instances between spaces allows apps in different spaces to share databases, messaging queues, and other services. This eliminates the need for development teams to use a messy combination of service keys and user-provided services to bind their apps to a service instance provisioned in another space with the `cf create-service` command.
 
-Sharing service instances improves security and auditing and provides a more intuitive user experience.
+Sharing service instances improves security and auditing, and also provides a more intuitive user experience.
 
 Sharing service instances is an optional feature that may be unavailable in some Cloud Foundry instances.
 
@@ -18,6 +18,12 @@ You can find out whether a particular service is shareable with `cf curl`:
 
 ```
 cf curl /v3/service_offerings
+```
+
+The output of `cf curl` is JSON and can be difficult to read. If the `jq` command is available on your system, try piping to it to make the output easier read.
+
+```
+cf curl /v3/service_offerings | jq
 ```
 
 > Note: User-provided service instances (covered in the next section) are not shareable. 

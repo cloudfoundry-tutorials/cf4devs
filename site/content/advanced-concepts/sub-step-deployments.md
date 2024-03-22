@@ -80,7 +80,7 @@ cf stop training-app
 
 Set the app to use the desired droplet:
 ```
-cf set-droplet my-app <DESIRED-DROPLET-GUID>
+cf set-droplet training-app <DESIRED-DROPLET-GUID>
 ```
 
 Start your app again:

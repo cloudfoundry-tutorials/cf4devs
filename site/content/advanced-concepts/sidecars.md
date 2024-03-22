@@ -48,8 +48,6 @@ applications:
 
 Alternatively, a custom buildpack can specify sidecar processes by including a `launch.yml` file at its root. This file provides the details of the sidecar process.
 
-> Note: At the time of writing, pushing sidecars with custom buildpacks is a Beta feature.
-
 If you are interested in learning more about custom sidecar buildpacks and the `launch.yml` file, take a look at the [Cloud Foundry documentation](https://docs.cloudfoundry.org/buildpacks/sidecar-buildpacks.html).
 
 ## Try it
@@ -80,7 +78,9 @@ The sidecar is included in the codebase as a binary. The `CONFIG_SERVER_PORT` en
 We can deploy our app with: 
 
 ```
-cf push --random-route
+cf push --random-route \
+    -b https://github.com/cloudfoundry/ruby-buildpack#v1.8.61 \
+    -s cflinuxfs3
 ```
 
 ### View the Processes Running in the Container

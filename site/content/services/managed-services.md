@@ -34,7 +34,7 @@ You should see information on each service and plan (or tier) available.
 
 Once you know what services are available, you can provision (create) a service instance using a specific plan. Again, the `<SERVICE_NAME>` and `<PLAN>` will vary depending on what is available in the Cloud Foundry instance you are using.
 
-> If Postgres isn't available to you, pick another service. The selection of Postgres is arbitrary in this example. We continue to reference Postgres for simplicity in the rest of the exercise.
+> If no Postgres plans are available to you, pick another service. The selection of Postgres is arbitrary in this example. We continue to reference Postgres for simplicity in the rest of the exercise.
 
 ```
 cf create-service <SERVICE_NAME> <PLAN> training-app-db
@@ -102,9 +102,9 @@ Accessing the app in a browser shows it no longer knows about the service instan
 
 ### Deprovisioning a service instance
 
-A service instance may be bound to more than one application or none. Unbinding only removes access for a previously-bound application; it doesn't delete the service instance or any data that it holds.
+A service instance may be bound to more than one application or to none. Unbinding only removes access for a previously-bound application; it doesn't delete the service instance or any data that it holds.
 
-A service instance can be deprovisioned and deleted completely via the CLI (do not delete the postgres service instance now, as we'll be using it in the next section).
+A service instance can be deprovisioned and deleted completely via the CLI. (Do not delete the postgres service instance now, as we'll be using it in the next section.)
 
 ```
 cf delete-service training-app-db

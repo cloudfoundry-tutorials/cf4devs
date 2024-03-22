@@ -30,7 +30,7 @@ This will map the app to a new, unique route.
 
 For much of this course, we have used the `random-route` feature of the CLI. This feature attempts to construct a unique route for your app by randomly selecting 2 words from a dictionary. This is not a feature you should **ever** use in production as it is not guaranteed to result in conflict-free route.
 
-Instead, you should specify a unique hostname and/or route for each of your apps. If you try to push an app that would use a route that already exists your deployment will fail.
+Instead, you should specify a unique hostname and/or route for each of your apps. If you try to push an app that would use a route that already exists, your deployment will fail.
 
 ## Troubleshooting Commands
 
