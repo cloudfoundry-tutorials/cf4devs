@@ -4,13 +4,13 @@ layout: "docs"
 weight: 4
 ---
 
-Environment variables inject configuration values into applications. As the [12-factor app](https://12factor.net/config) principles state, we should "store config in the environment". In this section we'll test out passing environment variables to a `training-app`.
+Environment variables inject configuration values into applications. As the [12-factor app](https://12factor.net/config) principles state, we should "store config in the environment". In this section we'll test out passing environment variables to an app called `training-app`.
 
 ## Preparation
 
 The golang application used in this section will display some basic information about the app itself, including its environment variables.
 
-Firstly, let's deploy the `training-app` using the supplied manifest. The application and manifest are in the `training-app` directory in the course resources:
+First, let's deploy the `training-app` using the supplied manifest. Go to the `training-app` directory, then deploy the app:
 
 ```
 cf push training-app -f manifest.yml -p training-app.zip --random-route
@@ -28,9 +28,9 @@ cf set-env training-app TRAINING_KEY_2 training-value-2
 cf set-env training-app TRAINING_KEY_3 training-value-3
 ```
 
-Notice the CLI provides a tip: `TIP: Use 'cf restage training-app' to ensure your env variable changes take effect`. If you access your app in a browser before restarting/restaging you will see why; the app does not see the new environment variables yet.
+Notice the CLI provides a tip: `TIP: Use 'cf restage training-app' to ensure your env variable changes take effect`. If you access your app in a browser before restarting/restaging you will see why -- the app does not see the new environment variables yet.
 
-Now restart the app and view it in a browser (we will discuss restart versus restage in a later section). You should see the three environment variables you set above.
+Now restart the app and view it in a browser. (We will discuss restart versus restage in a later section). You should see the three environment variables you set above.
 
 ```
 cf restart training-app
@@ -61,13 +61,13 @@ Remember to restart the app to see the change.
 
 ## Adding Environment Variables to the Manifest
 
-To ensure the environment variables are configured correctly on every push, be sure to add them to the manifest. If you take a look at the `training-app` manifest, you'll see that the app already has one environment variable set called `GOPACKAGENAME`.
+To ensure the environment variables are configured correctly on every push, be sure to add them to the manifest. Update your copy of the manifest to add an `env` block containing settings for the three `TRAINING_KEY_*` values previously set manually via `cf set-env`.
 
-Update your local copy of the manifest to include the three `TRAINING_KEY_*` values previously set manually via `cf set-env`.
+> **Hint**: If you are unsure of the syntax for adding environment variables in the manifest, you can see an example by generating a new manifest using the `cf create-app-manifest` command.
 
 Delete the existing `training-app` and re-deploy using the updated manifest, and check that the environment variables are correct.
 
-> NOTE: You should avoid putting secrets directly in the manifest. Instead, use variables in the manifest and store secrets outside of source control. 
+> Note: You should avoid putting secrets directly in the manifest. Instead, use variables in the manifest and store secrets outside of source control. 
 
 ## Unsetting Environment Variables
 

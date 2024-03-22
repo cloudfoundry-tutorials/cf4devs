@@ -8,11 +8,11 @@ Before we jump into the different aspects of pushing and managing applications, 
 
 ## What Goes into an App?
 
-Let's discuss what we need to run your application and review how Cloud Foundry meets these needs. Remember Cloud Foundry runs application instances in containers. It has been doing this since long before Kubernetes or Docker existed. Above and beyond what those solutions offer, Cloud Foundry also does all of the heavy lifting of creating container images and scheduling containers on appropriate hosts for you. You simply supply your application code and configuration.
+Let's discuss what we need to run your application and review how Cloud Foundry meets these needs. Remember that Cloud Foundry runs application instances in containers. It has been doing this since long before Kubernetes or Docker existed. Above and beyond what those solutions offer, Cloud Foundry also does all of the heavy lifting of creating container images and scheduling containers on appropriate hosts for you. You simply supply your application code and configuration.
 
 1. **App Code**: As a developer, you are responsible for providing your application code to the platform. You do this with the `cf push` command.
 
-2. **Runtime Dependencies**: To run your app code, Cloud Foundry needs runtime elements. This could be an interpreter for a ruby app, the JRE (or JRE + Tomcat) for a Java app, or something like NGINX to serve static content. Runtime dependencies are provided by one or more buildpacks during the staging process. The app code and runtime dependencies are combined in a unit called a "droplet" during the staging process.
+2. **Runtime Dependencies**: To run your app code, Cloud Foundry needs runtime elements. This could be an interpreter for a Ruby app, the JRE (or JRE + Tomcat) for a Java app, or something like NGINX to serve static content. Runtime dependencies are provided by one or more buildpacks during the staging process. The app code and runtime dependencies are combined in a unit called a "droplet" during the staging process.
 
 3. **Stack**: To run instances of your app, we need a filesystem for the container process. A "stack" is a prebuilt filesystem used in constructing the container image. When app instances are launched, a container is created "just in time" by combining the stack with the droplet (app + runtime dependencies).
 

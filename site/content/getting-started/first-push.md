@@ -16,7 +16,7 @@ With that in mind, let's take a quick look at deploying applications on Cloud Fo
 
 You deploy apps to Cloud Foundry with the `cf push` command.
 
-There's nothing special about the app we will be deploying - it's a simple static application written for training purposes, named `first-push`. You'll find the `first-push` application, in the `/applications` directory of the course resources.
+There's nothing special about the app we will be deploying - it's a simple static application written for training purposes, named `first-push`. You'll find the `first-push` application in the `applications` directory of the course resources.
 
 In your terminal, change directories so that you're in the `first-push` directory:
 
@@ -52,11 +52,11 @@ The push should take about a minute. If everything is successful, you should see
 name:              first-push
 requested state:   started
 routes:            first-push-active-quokka-dy.<my-domain>
-last uploaded:     Mon 24 May 11:52:30 BST 2021
+last uploaded:     Thu 21 Mar 19:23:14 UTC 2024
 stack:             cflinuxfs3
 buildpacks:
   name                   version   detect output   buildpack name
-  staticfile_buildpack   1.5.17    staticfile      staticfile
+  staticfile_buildpack   1.6.10    staticfile      staticfile
 
 type:            web
 sidecars:
@@ -64,7 +64,7 @@ instances:       1/1
 memory usage:    32M
 start command:   $HOME/boot.sh
      state     since                  cpu    memory     disk       details
-#0   running   2021-05-24T10:52:41Z   0.0%   0 of 32M   0 of 64M
+#0   running   2024-03-21T19:23:25Z   0.0%   0 of 32M   0 of 64M
 ```
 
 The application has a user interface that shows some details about the application. You can copy the URL of your application from your terminal output under `routes` and open it in a tab in your browser.

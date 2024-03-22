@@ -4,13 +4,16 @@ layout: "docs"
 weight: 2
 ---
 
-Manifests have been mentioned a handful of times already in this course. In the 'Source Paths' section, the `static-app` was deployed and configured entirely via command-line arguments. And while this worked fine for our first deployment, if we wanted to deploy it again in another space or share the configuration with a colleague, we'd need to recall the CLI arguments we used. Sharing CLI commands isn't a very reliable way to deploy our app, especially if something changes in our configuration.
+Manifests have been mentioned a handful of times already in this course. In the 'Source Paths' section, we deployed and configured `static-app` entirely via command-line arguments. And while this worked fine for our first deployment, if we wanted to deploy it again in another space or share the configuration with a colleague, we'd need to recall the CLI arguments we used. Sharing CLI commands isn't a very reliable way to deploy our app, especially if something changes in our configuration.
 
 Instead, we use a manifest file to specify values for all configurable parameters. Using a manifest file is a good practice because it can be kept in version control. A version-controlled manifest is consistent and can be shared between developers. It also allows manifest updates to be rolled out to multiple deployments quickly and efficiently, especially when integrated as part of a CI/CD pipeline.
 
 ## Creating manifests via the CLI
 
-You can write a manifest from scratch manually by following the [documentation](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest-attributes.html). But that requires a fair amount of YAML wrangling. Instead, Cloud Foundry can create a manifest for you based on the current state of a deployed application. Use the CLI to generate a manifest for the static app:
+You can write a manifest from scratch manually by following the [documentation](https://docs.cloudfoundry.org/devguide/deploy-apps/manifest-attributes.html). But that requires a fair amount of YAML wrangling. Instead, Cloud Foundry can create a manifest for you based on the current state of a deployed application. 
+
+Be sure you are in the `zip-file` directory.
+Then use the CLI to generate a manifest for the static app:
 
 ```
 cf create-app-manifest static-app
@@ -31,9 +34,11 @@ cf delete -f -r static-app
 cf push -f static-app_manifest.yml 
 ```
 
-> Try running `cf delete --help to see what the flags in the command above do.
+> Try running `cf delete --help` to see what the flags in the command above do.
 
 If you used the exact commands above, the app will not deploy correctly. When you open the app route in a browser, you will see a 403 error. This is the same error you saw in the `Source Paths` section. Open the manifest and see if you can figure out what's wrong.
+
+> You may not see the 403 error because of browser caching. Refresh the page to see the error.
 
 Cloud Foundry can only include the config elements in the generated manifest that it knows about. The path to the `app.zip` file is missing from the generated manifest. Cloud Foundry doesn't know the path you used on your local filesystem. Fix this by adding the path to the manifest, or by pushing with the `-p` parameter. How you choose to fix this will depend on your use-case. For now, let's push with the `-p` parameter:
 
@@ -67,11 +72,11 @@ Variables are declared inside double parenthesis: i.e. `((my-variable))`. To dem
 ```
 ---
 applications:
-- name: training-app
+- name: static-app
   instances: ((instances))
-  memory: 64M
   buildpacks:
-  - go_buildpack
+  - staticfile_buildpack
+...  
 ```
 
 We can then push with:

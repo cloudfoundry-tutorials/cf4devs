@@ -24,11 +24,11 @@ Cloud Foundry can support stateful workloads provided the optional [volume servi
 
 ## Deploying Large Apps
 
-Large or slow starting applications may require special considerations when running in cloud-based environments including Cloud Foundry.
+Large or slow-starting applications may require special considerations when running in cloud-based environments including Cloud Foundry.
 
 ### Timeouts
 
-The deployment process involves uploading, staging, and starting the app. Cloud Foundry has a default time limit for each of these phases:  (these can be overridden by your administrator):
+The deployment process involves uploading, staging, and starting the app. Cloud Foundry has a default time limit for each of these phases (which can be overridden by your administrator):
 - Upload: 15 minutes
 - Stage: 15 minutes
 - Start: 60 seconds

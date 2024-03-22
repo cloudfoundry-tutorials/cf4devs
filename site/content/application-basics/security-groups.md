@@ -4,7 +4,7 @@ layout: "docs"
 weight: 10
 ---
 
-Application Security Groups (ASGs) are a collection of egress rules that list protocols, ports, and IP address ranges where an app or task is allowed to connect to (where your app can reach out to). ASGs define 'allow' rules. When ASGs are applied to the same space or deployment, their order of evaluation is unimportant; ASG's are additive.
+Application Security Groups (ASGs) are a collection of egress rules that list protocols, ports, and IP address ranges where an app or task is allowed to connect to (where your app can reach out to). ASGs define 'allow' rules. When ASGs are applied to the same space or deployment, their order of evaluation is unimportant; ASGs are additive.
 
 ASGs can only be created or updated by admins. However, as ASGs dictate the outbound connectivity allowed, it is important to understand them as a developer.
 
@@ -34,7 +34,7 @@ Once you've retrieved the name of the ASG you want to inspect, you can view the 
 cf security-group <security-group-name>
 ```
 
-This will output a JSON object like so:
+This will output a JSON object similar to this:
 
 ```json
 [
@@ -51,7 +51,7 @@ This will output a JSON object like so:
 ]
 ```
 
-The above example is one of the two ASGs preconfigured in open-source installations of Cloud Foundry (commercial distributions may have different defaults). The ASG, named `dns`, permits egress on port 53 over TCP and UDP to any IP address.
+The above example shows an ASG named `dns`, which is one of the two ASGs preconfigured in open-source installations of Cloud Foundry (commercial distributions may have different defaults). This example ASG permits egress on port 53 over TCP and UDP to any IP address.
 
 The other default ASG, `public_networks`, has the effect of blocking outbound traffic to the following private IP address ranges by omitting them from the ranges that it does permit:
 
@@ -69,7 +69,7 @@ It is also possible for admins to bind ASGs to a specific space. In such cases, 
 You will still need an admin to create ASGs that you want to apply to a particular space, but, once created, a Space Manager can bind the ASG to their space with the following command:
 
 ```
-cf bind-security-group <SECURITY-GROUP> <ORG> --space <SPACE>
+cf bind-security-group <security-group> <org> --space <space>
 ```
 
 By default this will apply the ASG as a _running_ security group in the space. To instead set it as a staging security group use the `--lifecycle` flag.

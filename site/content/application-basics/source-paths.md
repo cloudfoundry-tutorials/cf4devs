@@ -32,6 +32,8 @@ If you push without specifying a path in the manifest or a `-p` parameter, the C
 
 Cloud Foundry supports pushing zip files containing your app code. An app packaged as a zip file exists in the `zip-file` directory of the course materials. Let's push it, being sure to specify the path to the zip file.
 
+Be sure you are in the `zip-file` directory before pushing.
+
 > This app doesn't have a manifest with it so we'll need to specify some parameters via the CLI.
 
 ```
