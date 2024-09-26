@@ -40,7 +40,7 @@ cf push \
     -p proxy \ # path to the source directory
     --var route=<HOSTNAME>.<CF_APPS_DOMAIN> \ # The route for nginx. Use the external domain and hostname removed from the training-app above
     --var proxied_route=<HOSTNAME>.apps.internal \ # The internal route for the training-app
-    --var proxied_port=8080" # The internal port (default) for the training-app
+    --var proxied_port=8080 # The internal port (default) for the training-app
 ```
 
 If you were to try and access the proxy app now, you would receive a 502 bad gateway error. The proxy is configured, but traffic from the proxy to the training-app needs to be explicitly allowed in Cloud Foundry through a network policy.
