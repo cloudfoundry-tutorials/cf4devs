@@ -58,7 +58,7 @@ cf set-droplet training-app <DROPLET-GUID>
 
 Finally, start your app:
 ```
-cf start my-app
+cf start training-app
 ```
 
 All done. Through the steps above, we have replicated the `cf push` command.
