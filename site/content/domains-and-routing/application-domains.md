@@ -25,7 +25,7 @@ DNS entries will need to be created by your DNS administrator for any private do
 Let's create a non-resolvable private domain for practice.
 
 ```
-cf create-private-domain <ORG> my-private-domain.exmample.com
+cf create-private-domain <ORG> my-private-domain.example.com
 ```
 
 Now we can map a route for the `training-app` under the private-domain (if the route does not already exist, `cf map-route` will first create it)
@@ -37,7 +37,7 @@ cf map-route training-app <DOMAIN> --hostname static
 > Note the above domain will not resolve (the app is not accessible) as DNS for the above domain has not been updated. 
 
 
-## HTTP veruss TCP Domains
+## HTTP versus TCP Domains
 
 When listing domains, a protocol of either `tcp` or `http` will be listed. A HTTP type domain means that only requests using the HTTP protocol are routed to apps with routes falling under that domain. Routing for HTTP domains is layer 7, and offers features like custom hostnames, sticky sessions, and TLS termination.
 
