@@ -3,7 +3,7 @@
 <!-- search index -->
 <script type="text/javascript">
   var indexURL = {{ "index.json" | absLangURL }};
-  {{ if .Site.IsMultiLingual }}
+  {{ if hugo.IsMultilingual }}
   var baseurl = "{{.Site.BaseURL}}{{.Site.LanguagePrefix}}";
   {{ else }}
   var baseurl = "{{.Site.BaseURL}}";
