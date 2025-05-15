@@ -83,6 +83,11 @@ author = "Cloud Foundry"
 # contact form action
 # contact_form_action = "#" # contact form works with https://formspree.io
 
+[params.banner]
+title = "Cloud Foundry for Developers"
+subtitle = "This course is designed for developers and DevSecOps engineers looking to quickly and efficiently deploy and manage cloud-based applications. It is aimed at students who are comfortable using command-line tools and familiar with basic cloud computing concepts. While designed specifically for developers and DevOps engineers, it is applicable for anyone looking to learn how to use Cloud Foundry to deploy and manage applications."
+image = "images/proven-developer-isometric.png"
+
 # Preloader
 [params.preloader]
 enable = false
